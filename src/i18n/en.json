@@ -1,0 +1,146 @@
+{
+  "nav": {
+    "features": "Features",
+    "howItWorks": "How it Works",
+    "pricing": "Pricing",
+    "getStarted": "Get Started Free"
+  },
+  "hero": {
+    "badge": "50 Credits Free — No Credit Card Required",
+    "headlinePrefix": "Your Visual",
+    "headlineAccent": " AI Workspace",
+    "subheadline": "Node-based canvas for creative teams to generate, compare, and export campaign-ready image variants at scale.",
+    "ctaPrimary": "Get Started Free",
+    "ctaSecondary": "See How it Works",
+    "canvasFilename": "workflow-01.lemon",
+    "node1Title": "Image",
+    "node1Subtitle": "input.jpg",
+    "node2Title": "Prompt",
+    "node2Subtitle": "\"Summer campaign...\"",
+    "node3Title": "AI Image",
+    "node3Subtitle": "FLUX.2 → output",
+    "statusNodes": "3 nodes connected",
+    "statusReady": "Ready to generate"
+  },
+  "features": {
+    "label": "Features",
+    "headline": "Everything you need for visual AI workflows",
+    "subheadline": "A powerful node-based canvas with built-in AI models, smart agents, and everything your creative team needs to produce stunning image variants.",
+    "canvas": {
+      "title": "Node-Based Canvas",
+      "desc": "Drag-and-drop visual editor. Connect Image, Text, Prompt, and AI Image nodes to build custom AI workflows. No code needed."
+    },
+    "models": {
+      "title": "9+ AI Models",
+      "desc": "Access FLUX.2, Gemini, GPT-5 Image and more through OpenRouter. Pick the perfect model for every task."
+    },
+    "agents": {
+      "title": "Smart Agents",
+      "desc": "Automate batch operations with intelligent agents that analyze, plan, and execute across multiple nodes. Like having an AI assistant on your canvas."
+    },
+    "compare": {
+      "title": "Visual Compare",
+      "desc": "Side-by-side comparison of generated variants. Pick the best output instantly."
+    },
+    "export": {
+      "title": "One-Click Export",
+      "desc": "Download as PNG or ZIP. Ready for your social media, ads, and campaigns."
+    },
+    "selfhosted": {
+      "title": "Self-Hosted",
+      "desc": "Run on your infrastructure. Your images, your data, your control. Full data privacy."
+    },
+    "transform": {
+      "title": "Transform & Edit",
+      "desc": "Background removal, upscaling, style transfer, crop & resize — all as canvas nodes."
+    },
+    "credits": {
+      "title": "Credit-Based Pricing",
+      "desc": "Pay only for what you use. 50 free credits to start, then top up as needed."
+    }
+  },
+  "how": {
+    "label": "How it Works",
+    "headline": "From idea to campaign images in minutes",
+    "subheadline": "Four simple steps to generate professional AI-powered image variants at scale.",
+    "step1": {
+      "title": "Upload",
+      "desc": "Drop your brand assets and reference images onto the canvas."
+    },
+    "step2": {
+      "title": "Connect",
+      "desc": "Build your workflow with nodes: add prompts, choose AI models, set parameters."
+    },
+    "step3": {
+      "title": "Generate",
+      "desc": "Let AI create variants. Agents can batch-process hundreds of images."
+    },
+    "step4": {
+      "title": "Export",
+      "desc": "Compare, select, and download your campaign-ready images."
+    }
+  },
+  "pricing": {
+    "label": "Pricing",
+    "headline": "Simple, credit-based pricing",
+    "subheadline": "Pay only for what you use. Start free, scale as you grow.",
+    "info": "1 Credit ≈ 1 AI Image Generation · Top-up anytime",
+    "popular": "Most Popular",
+    "perMonth": "/month",
+    "free": {
+      "title": "Free",
+      "price": "€0",
+      "features": [
+        "50 Credits included",
+        "1 Workspace",
+        "Community support",
+        "Basic models"
+      ],
+      "cta": "Start Free"
+    },
+    "starter": {
+      "title": "Starter",
+      "price": "€8",
+      "features": [
+        "400 Credits/month",
+        "Premium AI models",
+        "Email support",
+        "Multiple workspaces"
+      ],
+      "cta": "Get Starter"
+    },
+    "pro": {
+      "title": "Pro",
+      "price": "€59",
+      "features": [
+        "3,300 Credits/month",
+        "Agent nodes",
+        "Priority support",
+        "All AI models",
+        "Advanced workflows"
+      ],
+      "cta": "Get Pro"
+    },
+    "max": {
+      "title": "Max",
+      "price": "€119",
+      "features": [
+        "6,700 Credits/month",
+        "Everything unlocked",
+        "Dedicated support",
+        "Unlimited workspaces",
+        "API access"
+      ],
+      "cta": "Get Max"
+    }
+  },
+  "footer": {
+    "tagline": "The visual AI workspace for creative teams.",
+    "github": "GitHub",
+    "docs": "Documentation",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "copyright": "© 2026 LemonSpace. All rights reserved.",
+    "license": "Licensed under BSL 1.1"
+  }
+}

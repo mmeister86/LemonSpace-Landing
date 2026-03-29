@@ -1,0 +1,146 @@
+{
+  "nav": {
+    "features": "Funktionen",
+    "howItWorks": "So funktioniert's",
+    "pricing": "Preise",
+    "getStarted": "Kostenlos starten"
+  },
+  "hero": {
+    "badge": "50 Credits gratis — Keine Kreditkarte erforderlich",
+    "headlinePrefix": "Dein visueller",
+    "headlineAccent": " AI-Arbeitsbereich",
+    "subheadline": "Node-basierter Canvas für Kreativteams zum Generieren, Vergleichen und Exportieren kampagnenfähiger Bildvarianten im großen Maßstab.",
+    "ctaPrimary": "Kostenlos starten",
+    "ctaSecondary": "So funktioniert's",
+    "canvasFilename": "workflow-01.lemon",
+    "node1Title": "Bild",
+    "node1Subtitle": "input.jpg",
+    "node2Title": "Prompt",
+    "node2Subtitle": "\"Sommer-Kampagne...\"",
+    "node3Title": "KI-Bild",
+    "node3Subtitle": "FLUX.2 → Output",
+    "statusNodes": "3 Nodes verbunden",
+    "statusReady": "Bereit zur Generierung"
+  },
+  "features": {
+    "label": "Funktionen",
+    "headline": "Alles, was du für visuelle KI-Workflows brauchst",
+    "subheadline": "Ein leistungsstarker node-basierter Canvas mit integrierten KI-Modellen, smarten Agents und allem, was dein Kreativteam braucht, um beeindruckende Bildvarianten zu produzieren.",
+    "canvas": {
+      "title": "Node-basierter Canvas",
+      "desc": "Visueller Drag-and-Drop-Editor. Verbinde Bild-, Text-, Prompt- und KI-Bild-Nodes, um individuelle KI-Workflows zu erstellen. Kein Code nötig."
+    },
+    "models": {
+      "title": "9+ KI-Modelle",
+      "desc": "Zugriff auf FLUX.2, Gemini, GPT-5 Image und mehr über OpenRouter. Wähle das perfekte Modell für jede Aufgabe."
+    },
+    "agents": {
+      "title": "Smarte Agents",
+      "desc": "Automatisiere Batch-Operationen mit intelligenten Agents, die analysieren, planen und über mehrere Nodes hinweg ausführen. Wie ein KI-Assistent auf deinem Canvas."
+    },
+    "compare": {
+      "title": "Visueller Vergleich",
+      "desc": "Side-by-Side-Vergleich generierter Varianten. Wähle das beste Ergebnis sofort aus."
+    },
+    "export": {
+      "title": "One-Click-Export",
+      "desc": "Download als PNG oder ZIP. Bereit für Social Media, Ads und Kampagnen."
+    },
+    "selfhosted": {
+      "title": "Self-Hosted",
+      "desc": "Betrieb auf deiner Infrastruktur. Deine Bilder, deine Daten, deine Kontrolle. Vollständiger Datenschutz."
+    },
+    "transform": {
+      "title": "Transformieren & Bearbeiten",
+      "desc": "Hintergrundentfernung, Upscaling, Style-Transfer, Zuschnitt & Größenänderung — alles als Canvas-Nodes."
+    },
+    "credits": {
+      "title": "Credit-basierte Preise",
+      "desc": "Bezahle nur, was du nutzt. 50 gratis Credits zum Start, dann nach Bedarf aufladen."
+    }
+  },
+  "how": {
+    "label": "So funktioniert's",
+    "headline": "Von der Idee zur Kampagne in Minuten",
+    "subheadline": "Vier einfache Schritte zu professionellen KI-generierten Bildvarianten im großen Maßstab.",
+    "step1": {
+      "title": "Hochladen",
+      "desc": "Lade deine Brand-Assets und Referenzbilder auf den Canvas."
+    },
+    "step2": {
+      "title": "Verbinden",
+      "desc": "Baue deinen Workflow mit Nodes: Prompts hinzufügen, KI-Modelle wählen, Parameter setzen."
+    },
+    "step3": {
+      "title": "Generieren",
+      "desc": "Lass KI Varianten erstellen. Agents können Hunderte von Bildern im Batch verarbeiten."
+    },
+    "step4": {
+      "title": "Exportieren",
+      "desc": "Vergleiche, wähle aus und lade deine kampagnenbereiten Bilder herunter."
+    }
+  },
+  "pricing": {
+    "label": "Preise",
+    "headline": "Einfache, credit-basierte Preise",
+    "subheadline": "Bezahle nur, was du nutzt. Starte kostenlos, skaliere nach Bedarf.",
+    "info": "1 Credit ≈ 1 KI-Bildgenerierung · Jederzeit aufladen",
+    "popular": "Am beliebtesten",
+    "perMonth": "/Monat",
+    "free": {
+      "title": "Free",
+      "price": "€0",
+      "features": [
+        "50 Credits inklusive",
+        "1 Workspace",
+        "Community-Support",
+        "Basis-Modelle"
+      ],
+      "cta": "Kostenlos starten"
+    },
+    "starter": {
+      "title": "Starter",
+      "price": "€8",
+      "features": [
+        "400 Credits/Monat",
+        "Premium KI-Modelle",
+        "E-Mail-Support",
+        "Mehrere Workspaces"
+      ],
+      "cta": "Starter wählen"
+    },
+    "pro": {
+      "title": "Pro",
+      "price": "€59",
+      "features": [
+        "3.300 Credits/Monat",
+        "Agent-Nodes",
+        "Priority-Support",
+        "Alle KI-Modelle",
+        "Erweiterte Workflows"
+      ],
+      "cta": "Pro wählen"
+    },
+    "max": {
+      "title": "Max",
+      "price": "€119",
+      "features": [
+        "6.700 Credits/Monat",
+        "Alles freigeschaltet",
+        "Dedizierter Support",
+        "Unbegrenzte Workspaces",
+        "API-Zugang"
+      ],
+      "cta": "Max wählen"
+    }
+  },
+  "footer": {
+    "tagline": "Der visuelle KI-Arbeitsbereich für Kreativteams.",
+    "github": "GitHub",
+    "docs": "Dokumentation",
+    "privacy": "Datenschutz",
+    "terms": "Impressum",
+    "copyright": "© 2026 LemonSpace. Alle Rechte vorbehalten.",
+    "license": "Lizenziert unter BSL 1.1"
+  }
+}

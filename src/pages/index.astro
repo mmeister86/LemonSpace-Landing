@@ -1,17 +1,836 @@
 ---
-
+import '../styles/global.css';
+import en from '../i18n/en.json';
+import de from '../i18n/de.json';
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="LemonSpace — The visual AI workspace for creative teams. Generate campaign-ready image variants at scale with a node-based canvas." />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <title>LemonSpace — Your Visual AI Workspace</title>
+
+    <!-- Theme init (blocking — prevents flash of wrong theme) -->
+    <script is:inline>
+      (function() {
+        var stored = localStorage.getItem('theme');
+        if (stored === 'dark' || (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script>
+
+    <style>
+      /* Logo visibility based on theme */
+      .logo-light { display: inline-block; }
+      .logo-dark { display: none; }
+      [data-theme="dark"] .logo-light { display: none; }
+      [data-theme="dark"] .logo-dark { display: inline-block; }
+
+      /* Shadow adjustment for light mode */
+      .hero-card-shadow {
+        box-shadow: 0 25px 50px -12px rgba(28, 25, 23, 0.12);
+      }
+      [data-theme="dark"] .hero-card-shadow {
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+      }
+    </style>
+  </head>
+
+  <body class="bg-surface-1 text-text-primary font-sans overflow-x-hidden">
+
+    <!-- ===== NAVIGATION ===== -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-surface-1/80 backdrop-blur-xl border-b border-border/50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <!-- Logo -->
+          <a href="#" class="flex items-center gap-2 shrink-0">
+            <img
+              src="/logos/lemonspace-logo-v2-primary-rgb.svg"
+              alt="LemonSpace"
+              class="h-8 w-auto logo-light"
+            />
+            <img
+              src="/logos/lemonspace-logo-v2-white-rgb.svg"
+              alt="LemonSpace"
+              class="h-8 w-auto logo-dark"
+            />
+          </a>
+
+          <!-- Desktop Nav Links -->
+          <div class="hidden md:flex items-center gap-8">
+            <a href="#features" data-i18n="nav.features" class="text-sm text-text-secondary hover:text-text-primary transition-colors">Features</a>
+            <a href="#how-it-works" data-i18n="nav.howItWorks" class="text-sm text-text-secondary hover:text-text-primary transition-colors">How it Works</a>
+            <a href="#pricing" data-i18n="nav.pricing" class="text-sm text-text-secondary hover:text-text-primary transition-colors">Pricing</a>
+          </div>
+
+          <!-- Desktop Controls: Theme + Lang + CTA -->
+          <div class="hidden md:flex items-center gap-3">
+            <!-- Theme Toggle -->
+            <button
+              id="theme-toggle"
+              type="button"
+              aria-label="Toggle theme"
+              class="p-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface-3 transition-colors"
+            >
+              <!-- Moon icon (shown in light mode to switch to dark) -->
+              <svg class="w-5 h-5 theme-icon-moon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+              </svg>
+              <!-- Sun icon (shown in dark mode to switch to light) -->
+              <svg class="w-5 h-5 theme-icon-sun hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+              </svg>
+            </button>
+
+            <!-- Language Switcher -->
+            <div class="flex items-center gap-1 text-sm">
+              <button data-lang="de" class="lang-btn px-1.5 py-0.5 rounded transition-colors text-text-tertiary hover:text-text-primary">DE</button>
+              <span class="text-text-tertiary">|</span>
+              <button data-lang="en" class="lang-btn px-1.5 py-0.5 rounded transition-colors font-semibold text-text-primary">EN</button>
+            </div>
+
+            <!-- CTA -->
+            <a
+              href="#pricing"
+              data-i18n="nav.getStarted"
+              class="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold rounded-lg bg-primary text-white hover:bg-primary-light transition-colors"
+            >
+              Get Started Free
+            </a>
+          </div>
+
+          <!-- Mobile Menu Toggle -->
+          <div class="md:hidden flex items-center gap-2">
+            <!-- Mobile theme toggle -->
+            <button
+              id="theme-toggle-mobile"
+              type="button"
+              aria-label="Toggle theme"
+              class="p-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface-3 transition-colors"
+            >
+              <svg class="w-5 h-5 theme-icon-moon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+              </svg>
+              <svg class="w-5 h-5 theme-icon-sun hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+              </svg>
+            </button>
+
+            <!-- Hamburger -->
+            <label for="mobile-menu-toggle" class="flex flex-col justify-center items-center w-10 h-10 cursor-pointer gap-1.5">
+              <span class="block w-5 h-0.5 bg-text-secondary transition-all"></span>
+              <span class="block w-5 h-0.5 bg-text-secondary transition-all"></span>
+              <span class="block w-5 h-0.5 bg-text-secondary transition-all"></span>
+            </label>
+          </div>
+
+          <input type="checkbox" id="mobile-menu-toggle" class="hidden peer" />
+
+          <!-- Mobile Menu -->
+          <div class="hidden peer-checked:flex absolute top-16 left-0 right-0 bg-surface-1/95 backdrop-blur-xl border-b border-border md:hidden flex-col p-6 gap-4">
+            <a href="#features" data-i18n="nav.features" class="text-sm text-text-secondary hover:text-text-primary transition-colors py-2">Features</a>
+            <a href="#how-it-works" data-i18n="nav.howItWorks" class="text-sm text-text-secondary hover:text-text-primary transition-colors py-2">How it Works</a>
+            <a href="#pricing" data-i18n="nav.pricing" class="text-sm text-text-secondary hover:text-text-primary transition-colors py-2">Pricing</a>
+
+            <!-- Mobile language switcher -->
+            <div class="flex items-center gap-2 py-2 text-sm">
+              <button data-lang="de" class="lang-btn px-2 py-1 rounded transition-colors text-text-tertiary hover:text-text-primary">DE</button>
+              <span class="text-text-tertiary">|</span>
+              <button data-lang="en" class="lang-btn px-2 py-1 rounded transition-colors font-semibold text-text-primary">EN</button>
+            </div>
+
+            <a
+              href="#pricing"
+              data-i18n="nav.getStarted"
+              class="inline-flex items-center justify-center px-4 py-2.5 text-sm font-semibold rounded-lg bg-primary text-white hover:bg-primary-light transition-colors mt-2"
+            >
+              Get Started Free
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section class="relative pt-32 pb-20 sm:pt-40 sm:pb-28 lg:pt-48 lg:pb-36 overflow-hidden">
+      <!-- Background glow effects -->
+      <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/8 rounded-full blur-[120px]"></div>
+        <div class="absolute top-1/3 right-0 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[100px]"></div>
+      </div>
+
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto text-center">
+          <!-- Badge -->
+          <div class="animate-fade-in inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary-light text-sm font-medium mb-8">
+            <span class="inline-block w-1.5 h-1.5 rounded-full bg-primary animate-pulse-glow"></span>
+            <span data-i18n="hero.badge">50 Credits Free — No Credit Card Required</span>
+          </div>
+
+          <!-- Headline -->
+          <h1 class="animate-fade-in-up text-4xl sm:text-5xl lg:text-7xl font-extrabold tracking-tight leading-[1.1] mb-6">
+            <span data-i18n="hero.headlinePrefix">Your Visual</span><span class="text-primary" data-i18n="hero.headlineAccent"> AI Workspace</span>
+          </h1>
+
+          <!-- Subheadline -->
+          <p class="animate-fade-in-up text-lg sm:text-xl lg:text-2xl text-text-secondary max-w-2xl mx-auto mb-10 leading-relaxed" style="animation-delay: 0.15s" data-i18n="hero.subheadline">
+            Node-based canvas for creative teams to generate, compare, and export campaign-ready image variants at scale.
+          </p>
+
+          <!-- CTA Buttons -->
+          <div class="animate-fade-in-up flex flex-col sm:flex-row items-center justify-center gap-4 mb-16" style="animation-delay: 0.3s">
+            <a
+              href="#pricing"
+              class="inline-flex items-center justify-center px-8 py-3.5 text-base font-semibold rounded-xl bg-primary text-white hover:bg-primary-light transition-all shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:-translate-y-0.5"
+            >
+              <span data-i18n="hero.ctaPrimary">Get Started Free</span>
+              <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+            </a>
+            <a
+              href="#how-it-works"
+              class="inline-flex items-center justify-center px-8 py-3.5 text-base font-semibold rounded-xl bg-surface-3 text-text-primary border border-border hover:border-border-light hover:bg-surface-4 transition-all"
+            >
+              <span data-i18n="hero.ctaSecondary">See How it Works</span>
+            </a>
+          </div>
+
+          <!-- Hero Visual: Stylized node graph -->
+          <div class="animate-fade-in relative max-w-3xl mx-auto" style="animation-delay: 0.45s">
+            <div class="relative rounded-2xl border border-border bg-surface-2/80 backdrop-blur-sm p-6 sm:p-8 hero-card-shadow">
+              <!-- Decorative top bar -->
+              <div class="flex items-center gap-2 mb-6">
+                <div class="w-3 h-3 rounded-full bg-red-500/60"></div>
+                <div class="w-3 h-3 rounded-full bg-yellow-500/60"></div>
+                <div class="w-3 h-3 rounded-full bg-green-500/60"></div>
+                <span class="ml-3 text-xs text-text-tertiary font-mono" data-i18n="hero.canvasFilename">workflow-01.lemon</span>
+              </div>
+
+              <!-- Node graph illustration -->
+              <div class="grid grid-cols-3 gap-4 sm:gap-6">
+                <!-- Node 1: Input Image -->
+                <div class="group rounded-xl border border-border bg-surface-3 p-3 sm:p-4 hover:border-primary/40 transition-colors">
+                  <div class="w-full aspect-[4/3] rounded-lg bg-gradient-to-br from-primary/20 to-accent/10 mb-3 flex items-center justify-center">
+                    <svg class="w-8 h-8 sm:w-10 sm:h-10 text-primary/60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" /></svg>
+                  </div>
+                  <div class="text-xs sm:text-sm font-semibold text-text-primary" data-i18n="hero.node1Title">Image</div>
+                  <div class="text-[10px] sm:text-xs text-text-tertiary mt-0.5" data-i18n="hero.node1Subtitle">input.jpg</div>
+                </div>
+
+                <!-- Node 2: Prompt -->
+                <div class="group rounded-xl border border-border bg-surface-3 p-3 sm:p-4 hover:border-accent/40 transition-colors">
+                  <div class="w-full aspect-[4/3] rounded-lg bg-gradient-to-br from-accent/15 to-accent-warm/10 mb-3 flex items-center justify-center">
+                    <svg class="w-8 h-8 sm:w-10 sm:h-10 text-accent/60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" /></svg>
+                  </div>
+                  <div class="text-xs sm:text-sm font-semibold text-text-primary" data-i18n="hero.node2Title">Prompt</div>
+                  <div class="text-[10px] sm:text-xs text-text-tertiary mt-0.5" data-i18n="hero.node2Subtitle">"Summer campaign..."</div>
+                </div>
+
+                <!-- Node 3: AI Output -->
+                <div class="group rounded-xl border border-primary/30 bg-primary/5 p-3 sm:p-4 hover:border-primary/50 transition-colors">
+                  <div class="w-full aspect-[4/3] rounded-lg bg-gradient-to-br from-primary/20 via-accent/10 to-primary/15 mb-3 flex items-center justify-center relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-t from-primary/10 to-transparent"></div>
+                    <svg class="w-8 h-8 sm:w-10 sm:h-10 text-primary/70 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z" /></svg>
+                  </div>
+                  <div class="text-xs sm:text-sm font-semibold text-primary-light" data-i18n="hero.node3Title">AI Image</div>
+                  <div class="text-[10px] sm:text-xs text-text-tertiary mt-0.5" data-i18n="hero.node3Subtitle">FLUX.2 → output</div>
+                </div>
+              </div>
+
+              <!-- Connection lines (decorative) -->
+              <div class="hidden sm:flex absolute top-1/2 left-[33.3%] w-[calc(33.3%-1rem)] -translate-y-8 border-t border-dashed border-primary/30 pointer-events-none" aria-hidden="true"></div>
+              <div class="hidden sm:flex absolute top-1/2 left-[66.6%] w-[calc(33.3%-1rem)] -translate-y-8 border-t border-dashed border-primary/30 pointer-events-none" aria-hidden="true"></div>
+
+              <!-- Bottom status -->
+              <div class="flex items-center justify-between mt-6 pt-4 border-t border-border">
+                <div class="flex items-center gap-2">
+                  <span class="inline-block w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                  <span class="text-xs text-text-tertiary" data-i18n="hero.statusNodes">3 nodes connected</span>
+                </div>
+                <span class="text-xs text-text-tertiary font-mono" data-i18n="hero.statusReady">Ready to generate</span>
+              </div>
+            </div>
+
+            <!-- Decorative glow behind the card -->
+            <div class="absolute -inset-4 bg-gradient-to-r from-primary/10 via-accent/5 to-primary/10 rounded-3xl blur-2xl -z-10" aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FEATURES SECTION ===== -->
+    <section id="features" class="relative py-20 sm:py-28 lg:py-32">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Section Header -->
+        <div class="max-w-2xl mx-auto text-center mb-16 sm:mb-20">
+          <p class="text-sm font-semibold text-primary uppercase tracking-widest mb-3" data-i18n="features.label">Features</p>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-5" data-i18n="features.headline">
+            Everything you need for visual AI workflows
+          </h2>
+          <p class="text-lg text-text-secondary" data-i18n="features.subheadline">
+            A powerful node-based canvas with built-in AI models, smart agents, and everything your creative team needs to produce stunning image variants.
+          </p>
+        </div>
+
+        <!-- Feature Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <!-- Feature 1: Node-Based Canvas -->
+          <div class="group relative rounded-2xl border border-border bg-surface-2/60 p-6 hover:border-primary/30 hover:bg-surface-2 transition-all duration-300">
+            <div class="w-11 h-11 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-5 group-hover:bg-primary/15 transition-colors">
+              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" /></svg>
+            </div>
+            <h3 class="text-base font-semibold text-text-primary mb-2" data-i18n="features.canvas.title">Node-Based Canvas</h3>
+            <p class="text-sm text-text-secondary leading-relaxed" data-i18n="features.canvas.desc">
+              Drag-and-drop visual editor. Connect Image, Text, Prompt, and AI Image nodes to build custom AI workflows. No code needed.
+            </p>
+          </div>
+
+          <!-- Feature 2: 9+ AI Models -->
+          <div class="group relative rounded-2xl border border-border bg-surface-2/60 p-6 hover:border-primary/30 hover:bg-surface-2 transition-all duration-300">
+            <div class="w-11 h-11 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-5 group-hover:bg-primary/15 transition-colors">
+              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" /></svg>
+            </div>
+            <h3 class="text-base font-semibold text-text-primary mb-2" data-i18n="features.models.title">9+ AI Models</h3>
+            <p class="text-sm text-text-secondary leading-relaxed" data-i18n="features.models.desc">
+              Access FLUX.2, Gemini, GPT-5 Image and more through OpenRouter. Pick the perfect model for every task.
+            </p>
+          </div>
+
+          <!-- Feature 3: Smart Agents -->
+          <div class="group relative rounded-2xl border border-border bg-surface-2/60 p-6 hover:border-primary/30 hover:bg-surface-2 transition-all duration-300">
+            <div class="w-11 h-11 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center mb-5 group-hover:bg-accent/15 transition-colors">
+              <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z" /></svg>
+            </div>
+            <h3 class="text-base font-semibold text-text-primary mb-2" data-i18n="features.agents.title">Smart Agents</h3>
+            <p class="text-sm text-text-secondary leading-relaxed" data-i18n="features.agents.desc">
+              Automate batch operations with intelligent agents that analyze, plan, and execute across multiple nodes. Like having an AI assistant on your canvas.
+            </p>
+          </div>
+
+          <!-- Feature 4: Visual Compare -->
+          <div class="group relative rounded-2xl border border-border bg-surface-2/60 p-6 hover:border-primary/30 hover:bg-surface-2 transition-all duration-300">
+            <div class="w-11 h-11 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-5 group-hover:bg-primary/15 transition-colors">
+              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" /></svg>
+            </div>
+            <h3 class="text-base font-semibold text-text-primary mb-2" data-i18n="features.compare.title">Visual Compare</h3>
+            <p class="text-sm text-text-secondary leading-relaxed" data-i18n="features.compare.desc">
+              Side-by-side comparison of generated variants. Pick the best output instantly.
+            </p>
+          </div>
+
+          <!-- Feature 5: One-Click Export -->
+          <div class="group relative rounded-2xl border border-border bg-surface-2/60 p-6 hover:border-primary/30 hover:bg-surface-2 transition-all duration-300">
+            <div class="w-11 h-11 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-5 group-hover:bg-primary/15 transition-colors">
+              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
+            </div>
+            <h3 class="text-base font-semibold text-text-primary mb-2" data-i18n="features.export.title">One-Click Export</h3>
+            <p class="text-sm text-text-secondary leading-relaxed" data-i18n="features.export.desc">
+              Download as PNG or ZIP. Ready for your social media, ads, and campaigns.
+            </p>
+          </div>
+
+          <!-- Feature 6: Self-Hosted -->
+          <div class="group relative rounded-2xl border border-border bg-surface-2/60 p-6 hover:border-primary/30 hover:bg-surface-2 transition-all duration-300">
+            <div class="w-11 h-11 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-5 group-hover:bg-primary/15 transition-colors">
+              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7L5.737 5.1a3.375 3.375 0 012.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 01.9 2.7m0 0a3 3 0 01-3 3m0 3h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008zm-3 6h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008z" /></svg>
+            </div>
+            <h3 class="text-base font-semibold text-text-primary mb-2" data-i18n="features.selfhosted.title">Self-Hosted</h3>
+            <p class="text-sm text-text-secondary leading-relaxed" data-i18n="features.selfhosted.desc">
+              Run on your infrastructure. Your images, your data, your control. Full data privacy.
+            </p>
+          </div>
+
+          <!-- Feature 7: Transform & Edit -->
+          <div class="group relative rounded-2xl border border-border bg-surface-2/60 p-6 hover:border-primary/30 hover:bg-surface-2 transition-all duration-300">
+            <div class="w-11 h-11 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-5 group-hover:bg-primary/15 transition-colors">
+              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.42 15.17l-5.384 3.074A1.5 1.5 0 014.5 17.135V6.866a1.5 1.5 0 011.536-1.109l5.384 3.074m0 0l5.384 3.074a1.5 1.5 0 010 2.603l-5.384 3.074m0-8.751v8.751" /></svg>
+            </div>
+            <h3 class="text-base font-semibold text-text-primary mb-2" data-i18n="features.transform.title">Transform &amp; Edit</h3>
+            <p class="text-sm text-text-secondary leading-relaxed" data-i18n="features.transform.desc">
+              Background removal, upscaling, style transfer, crop &amp; resize — all as canvas nodes.
+            </p>
+          </div>
+
+          <!-- Feature 8: Credit-Based Pricing -->
+          <div class="group relative rounded-2xl border border-border bg-surface-2/60 p-6 hover:border-primary/30 hover:bg-surface-2 transition-all duration-300">
+            <div class="w-11 h-11 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center mb-5 group-hover:bg-accent/15 transition-colors">
+              <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z" /></svg>
+            </div>
+            <h3 class="text-base font-semibold text-text-primary mb-2" data-i18n="features.credits.title">Credit-Based Pricing</h3>
+            <p class="text-sm text-text-secondary leading-relaxed" data-i18n="features.credits.desc">
+              Pay only for what you use. 50 free credits to start, then top up as needed.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== HOW IT WORKS SECTION ===== -->
+    <section id="how-it-works" class="relative py-20 sm:py-28 lg:py-32">
+      <!-- Subtle background -->
+      <div class="absolute inset-0 pointer-events-none bg-gradient-to-b from-transparent via-surface-2/40 to-transparent" aria-hidden="true"></div>
+
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Section Header -->
+        <div class="max-w-2xl mx-auto text-center mb-16 sm:mb-20">
+          <p class="text-sm font-semibold text-primary uppercase tracking-widest mb-3" data-i18n="how.label">How it Works</p>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-5" data-i18n="how.headline">
+            From idea to campaign images in minutes
+          </h2>
+          <p class="text-lg text-text-secondary" data-i18n="how.subheadline">
+            Four simple steps to generate professional AI-powered image variants at scale.
+          </p>
+        </div>
+
+        <!-- Steps -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
+          <!-- Step 1: Upload -->
+          <div class="relative text-center lg:text-left">
+            <div class="flex items-center justify-center lg:justify-start mb-5">
+              <div class="w-12 h-12 rounded-full bg-primary/10 border-2 border-primary text-primary font-bold text-lg flex items-center justify-center">
+                1
+              </div>
+              <!-- Connector line (desktop only) -->
+              <div class="hidden lg:block absolute top-6 left-[calc(50%+28px)] w-[calc(50%-28px)] h-0 border-t border-dashed border-border-light" aria-hidden="true"></div>
+            </div>
+            <h3 class="text-lg font-semibold text-text-primary mb-2" data-i18n="how.step1.title">Upload</h3>
+            <p class="text-sm text-text-secondary leading-relaxed" data-i18n="how.step1.desc">
+              Drop your brand assets and reference images onto the canvas.
+            </p>
+          </div>
+
+          <!-- Step 2: Connect -->
+          <div class="relative text-center lg:text-left">
+            <div class="flex items-center justify-center lg:justify-start mb-5">
+              <div class="w-12 h-12 rounded-full bg-primary/10 border-2 border-primary text-primary font-bold text-lg flex items-center justify-center">
+                2
+              </div>
+              <div class="hidden lg:block absolute top-6 left-[calc(50%+28px)] w-[calc(50%-28px)] h-0 border-t border-dashed border-border-light" aria-hidden="true"></div>
+            </div>
+            <h3 class="text-lg font-semibold text-text-primary mb-2" data-i18n="how.step2.title">Connect</h3>
+            <p class="text-sm text-text-secondary leading-relaxed" data-i18n="how.step2.desc">
+              Build your workflow with nodes: add prompts, choose AI models, set parameters.
+            </p>
+          </div>
+
+          <!-- Step 3: Generate -->
+          <div class="relative text-center lg:text-left">
+            <div class="flex items-center justify-center lg:justify-start mb-5">
+              <div class="w-12 h-12 rounded-full bg-primary/10 border-2 border-primary text-primary font-bold text-lg flex items-center justify-center">
+                3
+              </div>
+              <div class="hidden lg:block absolute top-6 left-[calc(50%+28px)] w-[calc(50%-28px)] h-0 border-t border-dashed border-border-light" aria-hidden="true"></div>
+            </div>
+            <h3 class="text-lg font-semibold text-text-primary mb-2" data-i18n="how.step3.title">Generate</h3>
+            <p class="text-sm text-text-secondary leading-relaxed" data-i18n="how.step3.desc">
+              Let AI create variants. Agents can batch-process hundreds of images.
+            </p>
+          </div>
+
+          <!-- Step 4: Export -->
+          <div class="relative text-center lg:text-left">
+            <div class="flex items-center justify-center lg:justify-start mb-5">
+              <div class="w-12 h-12 rounded-full bg-primary/10 border-2 border-primary text-primary font-bold text-lg flex items-center justify-center">
+                4
+              </div>
+            </div>
+            <h3 class="text-lg font-semibold text-text-primary mb-2" data-i18n="how.step4.title">Export</h3>
+            <p class="text-sm text-text-secondary leading-relaxed" data-i18n="how.step4.desc">
+              Compare, select, and download your campaign-ready images.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PRICING SECTION ===== -->
+    <section id="pricing" class="relative py-20 sm:py-28 lg:py-32">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Section Header -->
+        <div class="max-w-2xl mx-auto text-center mb-16 sm:mb-20">
+          <p class="text-sm font-semibold text-primary uppercase tracking-widest mb-3" data-i18n="pricing.label">Pricing</p>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-5" data-i18n="pricing.headline">
+            Simple, credit-based pricing
+          </h2>
+          <p class="text-lg text-text-secondary" data-i18n="pricing.subheadline">
+            Pay only for what you use. Start free, scale as you grow.
+          </p>
+          <p class="text-sm text-text-tertiary mt-3" data-i18n="pricing.info">
+            1 Credit ≈ 1 AI Image Generation &nbsp;·&nbsp; Top-up anytime
+          </p>
+        </div>
+
+        <!-- Pricing Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-6xl mx-auto">
+          <!-- Free Tier -->
+          <div class="rounded-2xl border border-border bg-surface-2/60 p-6 flex flex-col">
+            <div class="mb-6">
+              <h3 class="text-lg font-semibold text-text-primary mb-1" data-i18n="pricing.free.title">Free</h3>
+              <div class="flex items-baseline gap-1">
+                <span class="text-3xl font-bold text-text-primary" data-i18n="pricing.free.price">€0</span>
+                <span class="text-sm text-text-tertiary" data-i18n="pricing.perMonth">/month</span>
+              </div>
+            </div>
+            <ul data-i18n-list="pricing.free.features" class="space-y-3 mb-8 flex-1">
+              <li class="flex items-start gap-3 text-sm text-text-secondary">
+                <svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                50 Credits included
+              </li>
+              <li class="flex items-start gap-3 text-sm text-text-secondary">
+                <svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                1 Workspace
+              </li>
+              <li class="flex items-start gap-3 text-sm text-text-secondary">
+                <svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                Community support
+              </li>
+              <li class="flex items-start gap-3 text-sm text-text-secondary">
+                <svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                Basic models
+              </li>
+            </ul>
+            <a
+              href="#"
+              data-i18n="pricing.free.cta"
+              class="inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold rounded-xl bg-surface-3 text-text-primary border border-border hover:border-border-light hover:bg-surface-4 transition-all"
+            >
+              Start Free
+            </a>
+          </div>
+
+          <!-- Starter Tier -->
+          <div class="rounded-2xl border border-border bg-surface-2/60 p-6 flex flex-col">
+            <div class="mb-6">
+              <h3 class="text-lg font-semibold text-text-primary mb-1" data-i18n="pricing.starter.title">Starter</h3>
+              <div class="flex items-baseline gap-1">
+                <span class="text-3xl font-bold text-text-primary" data-i18n="pricing.starter.price">€8</span>
+                <span class="text-sm text-text-tertiary" data-i18n="pricing.perMonth">/month</span>
+              </div>
+            </div>
+            <ul data-i18n-list="pricing.starter.features" class="space-y-3 mb-8 flex-1">
+              <li class="flex items-start gap-3 text-sm text-text-secondary">
+                <svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                400 Credits/month
+              </li>
+              <li class="flex items-start gap-3 text-sm text-text-secondary">
+                <svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                Premium AI models
+              </li>
+              <li class="flex items-start gap-3 text-sm text-text-secondary">
+                <svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                Email support
+              </li>
+              <li class="flex items-start gap-3 text-sm text-text-secondary">
+                <svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                Multiple workspaces
+              </li>
+            </ul>
+            <a
+              href="#"
+              data-i18n="pricing.starter.cta"
+              class="inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold rounded-xl bg-surface-3 text-text-primary border border-border hover:border-border-light hover:bg-surface-4 transition-all"
+            >
+              Get Starter
+            </a>
+          </div>
+
+          <!-- Pro Tier (Highlighted) -->
+          <div class="relative rounded-2xl border-2 border-primary bg-surface-2/80 p-6 flex flex-col shadow-lg shadow-primary/10">
+            <!-- Most Popular Badge -->
+            <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3 py-0.5 bg-primary text-white text-xs font-semibold rounded-full" data-i18n="pricing.popular">
+              Most Popular
+            </div>
+            <div class="mb-6">
+              <h3 class="text-lg font-semibold text-primary-light mb-1" data-i18n="pricing.pro.title">Pro</h3>
+              <div class="flex items-baseline gap-1">
+                <span class="text-3xl font-bold text-text-primary" data-i18n="pricing.pro.price">€59</span>
+                <span class="text-sm text-text-tertiary" data-i18n="pricing.perMonth">/month</span>
+              </div>
+            </div>
+            <ul data-i18n-list="pricing.pro.features" class="space-y-3 mb-8 flex-1">
+              <li class="flex items-start gap-3 text-sm text-text-secondary">
+                <svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                3,300 Credits/month
+              </li>
+              <li class="flex items-start gap-3 text-sm text-text-secondary">
+                <svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                Agent nodes
+              </li>
+              <li class="flex items-start gap-3 text-sm text-text-secondary">
+                <svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                Priority support
+              </li>
+              <li class="flex items-start gap-3 text-sm text-text-secondary">
+                <svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                All AI models
+              </li>
+              <li class="flex items-start gap-3 text-sm text-text-secondary">
+                <svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                Advanced workflows
+              </li>
+            </ul>
+            <a
+              href="#"
+              data-i18n="pricing.pro.cta"
+              class="inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold rounded-xl bg-primary text-white hover:bg-primary-light transition-all shadow-md shadow-primary/20"
+            >
+              Get Pro
+            </a>
+          </div>
+
+          <!-- Max Tier -->
+          <div class="rounded-2xl border border-border bg-surface-2/60 p-6 flex flex-col">
+            <div class="mb-6">
+              <h3 class="text-lg font-semibold text-text-primary mb-1" data-i18n="pricing.max.title">Max</h3>
+              <div class="flex items-baseline gap-1">
+                <span class="text-3xl font-bold text-text-primary" data-i18n="pricing.max.price">€119</span>
+                <span class="text-sm text-text-tertiary" data-i18n="pricing.perMonth">/month</span>
+              </div>
+            </div>
+            <ul data-i18n-list="pricing.max.features" class="space-y-3 mb-8 flex-1">
+              <li class="flex items-start gap-3 text-sm text-text-secondary">
+                <svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                6,700 Credits/month
+              </li>
+              <li class="flex items-start gap-3 text-sm text-text-secondary">
+                <svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                Everything unlocked
+              </li>
+              <li class="flex items-start gap-3 text-sm text-text-secondary">
+                <svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                Dedicated support
+              </li>
+              <li class="flex items-start gap-3 text-sm text-text-secondary">
+                <svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                Unlimited workspaces
+              </li>
+              <li class="flex items-start gap-3 text-sm text-text-secondary">
+                <svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                API access
+              </li>
+            </ul>
+            <a
+              href="#"
+              data-i18n="pricing.max.cta"
+              class="inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold rounded-xl bg-surface-3 text-text-primary border border-border hover:border-border-light hover:bg-surface-4 transition-all"
+            >
+              Get Max
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="border-t border-border bg-surface-0 py-12 sm:py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row items-center md:items-start justify-between gap-8">
+          <!-- Logo & Tagline -->
+          <div class="text-center md:text-left">
+            <a href="#" class="inline-block mb-3">
+              <img
+                src="/logos/lemonspace-logo-v2-primary-rgb.svg"
+                alt="LemonSpace"
+                class="h-7 w-auto logo-light"
+              />
+              <img
+                src="/logos/lemonspace-logo-v2-white-rgb.svg"
+                alt="LemonSpace"
+                class="h-7 w-auto logo-dark"
+              />
+            </a>
+            <p class="text-sm text-text-tertiary max-w-xs" data-i18n="footer.tagline">
+              The visual AI workspace for creative teams.
+            </p>
+          </div>
+
+          <!-- Links -->
+          <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
+            <a href="#" data-i18n="footer.github" class="text-sm text-text-tertiary hover:text-text-secondary transition-colors">GitHub</a>
+            <a href="#" data-i18n="footer.docs" class="text-sm text-text-tertiary hover:text-text-secondary transition-colors">Documentation</a>
+            <a href="#" data-i18n="footer.privacy" class="text-sm text-text-tertiary hover:text-text-secondary transition-colors">Privacy</a>
+            <a href="#" data-i18n="footer.terms" class="text-sm text-text-tertiary hover:text-text-secondary transition-colors">Terms</a>
+          </div>
+        </div>
+
+        <!-- Bottom bar -->
+        <div class="mt-10 pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p class="text-xs text-text-tertiary" data-i18n="footer.copyright">
+            &copy; 2026 LemonSpace. All rights reserved.
+          </p>
+          <p class="text-xs text-text-tertiary" data-i18n="footer.license">
+            Licensed under BSL 1.1
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ===== SCROLL ANIMATION OBSERVER ===== -->
+    <script>
+      // Minimal IntersectionObserver for scroll animations
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+      );
+
+      document.querySelectorAll('.animate-on-scroll').forEach((el) => {
+        observer.observe(el);
+      });
+    </script>
+
+    <!-- ===== i18n + THEME + LANGUAGE SWITCHER ===== -->
+    <script define:vars={{ en, de }}>
+      (function() {
+        var translations = { en: en, de: de };
+        var currentLang = 'en';
+
+        // --- i18n helper ---
+        function t(key, lang) {
+          var keys = key.split('.');
+          var val = translations[lang];
+          for (var i = 0; i < keys.length; i++) {
+            if (val == null) return key;
+            val = val[keys[i]];
+          }
+          return val != null ? val : key;
+        }
+
+        // --- Apply translations ---
+        function applyTranslations(lang) {
+          currentLang = lang;
+          document.documentElement.lang = lang;
+
+          // Simple text elements
+          var els = document.querySelectorAll('[data-i18n]');
+          for (var i = 0; i < els.length; i++) {
+            var key = els[i].getAttribute('data-i18n');
+            var val = t(key, lang);
+            if (val !== key) {
+              els[i].textContent = val;
+            }
+          }
+
+          // List elements (pricing features)
+          var listEls = document.querySelectorAll('[data-i18n-list]');
+          for (var i = 0; i < listEls.length; i++) {
+            var key = listEls[i].getAttribute('data-i18n-list');
+            var arr = t(key, lang);
+            if (Array.isArray(arr)) {
+              var checkSvg = '<svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>';
+              var html = '';
+              for (var j = 0; j < arr.length; j++) {
+                html += '<li class="flex items-start gap-3 text-sm text-text-secondary">' + checkSvg + '<span>' + arr[j] + '</span></li>';
+              }
+              listEls[i].innerHTML = html;
+            }
+          }
+
+          // Update language switcher buttons
+          var langBtns = document.querySelectorAll('.lang-btn');
+          for (var i = 0; i < langBtns.length; i++) {
+            var btnLang = langBtns[i].getAttribute('data-lang');
+            if (btnLang === lang) {
+              langBtns[i].classList.add('font-semibold', 'text-text-primary');
+              langBtns[i].classList.remove('text-text-tertiary');
+            } else {
+              langBtns[i].classList.remove('font-semibold');
+              langBtns[i].classList.add('text-text-tertiary');
+              langBtns[i].classList.remove('text-text-primary');
+            }
+          }
+        }
+
+        // --- Language detection ---
+        function detectLanguage() {
+          var stored = localStorage.getItem('lang');
+          if (stored === 'de' || stored === 'en') return stored;
+
+          var navLang = navigator.language || navigator.userLanguage || '';
+          if (navLang.toLowerCase().startsWith('de')) return 'de';
+
+          // IP geolocation fallback (async, non-blocking)
+          fetch('https://ipapi.co/json/', { signal: AbortSignal.timeout(3000) })
+            .then(function(r) { return r.json(); })
+            .then(function(data) {
+              if (data && (data.country_code === 'DE' || data.country_code === 'AT' || data.country_code === 'CH')) {
+                if (!localStorage.getItem('lang')) {
+                  localStorage.setItem('lang', 'de');
+                  applyTranslations('de');
+                }
+              }
+            })
+            .catch(function() { /* ignore — keep default */ });
+
+          return 'en';
+        }
+
+        // --- Theme toggle ---
+        function updateThemeIcons() {
+          var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+          var moonIcons = document.querySelectorAll('.theme-icon-moon');
+          var sunIcons = document.querySelectorAll('.theme-icon-sun');
+          for (var i = 0; i < moonIcons.length; i++) {
+            moonIcons[i].style.display = isDark ? 'none' : '';
+          }
+          for (var i = 0; i < sunIcons.length; i++) {
+            sunIcons[i].style.display = isDark ? '' : 'none';
+          }
+        }
+
+        function toggleTheme() {
+          var html = document.documentElement;
+          html.classList.add('theme-transitioning');
+          var isDark = html.getAttribute('data-theme') === 'dark';
+          if (isDark) {
+            html.removeAttribute('data-theme');
+            localStorage.setItem('theme', 'light');
+          } else {
+            html.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+          }
+          updateThemeIcons();
+          setTimeout(function() {
+            html.classList.remove('theme-transitioning');
+          }, 350);
+        }
+
+        // Bind theme toggles
+        document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+        document.getElementById('theme-toggle-mobile').addEventListener('click', toggleTheme);
+
+        // --- Language switcher ---
+        function switchLang(lang) {
+          localStorage.setItem('lang', lang);
+          applyTranslations(lang);
+        }
+
+        var langBtns = document.querySelectorAll('.lang-btn');
+        for (var i = 0; i < langBtns.length; i++) {
+          langBtns[i].addEventListener('click', function() {
+            switchLang(this.getAttribute('data-lang'));
+          });
+        }
+
+        // --- Initialize ---
+        updateThemeIcons();
+        var detectedLang = detectLanguage();
+        applyTranslations(detectedLang);
+      })();
+    </script>
+
+  </body>
 </html>
