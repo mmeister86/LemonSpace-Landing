@@ -1,146 +1,147 @@
 {
+  "meta": {
+    "title": "LemonSpace — Zur Warteliste",
+    "description": "Visueller Arbeitsbereich für kreative Teams. Brief, generieren, vergleichen, export. Warteliste für Early Access — kein Spam."
+  },
   "nav": {
-    "features": "Funktionen",
+    "features": "Features",
     "howItWorks": "So funktioniert's",
     "pricing": "Preise",
-    "getStarted": "Kostenlos starten"
+    "getStarted": "Warteliste"
   },
   "hero": {
-    "badge": "50 Credits gratis — Keine Kreditkarte erforderlich",
-    "headlinePrefix": "Dein visueller",
-    "headlineAccent": " AI-Arbeitsbereich",
-    "subheadline": "Node-basierter Canvas für Kreativteams zum Generieren, Vergleichen und Exportieren kampagnenfähiger Bildvarianten im großen Maßstab.",
-    "ctaPrimary": "Kostenlos starten",
+    "kicker": "Early Access",
+    "headline": "Kampagnenfähige Bildvarianten — ohne Tool-Chaos.",
+    "subheadline": "LemonSpace ist ein visueller Arbeitsbereich für kleine Kreativteams: Brief, generieren, vergleichen, export — deine Assets dort, wo du sie haben willst.",
     "ctaSecondary": "So funktioniert's",
-    "canvasFilename": "workflow-01.lemon",
-    "node1Title": "Bild",
-    "node1Subtitle": "input.jpg",
-    "node2Title": "Prompt",
-    "node2Subtitle": "\"Sommer-Kampagne...\"",
-    "node3Title": "KI-Bild",
-    "node3Subtitle": "FLUX.2 → Output",
-    "statusNodes": "3 Nodes verbunden",
-    "statusReady": "Bereit zur Generierung"
+    "privacyNote": "Kein Spam. Wir schreiben dir, sobald die Beta startet."
+  },
+  "visual": {
+    "filename": "kampagne.lemon"
+  },
+  "issue": {
+    "label": "Das Problem",
+    "headline": "Dein Bild-Workflow lebt in acht Browser-Tabs.",
+    "b1Title": "Tab-Roulette",
+    "b1": "Irgendwas braucht deine Aufmerksamkeit. Tab drei? Tab fünf? Du klickst dich durch acht Tabs und versuchst den zu finden, der piept. Wenn du ihn gefunden hast, ist ein anderes Tool schon abgestürzt.",
+    "b2Title": "Kein Vergleich",
+    "b2": "Zwölf Varianten generiert, aber sie sind verstreut über Ordner, Chats und Downloads. Vergleichen heißt: sechs Fenster nebeneinander und hoffen, dass du nicht den Überblick verlierst.",
+    "b3Title": "Deine Marke, ihr Server",
+    "b3": "Jeder Prompt und Asset liegt auf der Infrastruktur eines anderen. Wenn Vertraulichkeit zählt, sind Markenassets bei einem weiteren SaaS-Anbieter ein schweres Argument."
+  },
+  "fix": {
+    "label": "Die Antwort",
+    "headline": "Ein Canvas. Alle Varianten. Volle Kontrolle.",
+    "subheadline": "LemonSpace bündet alles auf einem visuellen Board — Upload, Prompt, Generieren, Vergleichen und Export aus einer Hand. Kein Jonglieren mehr, keine verstreuten Dateien."
   },
   "features": {
-    "label": "Funktionen",
-    "headline": "Alles, was du für visuelle KI-Workflows brauchst",
-    "subheadline": "Ein leistungsstarker node-basierter Canvas mit integrierten KI-Modellen, smarten Agents und allem, was dein Kreativteam braucht, um beeindruckende Bildvarianten zu produzieren.",
+    "label": "Was LemonSpace eigentlich macht",
     "canvas": {
-      "title": "Node-basierter Canvas",
-      "desc": "Visueller Drag-and-Drop-Editor. Verbinde Bild-, Text-, Prompt- und KI-Bild-Nodes, um individuelle KI-Workflows zu erstellen. Kein Code nötig."
+      "tag": "01 — Visual Canvas",
+      "title": "Visual Canvas",
+      "desc": "Dein Bild-Workflow lebt auf einem knotenbasierten Canvas. Brief-Bilder hochladen, Prompts verbinden, Generierungen sehen, Ergebnisse vergleichen und exportieren — alles auf einem Board. Knoten ziehen, verbinden und den gesamten Flow auf einen Blick sehen.",
+      "step1": "Brief hochladen",
+      "step2": "Prompt erstellen",
+      "step3": "Varianten generieren",
+      "step4": "Vergleichen und exportieren"
     },
-    "models": {
-      "title": "9+ KI-Modelle",
-      "desc": "Zugriff auf FLUX.2, Gemini, GPT-5 Image und mehr über OpenRouter. Wähle das perfekte Modell für jede Aufgabe."
-    },
-    "agents": {
-      "title": "Smarte Agents",
-      "desc": "Automatisiere Batch-Operationen mit intelligenten Agents, die analysieren, planen und über mehrere Nodes hinweg ausführen. Wie ein KI-Assistent auf deinem Canvas."
+    "prompt": {
+      "tag": "02 — Prompt Studio",
+      "title": "Prompt Studio",
+      "desc": "Schreib nicht in ein Chat-Fenster. Prompt Studio bietet strukturierte Felder für Marke, Stil, Zielgruppe und Constraints — kein Rätselraten, was funktioniert. Der Brief baut den Prompt für dich.",
+      "field1": "Marke",
+      "field2": "Stil",
+      "field3": "Zielgruppe",
+      "field4": "Constraints"
     },
     "compare": {
-      "title": "Visueller Vergleich",
-      "desc": "Side-by-Side-Vergleich generierter Varianten. Wähle das beste Ergebnis sofort aus."
+      "tag": "03 — Vergleichsansicht",
+      "title": "Vergleichsansicht",
+      "desc": "Varianten nebeneinander aufreihen und sofort die beste auswählen. Alle gleichzeitig sehen mit Confidence-Scores und Sternebewertungen. Den Gewinner markieren und direkt exportieren — keine Screenshots im Drive-Ordner.",
+      "rating1": "Variante A",
+      "rating2": "Variante B",
+      "rating3": "Variante C",
+      "rating4": "Variante D"
     },
     "export": {
-      "title": "One-Click-Export",
-      "desc": "Download als PNG oder ZIP. Bereit für Social Media, Ads und Kampagnen."
+      "tag": "04 — Export-Queue",
+      "title": "Export-Queue",
+      "desc": "Batch-Export kampagnenfähiger Assets in verschiedenen Formaten und Größen. Web, Social, Print — Vorlagen benennen und alles mit einem Klick exportieren. Photoshop öffnet sich von selbst.",
+      "format1": "PNG",
+      "format2": "JPG",
+      "format3": "WebP",
+      "format4": "SVG"
+    },
+    "library": {
+      "tag": "05 — Asset Library",
+      "title": "Asset Library",
+      "desc": "Marken-Assets, Referenzbilder und genehmigte Vorlagen zentral ablegen. Wenn jemand im Team ein neues Bild hochlädt, sieht es jeder. Keine verstreuten Dateien in Drive-Ordnern mehr.",
+      "asset1": "logo.svg",
+      "asset2": "brand-kit.pdf",
+      "asset3": "guidelines.pdf",
+      "asset4": "palette.png"
     },
     "selfhosted": {
+      "tag": "06 — Self-Hosted",
       "title": "Self-Hosted",
-      "desc": "Betrieb auf deiner Infrastruktur. Deine Bilder, deine Daten, deine Kontrolle. Vollständiger Datenschutz."
-    },
-    "transform": {
-      "title": "Transformieren & Bearbeiten",
-      "desc": "Hintergrundentfernung, Upscaling, Style-Transfer, Zuschnitt & Größenänderung — alles als Canvas-Nodes."
-    },
-    "credits": {
-      "title": "Credit-basierte Preise",
-      "desc": "Bezahle nur, was du nutzt. 50 gratis Credits zum Start, dann nach Bedarf aufladen."
+      "desc": "LemonSpace auf eigener Infrastruktur betreiben. Marken-Assets verlassen nie deinen Server. Volle Kontrolle über Daten, Deployment und Compliance. Docker, Kubernetes oder Bare Metal — du entscheidest.",
+      "item1": "Docker",
+      "item2": "Kubernetes",
+      "item3": "On-Premise",
+      "item4": "BSL 1.1"
     }
   },
   "how": {
     "label": "So funktioniert's",
-    "headline": "Von der Idee zur Kampagne in Minuten",
-    "subheadline": "Vier einfache Schritte zu professionellen KI-generierten Bildvarianten im großen Maßstab.",
-    "step1": {
-      "title": "Hochladen",
-      "desc": "Lade deine Brand-Assets und Referenzbilder auf den Canvas."
-    },
-    "step2": {
-      "title": "Verbinden",
-      "desc": "Baue deinen Workflow mit Nodes: Prompts hinzufügen, KI-Modelle wählen, Parameter setzen."
-    },
-    "step3": {
-      "title": "Generieren",
-      "desc": "Lass KI Varianten erstellen. Agents können Hunderte von Bildern im Batch verarbeiten."
-    },
-    "step4": {
-      "title": "Exportieren",
-      "desc": "Vergleiche, wähle aus und lade deine kampagnenbereiten Bilder herunter."
-    }
+    "headline": "Von der Idee zum Kampagnenbild in Minuten",
+    "step1": { "title": "Upload", "desc": "Droppe deine Marken-Assets und Referenzbilder auf den Canvas." },
+    "step2": { "title": "Verbinden", "desc": "Baue deinen Workflow mit Nodes: Prompts hinzufügen, KI-Modelle wählen, Parameter setzen." },
+    "step3": { "title": "Generieren", "desc": "Lass KI Varianten erstellen. Agents können hunderte Bilder batch-verarbeiten." },
+    "step4": { "title": "Export", "desc": "Vergleiche, wähle aus und lade deine kampagnenfähigen Bilder herunter." }
   },
   "pricing": {
     "label": "Preise",
-    "headline": "Einfache, credit-basierte Preise",
-    "subheadline": "Bezahle nur, was du nutzt. Starte kostenlos, skaliere nach Bedarf.",
+    "headline": "Einfaches, kreditbasiertes Pricing",
+    "subheadline": "Bezahl nur, was du nutzt. Kostenlos starten, mitwachsen.",
     "info": "1 Credit ≈ 1 KI-Bildgenerierung · Jederzeit aufladen",
-    "popular": "Am beliebtesten",
-    "perMonth": "/Monat",
+    "popular": "Beliebteste Wahl",
     "free": {
       "title": "Free",
-      "price": "€0",
-      "features": [
-        "50 Credits inklusive",
-        "1 Workspace",
-        "Community-Support",
-        "Basis-Modelle"
-      ],
+      "subtitle": "Voll ausgestattet. Kein Trial. Läuft nie ab.",
       "cta": "Kostenlos starten"
     },
     "starter": {
       "title": "Starter",
-      "price": "€8",
-      "features": [
-        "400 Credits/Monat",
-        "Premium KI-Modelle",
-        "E-Mail-Support",
-        "Mehrere Workspaces"
-      ],
-      "cta": "Starter wählen"
+      "cta": "Starter holen →"
     },
     "pro": {
       "title": "Pro",
-      "price": "€59",
-      "features": [
-        "3.300 Credits/Monat",
-        "Agent-Nodes",
-        "Priority-Support",
-        "Alle KI-Modelle",
-        "Erweiterte Workflows"
-      ],
-      "cta": "Pro wählen"
+      "subtitle": "Unbegrenzte Projekte. Unbegrenzte Prozesse.",
+      "cta": "Pro holen"
     },
     "max": {
       "title": "Max",
-      "price": "€119",
-      "features": [
-        "6.700 Credits/Monat",
-        "Alles freigeschaltet",
-        "Dedizierter Support",
-        "Unbegrenzte Workspaces",
-        "API-Zugang"
-      ],
-      "cta": "Max wählen"
+      "cta": "Max holen →"
     }
   },
+  "waitlist": {
+    "emailLabel": "Geschäftliche E-Mail",
+    "emailPlaceholder": "du@agentur.de",
+    "submit": "Auf die Liste",
+    "success": "Du stehst auf der Liste. Danke.",
+    "already": "Von diesem Gerät bist du schon eingetragen.",
+    "errorInvalid": "Bitte gib eine gültige E-Mail-Adresse ein.",
+    "ctaHeadline": "Early Access sichern",
+    "ctaSub": "Wir entwickeln LemonSpace für Teams, die Kampagnenbilder im Maßstab erzeugen. Auf die Liste setzen und als Erster Zugang bekommen, wenn wir starten."
+  },
   "footer": {
-    "tagline": "Der visuelle KI-Arbeitsbereich für Kreativteams.",
+    "tagline": "Visueller Arbeitsbereich für kleine Kreativteams. In aktiver Entwicklung.",
+    "note": "Self-hosted und source-available sind geplant — das ist kein fertiger Produktpitch.",
     "github": "GitHub",
     "docs": "Dokumentation",
     "privacy": "Datenschutz",
     "terms": "Impressum",
     "copyright": "© 2026 LemonSpace. Alle Rechte vorbehalten.",
-    "license": "Lizenziert unter BSL 1.1"
+    "license": "BSL 1.1, sobald Code öffentlich ist"
   }
 }
