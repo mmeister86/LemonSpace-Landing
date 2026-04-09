@@ -1,7 +1,8 @@
 {
   "meta": {
-    "title": "LemonSpace — Join the waitlist",
-    "description": "A visual workspace for creative teams. Brief, generate, compare, and export campaign-ready image variants. Early access waitlist."
+    "title": "LemonSpace - Visual workspace for creative teams",
+    "description": "A visual canvas where your brand assets become campaigns. Upload, edit, organize, compare, and export in one place. Self-hosted or managed. Source-available.",
+    "ogTitle": "LemonSpace - Visual workspace for creative teams"
   },
   "nav": {
     "features": "Features",
@@ -11,13 +12,18 @@
   },
   "hero": {
     "kicker": "Early access",
-    "headline": "Campaign-ready image variants, without the tool chaos.",
-    "subheadline": "LemonSpace is a visual workspace for small creative teams: brief, generate, compare, and export — your assets where you want them.",
+    "headline": "The visual workspace where your brand assets become campaigns.",
+    "subheadline": "Upload your brand assets, edit and organize them on a visual canvas, run agent workflows, and export campaign-ready results in one place. Optional AI generation when needed.",
     "ctaSecondary": "See How it Works",
     "privacyNote": "No spam. We'll email you when the beta opens."
   },
   "visual": {
-    "filename": "campaign.lemon"
+    "filename": "campaign.lemon",
+    "node1Meta": "hero-product.jpg",
+    "node2Meta": "workflow.map",
+    "node3Meta": "review + select",
+    "statusConnected": "3 nodes connected",
+    "statusReady": "Ready to export"
   },
   "issue": {
     "label": "The issue",
@@ -27,64 +33,64 @@
     "b2Title": "No comparison",
     "b2": "You generated twelve variants but they're scattered across folders, chats, and downloads. Comparing them means opening six windows side by side and hoping you don't lose track.",
     "b3Title": "Your brand, their server",
-    "b3": "Every prompt and asset lives on someone else's infrastructure. When confidentiality matters, parking brand assets in yet another SaaS is a tough sell."
+    "b3": "Every asset, every edit, every variant lives on someone else's infrastructure. When confidentiality matters, parking your brand in yet another SaaS is a tough sell to legal."
   },
   "fix": {
     "label": "The fix",
-    "headline": "One canvas. Every variant. Full control.",
-    "subheadline": "LemonSpace keeps everything on a single visual board — upload, prompt, generate, compare, and export from one place. No more juggling tools, no more scattered files."
+    "headline": "One canvas. From upload to export.",
+    "subheadline": "LemonSpace puts your visual workflow on one board - upload, organize, edit non-destructively, run agent workflows, compare outcomes, and export. Optional AI generation when you need it."
   },
   "features": {
     "label": "What LemonSpace actually does",
     "canvas": {
-      "tag": "01 — Visual Canvas",
+      "tag": "01 - Visual Canvas",
       "title": "Visual Canvas",
-      "desc": "Your image workflow lives on a node-based canvas. Brief images, connect prompts, see generations, compare results, and export — all on one board. Drag nodes, connect them, and see the whole flow at a glance.",
-      "step1": "Upload brief",
-      "step2": "Build prompt",
-      "step3": "Generate variants",
-      "step4": "Compare and export"
+      "desc": "Your workflow lives on a node-based canvas. Drop in assets, connect edits and transformations, branch ideas, and see the full flow at a glance.",
+      "step1": "Upload assets",
+      "step2": "Build workflow",
+      "step3": "Compare variants",
+      "step4": "Export campaign"
     },
     "prompt": {
-      "tag": "02 — Prompt Studio",
-      "title": "Prompt Studio",
-      "desc": "Stop writing prompts into a chat box. Prompt Studio gives you structured fields for brand, subject, style, format, and constraints. No more guessing what works — the brief builds the prompt for you.",
-      "field1": "Brand",
-      "field2": "Style",
-      "field3": "Audience",
-      "field4": "Constraints"
+      "tag": "02 - Asset Library",
+      "title": "Asset Library",
+      "desc": "Upload and organize brand assets, reference images, and approved templates in one shared library. Tag, version, and reuse assets across every canvas.",
+      "field1": "Brand assets",
+      "field2": "References",
+      "field3": "Templates",
+      "field4": "Versions"
     },
     "compare": {
-      "tag": "03 — Comparison View",
-      "title": "Comparison View",
-      "desc": "Line up variants side by side and pick the best one. See them all at once with confidence scores and star ratings. Flag the winner and send it straight to export — no screenshots scattered in a drive folder.",
-      "rating1": "Variant A",
-      "rating2": "Variant B",
-      "rating3": "Variant C",
-      "rating4": "Variant D"
+      "tag": "03 - Non-destructive Editing",
+      "title": "Non-destructive Editing",
+      "desc": "Adjust curves, color, light, and detail directly on the canvas. Reorder edits anytime, branch variants from one source, and keep your original assets untouched.",
+      "rating1": "Curves",
+      "rating2": "Color",
+      "rating3": "Light",
+      "rating4": "Detail"
     },
     "export": {
-      "tag": "04 — Export Queue",
-      "title": "Export Queue",
-      "desc": "Batch-export campaign-ready assets in multiple formats and sizes. Web, social, print — name your presets and export them all with one click. No more opening Photoshop six times.",
-      "format1": "PNG",
-      "format2": "JPG",
-      "format3": "WebP",
-      "format4": "SVG"
+      "tag": "04 - Agent Workflows",
+      "title": "Agent Workflows",
+      "desc": "Connect an Agent node for multi-step creative jobs. Define the goal, review the plan, adjust parameters, and ship with your team still in control.",
+      "format1": "Plan",
+      "format2": "Review",
+      "format3": "Adjust",
+      "format4": "Ship"
     },
     "library": {
-      "tag": "05 — Asset Library",
-      "title": "Asset Library",
-      "desc": "Upload and organize brand assets, reference images, and approved templates in one place. When someone on the team uploads a new reference, everyone sees it. No more scattered files in drive folders.",
-      "asset1": "logo.svg",
-      "asset2": "brand-kit.pdf",
-      "asset3": "guidelines.pdf",
-      "asset4": "palette.png"
+      "tag": "05 - Compare and Export",
+      "title": "Compare and Export",
+      "desc": "Review variants side by side, pick winners, and export to web, social, and print formats. Save presets once and reuse them across campaigns.",
+      "asset1": "Web preset",
+      "asset2": "Social preset",
+      "asset3": "Print preset",
+      "asset4": "Campaign zip"
     },
     "selfhosted": {
-      "tag": "06 — Self-Hosted",
+      "tag": "06 - Self-Hosted",
       "title": "Self-Hosted",
-      "desc": "Run LemonSpace on your own infrastructure. Your brand assets never leave your server. Full control over data, deployment, and compliance. Docker, Kubernetes, or bare metal — you decide.",
+      "desc": "Run LemonSpace on your own infrastructure. Your assets and workflows stay under your control with Docker, Kubernetes, or bare metal. Source-available under BSL 1.1.",
       "item1": "Docker",
       "item2": "Kubernetes",
       "item3": "On-premise",
@@ -93,35 +99,58 @@
   },
   "how": {
     "label": "How it Works",
-    "headline": "From idea to campaign images in minutes",
-    "step1": { "title": "Upload", "desc": "Drop your brand assets and reference images onto the canvas." },
-    "step2": { "title": "Connect", "desc": "Build your workflow with nodes: add prompts, choose AI models, set parameters." },
-    "step3": { "title": "Generate", "desc": "Let AI create variants. Agents can batch-process hundreds of images." },
-    "step4": { "title": "Export", "desc": "Compare, select, and download your campaign-ready images." }
+    "headline": "From idea to campaign in minutes",
+    "step1": {
+      "title": "Upload",
+      "desc": "Drop your brand assets and reference images onto the canvas. Tag them and keep your library organized."
+    },
+    "step2": {
+      "title": "Build workflow",
+      "desc": "Connect nodes for organizing, editing, transforming, and comparing. Add AI generation only when you need something new."
+    },
+    "step3": {
+      "title": "Refine",
+      "desc": "Adjust curves, color, and light non-destructively. Run agent workflows, review outcomes, and keep control at every step."
+    },
+    "step4": {
+      "title": "Export",
+      "desc": "Pick winners, export to your campaign formats, and ship."
+    }
   },
   "pricing": {
     "label": "Pricing",
     "headline": "Simple, credit-based pricing",
-    "subheadline": "Pay only for what you use. Start free, scale as you grow.",
-    "info": "1 Credit ≈ 1 AI Image Generation · Top-up anytime",
+    "subheadline": "Credits power premium operations. Start free, scale when needed.",
+    "info": "Credits cover AI generation, agent runs, and premium model access. Editing, organizing, comparing, and exporting are always included.",
     "popular": "Most Popular",
     "free": {
       "title": "Free",
       "subtitle": "Full-featured. No trial. Never expires.",
-      "cta": "Get Started Free"
+      "cta": "Get Started Free",
+      "b1": "50 Credits per month",
+      "b2": "Unlimited image editing and exports",
+      "b3": "1 workspace",
+      "b4": "Community support"
     },
     "starter": {
       "title": "Starter",
-      "cta": "Get Starter →"
+      "cta": "Get Starter ->",
+      "desc": "400 Credits/month - Premium models - Email support - Multiple workspaces"
     },
     "pro": {
       "title": "Pro",
-      "subtitle": "Unlimited projects. Unlimited processes.",
-      "cta": "Get Pro"
+      "subtitle": "For active creative teams.",
+      "cta": "Get Pro",
+      "b1": "3,300 Credits/month",
+      "b2": "All AI models",
+      "b3": "Agent workflows",
+      "b4": "Priority support",
+      "b5": "Advanced canvas features"
     },
     "max": {
       "title": "Max",
-      "cta": "Get Max →"
+      "cta": "Get Max ->",
+      "desc": "6,700 Credits/month - Everything in Pro - Dedicated support - API access"
     }
   },
   "waitlist": {
@@ -132,16 +161,16 @@
     "already": "You already joined from this device.",
     "errorInvalid": "Please enter a valid email address.",
     "ctaHeadline": "Get early access",
-    "ctaSub": "We're building LemonSpace for teams who ship campaign images at scale. Join the waitlist and be the first to know when we launch."
+    "ctaSub": "We're building LemonSpace for creative teams who want one place to manage their visual workflow - from brand assets to finished campaigns. Join the waitlist and we'll let you know when the beta opens."
   },
   "footer": {
     "tagline": "Visual workspace for small creative teams. In active development.",
-    "note": "Self-hosted and source-available are on the roadmap — this is not a finished product pitch.",
+    "note": "Self-hosted and source-available are on the roadmap - this is not a finished product pitch.",
     "github": "GitHub",
     "docs": "Documentation",
     "privacy": "Privacy",
     "terms": "Terms",
-    "copyright": "© 2026 LemonSpace. All rights reserved.",
+    "copyright": "(c) 2026 LemonSpace. All rights reserved.",
     "license": "BSL 1.1 when code ships publicly"
   }
 }

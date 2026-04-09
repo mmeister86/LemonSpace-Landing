@@ -10,12 +10,12 @@ import de from '../i18n/de.json';
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content={en.meta.description} />
+    <meta id="meta-description" name="description" content={en.meta.description} />
     <meta name="generator" content={Astro.generator} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <title>LemonSpace — Your Visual AI Workspace</title>
+    <title>{en.meta.title}</title>
 
     <!-- Theme init (blocking — prevents flash of wrong theme) -->
     <script is:inline>
@@ -118,12 +118,12 @@ import de from '../i18n/de.json';
 
         <!-- Headline -->
         <h1 class="animate-fade-in-up text-3xl sm:text-[2.75rem] lg:text-[3.5rem] font-extrabold tracking-tight leading-[1.1] max-w-3xl mb-6">
-          <span data-i18n="hero.headline">Campaign-ready image variants, without the tool chaos.</span>
+          <span data-i18n="hero.headline">The visual workspace where your brand assets become campaigns.</span>
         </h1>
 
         <!-- Subheadline -->
         <p class="animate-fade-in-up text-lg sm:text-xl text-text-secondary max-w-2xl leading-relaxed mb-8" style="animation-delay: 0.1s" data-i18n="hero.subheadline">
-          LemonSpace is a visual workspace for small creative teams: brief, generate, compare, and export — your assets where you want them.
+          Upload your brand assets, edit and organize them on a visual canvas, run agent workflows, and export campaign-ready results in one place. Optional AI generation when needed.
         </p>
 
         <!-- CTAs -->
@@ -153,16 +153,16 @@ import de from '../i18n/de.json';
                   <div class="w-full aspect-[4/3] rounded-md bg-gradient-to-br from-primary/15 to-accent/10 mb-2.5 flex items-center justify-center">
                     <svg class="w-7 h-7 sm:w-9 sm:h-9 text-primary/50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" /></svg>
                   </div>
-                  <div class="text-xs font-semibold text-text-primary" data-i18n="features.canvas.step1">Upload brief</div>
-                  <div class="text-[10px] text-text-tertiary mt-0.5">input.jpg</div>
+                  <div class="text-xs font-semibold text-text-primary" data-i18n="features.canvas.step1">Upload assets</div>
+                  <div class="text-[10px] text-text-tertiary mt-0.5" data-i18n="visual.node1Meta">hero-product.jpg</div>
                 </div>
                 <!-- Node 2: Prompt -->
                 <div class="rounded-lg border border-border bg-surface-2 p-3 sm:p-4">
                   <div class="w-full aspect-[4/3] rounded-md bg-gradient-to-br from-accent/12 to-accent-warm/8 mb-2.5 flex items-center justify-center">
                     <svg class="w-7 h-7 sm:w-9 sm:h-9 text-accent-warm/50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" /></svg>
                   </div>
-                  <div class="text-xs font-semibold text-text-primary" data-i18n="features.canvas.step2">Build prompt</div>
-                  <div class="text-[10px] text-text-tertiary mt-0.5">"Summer vibes..."</div>
+                  <div class="text-xs font-semibold text-text-primary" data-i18n="features.canvas.step2">Build workflow</div>
+                  <div class="text-[10px] text-text-tertiary mt-0.5" data-i18n="visual.node2Meta">workflow.map</div>
                 </div>
                 <!-- Node 3: AI Output -->
                 <div class="rounded-lg border border-primary/30 bg-primary/5 p-3 sm:p-4">
@@ -170,17 +170,17 @@ import de from '../i18n/de.json';
                     <div class="absolute inset-0 bg-gradient-to-t from-primary/8 to-transparent"></div>
                     <svg class="w-7 h-7 sm:w-9 sm:h-9 text-primary/60 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z" /></svg>
                   </div>
-                  <div class="text-xs font-semibold text-primary-light" data-i18n="features.canvas.step3">Generate variants</div>
-                  <div class="text-[10px] text-text-tertiary mt-0.5">FLUX.2 → output</div>
+                  <div class="text-xs font-semibold text-primary-light" data-i18n="features.canvas.step3">Compare variants</div>
+                  <div class="text-[10px] text-text-tertiary mt-0.5" data-i18n="visual.node3Meta">review + select</div>
                 </div>
               </div>
               <!-- Status bar -->
               <div class="flex items-center justify-between mt-4 pt-3 border-t border-border">
                 <div class="flex items-center gap-2">
                   <span class="inline-block w-2 h-2 rounded-full bg-primary" style="animation: pulse-glow 2s ease-in-out infinite;"></span>
-                  <span class="text-xs text-text-tertiary">3 nodes connected</span>
+                  <span class="text-xs text-text-tertiary" data-i18n="visual.statusConnected">3 nodes connected</span>
                 </div>
-                <span class="text-xs text-text-tertiary font-mono">Ready to generate</span>
+                <span class="text-xs text-text-tertiary font-mono" data-i18n="visual.statusReady">Ready to export</span>
               </div>
             </div>
           </div>
@@ -237,10 +237,10 @@ import de from '../i18n/de.json';
         </div>
 
         <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight max-w-2xl mb-4" data-i18n="fix.headline">
-          One canvas. Every variant. Full control.
+          One canvas. From upload to export.
         </h2>
         <p class="text-base sm:text-lg text-text-secondary max-w-2xl leading-relaxed" data-i18n="fix.subheadline">
-          LemonSpace keeps everything on a single visual board — upload, prompt, generate, compare, and export from one place. No more juggling tools, no more scattered files.
+          LemonSpace puts your visual workflow on one board - upload, organize, edit non-destructively, run agent workflows, compare outcomes, and export. Optional AI generation when you need it.
         </p>
       </div>
     </section>
@@ -257,7 +257,7 @@ import de from '../i18n/de.json';
         </div>
 
         <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight max-w-2xl mb-12 sm:mb-16">
-          <span data-i18n="fix.headline">One canvas. Every variant. Full control.</span>
+          <span data-i18n="fix.headline">One canvas. From upload to export.</span>
         </h2>
 
         <!-- Feature 1: Visual Canvas -->
@@ -275,61 +275,61 @@ import de from '../i18n/de.json';
           </div>
         </div>
 
-        <!-- Feature 2: Prompt Studio -->
+        <!-- Feature 2: Asset Library -->
         <div class="animate-on-scroll mb-10 sm:mb-14">
           <div class="feature-block">
             <div>
-              <span class="text-xs font-semibold text-primary uppercase tracking-wider" data-i18n="features.prompt.tag">02 — Prompt Studio</span>
+              <span class="text-xs font-semibold text-primary uppercase tracking-wider" data-i18n="features.prompt.tag">02 - Asset Library</span>
             </div>
             <div>
-              <h3 class="text-xl sm:text-2xl font-bold text-text-primary mb-3" data-i18n="features.prompt.title">Prompt Studio</h3>
+              <h3 class="text-xl sm:text-2xl font-bold text-text-primary mb-3" data-i18n="features.prompt.title">Asset Library</h3>
               <p class="text-base text-text-secondary leading-relaxed max-w-xl" data-i18n="features.prompt.desc">
-                Stop writing prompts into a chat box. Prompt Studio gives you structured fields for brand, subject, style, format, and constraints. No more guessing what works — the brief builds the prompt for you.
+                Upload and organize brand assets, reference images, and approved templates in one shared library. Tag, version, and reuse assets across every canvas.
               </p>
             </div>
           </div>
         </div>
 
-        <!-- Feature 3: Comparison View -->
+        <!-- Feature 3: Non-destructive Editing -->
         <div class="animate-on-scroll mb-10 sm:mb-14">
           <div class="feature-block">
             <div>
-              <span class="text-xs font-semibold text-primary uppercase tracking-wider" data-i18n="features.compare.tag">03 — Comparison View</span>
+              <span class="text-xs font-semibold text-primary uppercase tracking-wider" data-i18n="features.compare.tag">03 - Non-destructive Editing</span>
             </div>
             <div>
-              <h3 class="text-xl sm:text-2xl font-bold text-text-primary mb-3" data-i18n="features.compare.title">Comparison View</h3>
+              <h3 class="text-xl sm:text-2xl font-bold text-text-primary mb-3" data-i18n="features.compare.title">Non-destructive Editing</h3>
               <p class="text-base text-text-secondary leading-relaxed max-w-xl" data-i18n="features.compare.desc">
-                Line up variants side by side and pick the best one. See them all at once with confidence scores and star ratings. Flag the winner and send it straight to export — no screenshots scattered in a drive folder.
+                Adjust curves, color, light, and detail directly on the canvas. Reorder edits anytime, branch variants from one source, and keep your original assets untouched.
               </p>
             </div>
           </div>
         </div>
 
-        <!-- Feature 4: Export Queue -->
+        <!-- Feature 4: Agent Workflows -->
         <div class="animate-on-scroll mb-10 sm:mb-14">
           <div class="feature-block">
             <div>
-              <span class="text-xs font-semibold text-primary uppercase tracking-wider" data-i18n="features.export.tag">04 — Export Queue</span>
+              <span class="text-xs font-semibold text-primary uppercase tracking-wider" data-i18n="features.export.tag">04 - Agent Workflows</span>
             </div>
             <div>
-              <h3 class="text-xl sm:text-2xl font-bold text-text-primary mb-3" data-i18n="features.export.title">Export Queue</h3>
+              <h3 class="text-xl sm:text-2xl font-bold text-text-primary mb-3" data-i18n="features.export.title">Agent Workflows</h3>
               <p class="text-base text-text-secondary leading-relaxed max-w-xl" data-i18n="features.export.desc">
-                Batch-export campaign-ready assets in multiple formats and sizes. Web, social, print — name your presets and export them all with one click. No more opening Photoshop six times.
+                Connect an Agent node for multi-step creative jobs. Define the goal, review the plan, adjust parameters, and ship with your team still in control.
               </p>
             </div>
           </div>
         </div>
 
-        <!-- Feature 5: Asset Library -->
+        <!-- Feature 5: Compare and Export -->
         <div class="animate-on-scroll mb-10 sm:mb-14">
           <div class="feature-block">
             <div>
-              <span class="text-xs font-semibold text-primary uppercase tracking-wider" data-i18n="features.library.tag">05 — Asset Library</span>
+              <span class="text-xs font-semibold text-primary uppercase tracking-wider" data-i18n="features.library.tag">05 - Compare and Export</span>
             </div>
             <div>
-              <h3 class="text-xl sm:text-2xl font-bold text-text-primary mb-3" data-i18n="features.library.title">Asset Library</h3>
+              <h3 class="text-xl sm:text-2xl font-bold text-text-primary mb-3" data-i18n="features.library.title">Compare and Export</h3>
               <p class="text-base text-text-secondary leading-relaxed max-w-xl" data-i18n="features.library.desc">
-                Upload and organize brand assets, reference images, and approved templates in one place. When someone on the team uploads a new reference, everyone sees it. No more scattered files in drive folders.
+                Review variants side by side, pick winners, and export to web, social, and print formats. Save presets once and reuse them across campaigns.
               </p>
             </div>
           </div>
@@ -364,7 +364,7 @@ import de from '../i18n/de.json';
         </div>
 
         <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight max-w-2xl mb-12 sm:mb-16" data-i18n="how.headline">
-          From idea to campaign images in minutes
+          From idea to campaign in minutes
         </h2>
 
         <!-- Steps -->
@@ -379,22 +379,22 @@ import de from '../i18n/de.json';
           <div class="animate-on-scroll flex items-start gap-5">
             <div class="w-10 h-10 rounded-full bg-primary/10 border-2 border-primary text-primary font-bold text-sm flex items-center justify-center shrink-0">2</div>
             <div>
-              <h3 class="text-lg font-semibold text-text-primary mb-1" data-i18n="how.step2.title">Connect</h3>
-              <p class="text-sm text-text-secondary leading-relaxed" data-i18n="how.step2.desc">Build your workflow with nodes: add prompts, choose AI models, set parameters.</p>
+               <h3 class="text-lg font-semibold text-text-primary mb-1" data-i18n="how.step2.title">Build workflow</h3>
+               <p class="text-sm text-text-secondary leading-relaxed" data-i18n="how.step2.desc">Connect nodes for organizing, editing, transforming, and comparing. Add AI generation only when you need something new.</p>
             </div>
           </div>
           <div class="animate-on-scroll flex items-start gap-5">
             <div class="w-10 h-10 rounded-full bg-primary/10 border-2 border-primary text-primary font-bold text-sm flex items-center justify-center shrink-0">3</div>
             <div>
-              <h3 class="text-lg font-semibold text-text-primary mb-1" data-i18n="how.step3.title">Generate</h3>
-              <p class="text-sm text-text-secondary leading-relaxed" data-i18n="how.step3.desc">Let AI create variants. Agents can batch-process hundreds of images.</p>
+               <h3 class="text-lg font-semibold text-text-primary mb-1" data-i18n="how.step3.title">Refine</h3>
+               <p class="text-sm text-text-secondary leading-relaxed" data-i18n="how.step3.desc">Adjust curves, color, and light non-destructively. Run agent workflows, review outcomes, and keep control at every step.</p>
             </div>
           </div>
           <div class="animate-on-scroll flex items-start gap-5">
             <div class="w-10 h-10 rounded-full bg-primary/10 border-2 border-primary text-primary font-bold text-sm flex items-center justify-center shrink-0">4</div>
             <div>
               <h3 class="text-lg font-semibold text-text-primary mb-1" data-i18n="how.step4.title">Export</h3>
-              <p class="text-sm text-text-secondary leading-relaxed" data-i18n="how.step4.desc">Compare, select, and download your campaign-ready images.</p>
+               <p class="text-sm text-text-secondary leading-relaxed" data-i18n="how.step4.desc">Pick winners, export to your campaign formats, and ship.</p>
             </div>
           </div>
         </div>
@@ -416,10 +416,10 @@ import de from '../i18n/de.json';
           Simple, credit-based pricing
         </h2>
         <p class="text-base text-text-secondary max-w-lg mb-3" data-i18n="pricing.subheadline">
-          Pay only for what you use. Start free, scale as you grow.
+          Credits power premium operations. Start free, scale when needed.
         </p>
         <p class="text-sm text-text-tertiary mb-12 sm:mb-16" data-i18n="pricing.info">
-          1 Credit ≈ 1 AI Image Generation · Top-up anytime
+          Credits cover AI generation, agent runs, and premium model access. Editing, organizing, comparing, and exporting are always included.
         </p>
 
         <!-- Pricing Grid: 2 columns like soloterm -->
@@ -437,19 +437,19 @@ import de from '../i18n/de.json';
             <ul class="space-y-3 mb-8 flex-1">
               <li class="flex items-start gap-2.5 text-sm text-text-secondary">
                 <svg class="w-4 h-4 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                <span>50 Credits included</span>
+                <span data-i18n="pricing.free.b1">50 Credits per month</span>
               </li>
               <li class="flex items-start gap-2.5 text-sm text-text-secondary">
                 <svg class="w-4 h-4 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                <span>1 Workspace</span>
+                <span data-i18n="pricing.free.b2">Unlimited image editing and exports</span>
               </li>
               <li class="flex items-start gap-2.5 text-sm text-text-secondary">
                 <svg class="w-4 h-4 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                <span>Community support</span>
+                <span data-i18n="pricing.free.b3">1 workspace</span>
               </li>
               <li class="flex items-start gap-2.5 text-sm text-text-secondary">
                 <svg class="w-4 h-4 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                <span>Basic AI models</span>
+                <span data-i18n="pricing.free.b4">Community support</span>
               </li>
             </ul>
             <a href="#waitlist" class="inline-flex items-center justify-center w-full px-6 py-2.5 text-sm font-semibold rounded-xl bg-surface-3 text-text-primary border border-border hover:border-border-light hover:bg-surface-4 transition-all" data-i18n="pricing.free.cta">Get Started Free</a>
@@ -464,28 +464,28 @@ import de from '../i18n/de.json';
                 <span class="text-3xl font-bold text-text-primary">€59</span>
                 <span class="text-sm text-text-tertiary">/month</span>
               </div>
-              <p class="text-sm text-text-tertiary mt-2" data-i18n="pricing.pro.subtitle">Unlimited projects. Unlimited processes.</p>
+              <p class="text-sm text-text-tertiary mt-2" data-i18n="pricing.pro.subtitle">For active creative teams.</p>
             </div>
             <ul class="space-y-3 mb-8 flex-1">
               <li class="flex items-start gap-2.5 text-sm text-text-secondary">
                 <svg class="w-4 h-4 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                <span>3,300 Credits/month</span>
+                <span data-i18n="pricing.pro.b1">3,300 Credits/month</span>
               </li>
               <li class="flex items-start gap-2.5 text-sm text-text-secondary">
                 <svg class="w-4 h-4 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                <span>All AI models</span>
+                <span data-i18n="pricing.pro.b2">All AI models</span>
               </li>
               <li class="flex items-start gap-2.5 text-sm text-text-secondary">
                 <svg class="w-4 h-4 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                <span>Agent nodes</span>
+                <span data-i18n="pricing.pro.b3">Agent workflows</span>
               </li>
               <li class="flex items-start gap-2.5 text-sm text-text-secondary">
                 <svg class="w-4 h-4 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                <span>Priority support</span>
+                <span data-i18n="pricing.pro.b4">Priority support</span>
               </li>
               <li class="flex items-start gap-2.5 text-sm text-text-secondary">
                 <svg class="w-4 h-4 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                <span>Advanced workflows</span>
+                <span data-i18n="pricing.pro.b5">Advanced canvas features</span>
               </li>
             </ul>
             <a href="#waitlist" class="inline-flex items-center justify-center w-full px-6 py-2.5 text-sm font-semibold rounded-xl bg-primary text-white hover:bg-primary-light transition-all shadow-md shadow-primary/15" data-i18n="pricing.pro.cta">Get Pro</a>
@@ -500,7 +500,7 @@ import de from '../i18n/de.json';
               <span class="text-lg font-bold text-text-primary ml-2">€8</span>
               <span class="text-sm text-text-tertiary">/month</span>
             </div>
-            <p class="text-sm text-text-secondary mb-4">400 Credits/month · Premium models · Email support · Multiple workspaces</p>
+            <p class="text-sm text-text-secondary mb-4" data-i18n="pricing.starter.desc">400 Credits/month - Premium models - Email support - Multiple workspaces</p>
             <a href="#waitlist" class="text-sm font-semibold text-primary hover:text-primary-light transition-colors" data-i18n="pricing.starter.cta">Get Starter →</a>
           </div>
           <div class="rounded-xl border border-border bg-surface-2 p-5">
@@ -509,7 +509,7 @@ import de from '../i18n/de.json';
               <span class="text-lg font-bold text-text-primary ml-2">€119</span>
               <span class="text-sm text-text-tertiary">/month</span>
             </div>
-            <p class="text-sm text-text-secondary mb-4">6,700 Credits/month · Everything unlocked · Dedicated support · API access</p>
+            <p class="text-sm text-text-secondary mb-4" data-i18n="pricing.max.desc">6,700 Credits/month - Everything in Pro - Dedicated support - API access</p>
             <a href="#waitlist" class="text-sm font-semibold text-primary hover:text-primary-light transition-colors" data-i18n="pricing.max.cta">Get Max →</a>
           </div>
         </div>
@@ -530,7 +530,7 @@ import de from '../i18n/de.json';
 
           <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-3" data-i18n="waitlist.ctaHeadline">Get early access</h2>
           <p class="text-base text-text-secondary leading-relaxed mb-8" data-i18n="waitlist.ctaSub">
-            We're building LemonSpace for teams who ship campaign images at scale. Join the waitlist and be the first to know when we launch.
+             We're building LemonSpace for creative teams who want one place to manage their visual workflow - from brand assets to finished campaigns. Join the waitlist and we'll let you know when the beta opens.
           </p>
 
           <!-- Email form -->
@@ -600,8 +600,15 @@ import de from '../i18n/de.json';
     </script>
 
     <!-- ===== WAITLIST FORM ===== -->
-    <script>
+    <script define:vars={{ en, de }}>
       (function() {
+        var translations = { en: en, de: de };
+        function currentLang() {
+          var stored = localStorage.getItem('lang');
+          if (stored === 'de' || stored === 'en') return stored;
+          var htmlLang = document.documentElement.lang;
+          return htmlLang === 'de' ? 'de' : 'en';
+        }
         var form = document.getElementById('waitlist-form');
         var msg = document.getElementById('waitlist-message');
         if (!form) return;
@@ -609,21 +616,22 @@ import de from '../i18n/de.json';
         form.addEventListener('submit', function(e) {
           e.preventDefault();
           var email = form.querySelector('input[type="email"]').value.trim();
+          var lang = currentLang();
+          var copy = translations[lang] && translations[lang].waitlist ? translations[lang].waitlist : translations.en.waitlist;
           if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-            msg.textContent = form.querySelector('[data-i18n-placeholder="waitlist.emailPlaceholder"]') ?
-              'Please enter a valid email address.' : 'Please enter a valid email address.';
+            msg.textContent = copy.errorInvalid;
             msg.className = 'mt-3 text-sm text-red-500';
             return;
           }
           // Check localStorage for duplicate
           if (localStorage.getItem('lemonspace-waitlist') === email) {
-            msg.textContent = 'You already joined from this device.';
+            msg.textContent = copy.already;
             msg.className = 'mt-3 text-sm text-text-tertiary';
             return;
           }
           // Simulate success
           localStorage.setItem('lemonspace-waitlist', email);
-          msg.textContent = 'You are on the list. Thank you.';
+          msg.textContent = copy.success;
           msg.className = 'mt-3 text-sm text-primary font-medium';
           form.querySelector('input[type="email"]').value = '';
         });
@@ -649,6 +657,11 @@ import de from '../i18n/de.json';
         function applyTranslations(lang) {
           currentLang = lang;
           document.documentElement.lang = lang;
+          document.title = t('meta.title', lang);
+          var descEl = document.getElementById('meta-description');
+          if (descEl) {
+            descEl.setAttribute('content', t('meta.description', lang));
+          }
 
           var els = document.querySelectorAll('[data-i18n]');
           for (var i = 0; i < els.length; i++) {
