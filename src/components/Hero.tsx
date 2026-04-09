@@ -79,7 +79,7 @@ export function Hero152({ className }: Hero152Props) {
           <div className="absolute top-[11%] left-[8%] z-10 aspect-[0.7/1] w-[80%] sm:left-[4%] sm:w-[45%]">
             <div className="size-full [transform:rotateY(-30deg)_rotateX(-18deg)_rotate(-4deg)]">
               <img
-                src="/public/img/78449.jpg"
+                src="/img/78449.jpg"
                 alt=""
                 className="block size-full object-cover object-center"
               />
@@ -88,7 +88,7 @@ export function Hero152({ className }: Hero152Props) {
           <div className="absolute top-0 left-[70%] z-20 aspect-[0.7/1] w-[73%] -translate-x-1/2 sm:left-1/2 sm:w-[38%]">
             <div className="size-full [transform:rotateY(-30deg)_rotateX(-18deg)_rotate(-4deg)] shadow-[-25px_0px_20px_0px_rgba(0,0,0,.04)]">
               <img
-                src="/public/img/1285.jpg"
+                src="/img/1285.jpg"
                 alt=""
                 className="block size-full object-cover object-center"
               />
@@ -97,7 +97,7 @@ export function Hero152({ className }: Hero152Props) {
           <div className="absolute top-[3%] -right-[45%] z-30 aspect-[0.7/1] w-[85%] sm:-right-[2%] sm:w-[50%]">
             <div className="size-full [transform:rotateY(-30deg)_rotateX(-18deg)_rotate(-4deg)] shadow-[-25px_0px_20px_0px_rgba(0,0,0,.04)]">
               <img
-                src="/public/img/1673.jpg"
+                src="/img/1673.jpg"
                 alt=""
                 className="block size-full object-cover object-center"
               />
