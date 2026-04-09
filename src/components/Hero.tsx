@@ -1,4 +1,4 @@
-import { MoveUpRight, Star } from "lucide-react"
+import { MoveUpRight } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
@@ -22,8 +22,11 @@ export function Hero152({ className }: Hero152Props) {
       <div className="relative mx-auto max-w-[99rem] px-0 sm:px-8">
         <div className="container px-4">
           <div className="mx-auto flex max-w-[26rem] flex-col items-center gap-6 sm:max-w-[38rem] lg:max-w-[56rem]">
-            <div className="flex items-center justify-center gap-2 text-text-secondary">
-              <Star className="size-4 fill-current stroke-current" />
+            <div className="inline-flex items-center justify-center gap-2 rounded-full border border-border/70 bg-surface-1 px-3 py-1.5 text-text-secondary">
+              <span className="relative flex size-2.5 items-center justify-center">
+                <span className="absolute inline-flex size-full animate-ping rounded-full bg-primary/60 [animation-duration:2s]" />
+                <span className="relative inline-flex size-2 rounded-full bg-primary" />
+              </span>
               <p className="text-sm text-nowrap" data-i18n="hero.kicker">
                 Early access
               </p>
@@ -33,8 +36,9 @@ export function Hero152({ className }: Hero152Props) {
               <h1 className="text-balance text-center text-[2.75rem] leading-[0.98] font-extrabold tracking-tight text-text-primary sm:text-[3.5rem] lg:text-[4.55rem]">
                 <span data-i18n="hero.headline">
                   The visual workspace where your brand assets become campaigns.
-                </span>
+                </span><span className="text-primary">*</span>
               </h1>
+
             </div>
 
             <p
@@ -61,7 +65,7 @@ export function Hero152({ className }: Hero152Props) {
               <Button
                 asChild
                 variant="default"
-                className="group flex h-fit min-w-[11.25rem] flex-1 items-center justify-center gap-1 rounded-[5rem] border border-primary bg-primary px-4 py-3 text-base font-semibold text-nowrap text-white md:min-w-fit md:flex-none"
+                className="group flex h-fit min-w-[11.25rem] flex-1 items-center justify-center gap-1 rounded-[5rem] border border-primary bg-primary hover:bg-primary-light px-4 py-3 text-base font-semibold text-nowrap text-white md:min-w-fit md:flex-none"
               >
                 <a href="#waitlist" data-i18n="nav.getStarted">
                   Join Waitlist
@@ -75,7 +79,7 @@ export function Hero152({ className }: Hero152Props) {
           <div className="absolute top-[11%] left-[8%] z-10 aspect-[0.7/1] w-[80%] sm:left-[4%] sm:w-[45%]">
             <div className="size-full [transform:rotateY(-30deg)_rotateX(-18deg)_rotate(-4deg)]">
               <img
-                src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-dark-1.svg"
+                src="/public/img/78449.jpg"
                 alt=""
                 className="block size-full object-cover object-center"
               />
@@ -84,7 +88,7 @@ export function Hero152({ className }: Hero152Props) {
           <div className="absolute top-0 left-[70%] z-20 aspect-[0.7/1] w-[73%] -translate-x-1/2 sm:left-1/2 sm:w-[38%]">
             <div className="size-full [transform:rotateY(-30deg)_rotateX(-18deg)_rotate(-4deg)] shadow-[-25px_0px_20px_0px_rgba(0,0,0,.04)]">
               <img
-                src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-dark-2.svg"
+                src="/public/img/1285.jpg"
                 alt=""
                 className="block size-full object-cover object-center"
               />
@@ -93,7 +97,7 @@ export function Hero152({ className }: Hero152Props) {
           <div className="absolute top-[3%] -right-[45%] z-30 aspect-[0.7/1] w-[85%] sm:-right-[2%] sm:w-[50%]">
             <div className="size-full [transform:rotateY(-30deg)_rotateX(-18deg)_rotate(-4deg)] shadow-[-25px_0px_20px_0px_rgba(0,0,0,.04)]">
               <img
-                src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-dark-3.svg"
+                src="/public/img/1673.jpg"
                 alt=""
                 className="block size-full object-cover object-center"
               />

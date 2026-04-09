@@ -3,6 +3,19 @@ import '../styles/global.css';
 import en from '../i18n/en.json';
 import de from '../i18n/de.json';
 import { Hero152 } from '../components/Hero';
+import {
+  Bot,
+  Check,
+  Download,
+  FolderOpen,
+  LayoutGrid,
+  SlidersHorizontal,
+  Upload,
+  WandSparkles,
+  Workflow,
+  ArrowDownToLine,
+  Server,
+} from 'lucide-react';
 ---
 
 <html lang="en">
@@ -168,10 +181,9 @@ import { Hero152 } from '../components/Hero';
 
     <hr class="section-divider" />
 
-    <!-- ===== FEATURES (soloterm-style vertical blocks) ===== -->
+    <!-- ===== FEATURES (asymmetric mosaic) ===== -->
     <section id="features" class="py-16 sm:py-24 lg:py-32">
       <div class="max-w-6xl mx-auto px-5 sm:px-6">
-        <!-- Label -->
         <div class="section-label mb-4">
           <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
           <span class="section-label-accent" data-i18n="features.label">What LemonSpace actually does</span>
@@ -181,94 +193,102 @@ import { Hero152 } from '../components/Hero';
           <span data-i18n="fix.headline">One canvas. From upload to export.</span>
         </h2>
 
-        <!-- Feature 1: Visual Canvas -->
-        <div class="animate-on-scroll mb-10 sm:mb-14">
-          <div class="feature-block">
-            <div>
-              <span class="text-xs font-semibold text-primary uppercase tracking-wider" data-i18n="features.canvas.tag">01 — Visual Canvas</span>
+        <div class="feature-mosaic" role="list" aria-label="LemonSpace features">
+          <article role="listitem" aria-labelledby="feature-canvas-title" class="feature-mosaic-card feature-mosaic-card--tone-1 feature-mosaic-card--wide animate-on-scroll">
+            <div aria-hidden="true" class="feature-mosaic-card__bg"></div>
+            <div class="feature-mosaic-card__content">
+              <div class="feature-mosaic-card__top">
+                <span class="feature-mosaic-card__tag" data-i18n="features.canvas.tag">01 - Visual Canvas</span>
+                <span class="feature-mosaic-card__icon" aria-hidden="true">
+                  <LayoutGrid strokeWidth={1.7} />
+                </span>
+              </div>
+              <div>
+                <h3 id="feature-canvas-title" class="feature-mosaic-card__title" data-i18n="features.canvas.title">Visual Canvas</h3>
+                <p class="feature-mosaic-card__desc" data-i18n="features.canvas.desc">Your image workflow lives on a node-based canvas. Brief images, connect prompts, see generations, compare results, and export all on one board.</p>
+              </div>
             </div>
-            <div>
-              <h3 class="text-xl sm:text-2xl font-bold text-text-primary mb-3" data-i18n="features.canvas.title">Visual Canvas</h3>
-              <p class="text-base text-text-secondary leading-relaxed max-w-xl" data-i18n="features.canvas.desc">
-                Your image workflow lives on a node-based canvas. Brief images, connect prompts, see generations, compare results, and export — all on one board. Drag nodes, connect them, and see the whole flow at a glance.
-              </p>
-            </div>
-          </div>
-        </div>
+          </article>
 
-        <!-- Feature 2: Asset Library -->
-        <div class="animate-on-scroll mb-10 sm:mb-14">
-          <div class="feature-block">
-            <div>
-              <span class="text-xs font-semibold text-primary uppercase tracking-wider" data-i18n="features.prompt.tag">02 - Asset Library</span>
+          <article role="listitem" aria-labelledby="feature-library-title" class="feature-mosaic-card feature-mosaic-card--tone-2 animate-on-scroll">
+            <div aria-hidden="true" class="feature-mosaic-card__bg"></div>
+            <div class="feature-mosaic-card__content">
+              <div class="feature-mosaic-card__top">
+                <span class="feature-mosaic-card__tag" data-i18n="features.prompt.tag">02 - Asset Library</span>
+                <span class="feature-mosaic-card__icon" aria-hidden="true">
+                  <FolderOpen strokeWidth={1.7} />
+                </span>
+              </div>
+              <div>
+                <h3 id="feature-library-title" class="feature-mosaic-card__title" data-i18n="features.prompt.title">Asset Library</h3>
+                <p class="feature-mosaic-card__desc" data-i18n="features.prompt.desc">Upload and organize brand assets, reference images, and approved templates in one shared library. Tag, version, and reuse assets across every canvas.</p>
+              </div>
             </div>
-            <div>
-              <h3 class="text-xl sm:text-2xl font-bold text-text-primary mb-3" data-i18n="features.prompt.title">Asset Library</h3>
-              <p class="text-base text-text-secondary leading-relaxed max-w-xl" data-i18n="features.prompt.desc">
-                Upload and organize brand assets, reference images, and approved templates in one shared library. Tag, version, and reuse assets across every canvas.
-              </p>
-            </div>
-          </div>
-        </div>
+          </article>
 
-        <!-- Feature 3: Non-destructive Editing -->
-        <div class="animate-on-scroll mb-10 sm:mb-14">
-          <div class="feature-block">
-            <div>
-              <span class="text-xs font-semibold text-primary uppercase tracking-wider" data-i18n="features.compare.tag">03 - Non-destructive Editing</span>
+          <article role="listitem" aria-labelledby="feature-editing-title" class="feature-mosaic-card feature-mosaic-card--tone-3 feature-mosaic-card--tall animate-on-scroll">
+            <div aria-hidden="true" class="feature-mosaic-card__bg"></div>
+            <div class="feature-mosaic-card__content">
+              <div class="feature-mosaic-card__top">
+                <span class="feature-mosaic-card__tag" data-i18n="features.compare.tag">03 - Non-destructive Editing</span>
+                <span class="feature-mosaic-card__icon" aria-hidden="true">
+                  <WandSparkles strokeWidth={1.7} />
+                </span>
+              </div>
+              <div>
+                <h3 id="feature-editing-title" class="feature-mosaic-card__title" data-i18n="features.compare.title">Non-destructive Editing</h3>
+                <p class="feature-mosaic-card__desc" data-i18n="features.compare.desc">Adjust curves, color, light, and detail directly on the canvas. Reorder edits anytime, branch variants from one source, and keep your original assets untouched.</p>
+              </div>
             </div>
-            <div>
-              <h3 class="text-xl sm:text-2xl font-bold text-text-primary mb-3" data-i18n="features.compare.title">Non-destructive Editing</h3>
-              <p class="text-base text-text-secondary leading-relaxed max-w-xl" data-i18n="features.compare.desc">
-                Adjust curves, color, light, and detail directly on the canvas. Reorder edits anytime, branch variants from one source, and keep your original assets untouched.
-              </p>
-            </div>
-          </div>
-        </div>
+          </article>
 
-        <!-- Feature 4: Agent Workflows -->
-        <div class="animate-on-scroll mb-10 sm:mb-14">
-          <div class="feature-block">
-            <div>
-              <span class="text-xs font-semibold text-primary uppercase tracking-wider" data-i18n="features.export.tag">04 - Agent Workflows</span>
+          <article role="listitem" aria-labelledby="feature-agent-title" class="feature-mosaic-card feature-mosaic-card--tone-4 feature-mosaic-card--wide animate-on-scroll">
+            <div aria-hidden="true" class="feature-mosaic-card__bg"></div>
+            <div class="feature-mosaic-card__content">
+              <div class="feature-mosaic-card__top">
+                <span class="feature-mosaic-card__tag" data-i18n="features.export.tag">04 - Agent Workflows</span>
+                <span class="feature-mosaic-card__icon" aria-hidden="true">
+                  <Bot strokeWidth={1.7} />
+                </span>
+              </div>
+              <div>
+                <h3 id="feature-agent-title" class="feature-mosaic-card__title" data-i18n="features.export.title">Agent Workflows</h3>
+                <p class="feature-mosaic-card__desc" data-i18n="features.export.desc">Connect an Agent node for multi-step creative jobs. Define the goal, review the plan, adjust parameters, and ship with your team still in control.</p>
+              </div>
             </div>
-            <div>
-              <h3 class="text-xl sm:text-2xl font-bold text-text-primary mb-3" data-i18n="features.export.title">Agent Workflows</h3>
-              <p class="text-base text-text-secondary leading-relaxed max-w-xl" data-i18n="features.export.desc">
-                Connect an Agent node for multi-step creative jobs. Define the goal, review the plan, adjust parameters, and ship with your team still in control.
-              </p>
-            </div>
-          </div>
-        </div>
+          </article>
 
-        <!-- Feature 5: Compare and Export -->
-        <div class="animate-on-scroll mb-10 sm:mb-14">
-          <div class="feature-block">
-            <div>
-              <span class="text-xs font-semibold text-primary uppercase tracking-wider" data-i18n="features.library.tag">05 - Compare and Export</span>
+          <article role="listitem" aria-labelledby="feature-export-title" class="feature-mosaic-card feature-mosaic-card--tone-5 feature-mosaic-card--wide animate-on-scroll">
+            <div aria-hidden="true" class="feature-mosaic-card__bg"></div>
+            <div class="feature-mosaic-card__content">
+              <div class="feature-mosaic-card__top">
+                <span class="feature-mosaic-card__tag" data-i18n="features.library.tag">05 - Compare and Export</span>
+                <span class="feature-mosaic-card__icon" aria-hidden="true">
+                  <ArrowDownToLine strokeWidth={1.7} />
+                </span>
+              </div>
+              <div>
+                <h3 id="feature-export-title" class="feature-mosaic-card__title" data-i18n="features.library.title">Compare and Export</h3>
+                <p class="feature-mosaic-card__desc" data-i18n="features.library.desc">Review variants side by side, pick winners, and export to web, social, and print formats. Save presets once and reuse them across campaigns.</p>
+              </div>
             </div>
-            <div>
-              <h3 class="text-xl sm:text-2xl font-bold text-text-primary mb-3" data-i18n="features.library.title">Compare and Export</h3>
-              <p class="text-base text-text-secondary leading-relaxed max-w-xl" data-i18n="features.library.desc">
-                Review variants side by side, pick winners, and export to web, social, and print formats. Save presets once and reuse them across campaigns.
-              </p>
-            </div>
-          </div>
-        </div>
+          </article>
 
-        <!-- Feature 6: Self-Hosted -->
-        <div class="animate-on-scroll">
-          <div class="feature-block">
-            <div>
-              <span class="text-xs font-semibold text-primary uppercase tracking-wider" data-i18n="features.selfhosted.tag">06 — Self-Hosted</span>
+          <article role="listitem" aria-labelledby="feature-selfhosted-title" class="feature-mosaic-card feature-mosaic-card--tone-6 animate-on-scroll">
+            <div aria-hidden="true" class="feature-mosaic-card__bg"></div>
+            <div class="feature-mosaic-card__content">
+              <div class="feature-mosaic-card__top">
+                <span class="feature-mosaic-card__tag" data-i18n="features.selfhosted.tag">06 - Self-Hosted</span>
+                <span class="feature-mosaic-card__icon" aria-hidden="true">
+                  <Server strokeWidth={1.7} />
+                </span>
+              </div>
+              <div>
+                <h3 id="feature-selfhosted-title" class="feature-mosaic-card__title" data-i18n="features.selfhosted.title">Self-Hosted</h3>
+                <p class="feature-mosaic-card__desc" data-i18n="features.selfhosted.desc">Run LemonSpace on your own infrastructure. Your brand assets never leave your server. Full control over data, deployment, and compliance.</p>
+              </div>
             </div>
-            <div>
-              <h3 class="text-xl sm:text-2xl font-bold text-text-primary mb-3" data-i18n="features.selfhosted.title">Self-Hosted</h3>
-              <p class="text-base text-text-secondary leading-relaxed max-w-xl" data-i18n="features.selfhosted.desc">
-                Run LemonSpace on your own infrastructure. Your brand assets never leave your server. Full control over data, deployment, and compliance. Docker, Kubernetes, or bare metal — you decide.
-              </p>
-            </div>
-          </div>
+          </article>
         </div>
       </div>
     </section>
@@ -278,46 +298,59 @@ import { Hero152 } from '../components/Hero';
     <!-- ===== HOW IT WORKS ===== -->
     <section id="how-it-works" class="py-16 sm:py-24 lg:py-32">
       <div class="max-w-6xl mx-auto px-5 sm:px-6">
-        <!-- Label -->
-        <div class="section-label mb-4">
-          <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-          <span class="section-label-accent" data-i18n="how.label">How it Works</span>
-        </div>
+        <div class="how-layout">
+          <div class="how-sticky-copy">
+            <div class="section-label mb-4">
+              <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+              <span class="section-label-accent" data-i18n="how.label">How it Works</span>
+            </div>
 
-        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight max-w-2xl mb-12 sm:mb-16" data-i18n="how.headline">
-          From idea to campaign in minutes
-        </h2>
+            <h2 class="how-sticky-headline" data-i18n="how.headline">
+              From idea to campaign in minutes
+            </h2>
+          </div>
 
-        <!-- Steps -->
-        <div class="space-y-8 sm:space-y-10 max-w-2xl">
-          <div class="animate-on-scroll flex items-start gap-5">
-            <div class="w-10 h-10 rounded-full bg-primary/10 border-2 border-primary text-primary font-bold text-sm flex items-center justify-center shrink-0">1</div>
-            <div>
-              <h3 class="text-lg font-semibold text-text-primary mb-1" data-i18n="how.step1.title">Upload</h3>
-              <p class="text-sm text-text-secondary leading-relaxed" data-i18n="how.step1.desc">Drop your brand assets and reference images onto the canvas.</p>
-            </div>
-          </div>
-          <div class="animate-on-scroll flex items-start gap-5">
-            <div class="w-10 h-10 rounded-full bg-primary/10 border-2 border-primary text-primary font-bold text-sm flex items-center justify-center shrink-0">2</div>
-            <div>
-               <h3 class="text-lg font-semibold text-text-primary mb-1" data-i18n="how.step2.title">Build workflow</h3>
-               <p class="text-sm text-text-secondary leading-relaxed" data-i18n="how.step2.desc">Connect nodes for organizing, editing, transforming, and comparing. Add AI generation only when you need something new.</p>
-            </div>
-          </div>
-          <div class="animate-on-scroll flex items-start gap-5">
-            <div class="w-10 h-10 rounded-full bg-primary/10 border-2 border-primary text-primary font-bold text-sm flex items-center justify-center shrink-0">3</div>
-            <div>
-               <h3 class="text-lg font-semibold text-text-primary mb-1" data-i18n="how.step3.title">Refine</h3>
-               <p class="text-sm text-text-secondary leading-relaxed" data-i18n="how.step3.desc">Adjust curves, color, and light non-destructively. Run agent workflows, review outcomes, and keep control at every step.</p>
-            </div>
-          </div>
-          <div class="animate-on-scroll flex items-start gap-5">
-            <div class="w-10 h-10 rounded-full bg-primary/10 border-2 border-primary text-primary font-bold text-sm flex items-center justify-center shrink-0">4</div>
-            <div>
-              <h3 class="text-lg font-semibold text-text-primary mb-1" data-i18n="how.step4.title">Export</h3>
-               <p class="text-sm text-text-secondary leading-relaxed" data-i18n="how.step4.desc">Pick winners, export to your campaign formats, and ship.</p>
-            </div>
-          </div>
+          <ol class="how-timeline" aria-label="How LemonSpace works">
+            <li class="how-step animate-on-scroll">
+              <div class="how-step-icon" aria-hidden="true">
+                <Upload strokeWidth={1.7} />
+              </div>
+              <div>
+                <h3 class="how-step-title" data-i18n="how.step1.title">Upload</h3>
+                <p class="how-step-desc" data-i18n="how.step1.desc">Drop your brand assets and reference images onto the canvas.</p>
+              </div>
+            </li>
+
+            <li class="how-step animate-on-scroll">
+              <div class="how-step-icon" aria-hidden="true">
+                <Workflow strokeWidth={1.7} />
+              </div>
+              <div>
+                <h3 class="how-step-title" data-i18n="how.step2.title">Build workflow</h3>
+                <p class="how-step-desc" data-i18n="how.step2.desc">Connect nodes for organizing, editing, transforming, and comparing. Add AI generation only when you need something new.</p>
+              </div>
+            </li>
+
+            <li class="how-step animate-on-scroll">
+              <div class="how-step-icon" aria-hidden="true">
+                <SlidersHorizontal strokeWidth={1.7} />
+              </div>
+              <div>
+                <h3 class="how-step-title" data-i18n="how.step3.title">Refine</h3>
+                <p class="how-step-desc" data-i18n="how.step3.desc">Adjust curves, color, and light non-destructively. Run agent workflows, review outcomes, and keep control at every step.</p>
+              </div>
+            </li>
+
+            <li class="how-step animate-on-scroll">
+              <div class="how-step-icon" aria-hidden="true">
+                <Download strokeWidth={1.7} />
+              </div>
+              <div>
+                <h3 class="how-step-title" data-i18n="how.step4.title">Export</h3>
+                <p class="how-step-desc" data-i18n="how.step4.desc">Pick winners, export to your campaign formats, and ship.</p>
+              </div>
+            </li>
+          </ol>
         </div>
       </div>
     </section>
@@ -327,112 +360,103 @@ import { Hero152 } from '../components/Hero';
     <!-- ===== PRICING ===== -->
     <section id="pricing" class="py-16 sm:py-24 lg:py-32">
       <div class="max-w-6xl mx-auto px-5 sm:px-6">
-        <!-- Label -->
-        <div class="section-label mb-4">
-          <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-          <span class="section-label-accent" data-i18n="pricing.label">Pricing</span>
+        <div class="mx-auto mb-12 max-w-3xl text-center sm:mb-16">
+          <div class="section-label justify-center mb-4">
+            <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            <span class="section-label-accent" data-i18n="pricing.label">Pricing</span>
+          </div>
+
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-3" data-i18n="pricing.headline">
+            Simple, credit-based pricing
+          </h2>
+          <p class="text-base sm:text-lg text-text-secondary" data-i18n="pricing.subheadline">
+            Credits power premium operations. Start free, scale when needed.
+          </p>
+          <p class="mt-3 text-sm text-text-tertiary" data-i18n="pricing.info">
+            Credits cover AI generation, agent runs, and premium model access. Editing, organizing, comparing, and exporting are always included.
+          </p>
         </div>
 
-        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight max-w-xl mb-3" data-i18n="pricing.headline">
-          Simple, credit-based pricing
-        </h2>
-        <p class="text-base text-text-secondary max-w-lg mb-3" data-i18n="pricing.subheadline">
-          Credits power premium operations. Start free, scale when needed.
-        </p>
-        <p class="text-sm text-text-tertiary mb-12 sm:mb-16" data-i18n="pricing.info">
-          Credits cover AI generation, agent runs, and premium model access. Editing, organizing, comparing, and exporting are always included.
-        </p>
-
-        <!-- Pricing Grid: 2 columns like soloterm -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-2xl">
-          <!-- Free -->
-          <div class="pricing-card">
-            <div class="mb-6">
-              <h3 class="text-lg font-semibold text-text-primary mb-1" data-i18n="pricing.free.title">Free</h3>
-              <div class="flex items-baseline gap-1">
-                <span class="text-3xl font-bold text-text-primary">€0</span>
-                <span class="text-sm text-text-tertiary">/month</span>
+        <div class="overflow-hidden rounded-2xl border border-border bg-surface-2 lg:grid lg:grid-cols-4 lg:divide-x lg:divide-border">
+          <article class="flex h-full flex-col">
+            <div class="h-[21.5rem] flex-none border-b border-border px-6 pt-8 pb-6 sm:px-7">
+              <h3 class="text-3xl font-semibold text-text-primary" data-i18n="pricing.free.title">Free</h3>
+              <p class="mt-3 text-sm leading-relaxed text-text-secondary" data-i18n="pricing.free.subtitle">Full-featured. No trial. Never expires.</p>
+              <div class="mt-7 text-center">
+                <div class="flex items-start justify-center gap-0.5">
+                  <span class="mt-2 text-lg font-semibold text-text-primary">€</span>
+                  <span class="text-6xl font-semibold tracking-tight text-text-primary">0</span>
+                </div>
+                <p class="mt-2 text-sm text-text-tertiary">/month</p>
               </div>
-              <p class="text-sm text-text-tertiary mt-2" data-i18n="pricing.free.subtitle">Full-featured. No trial. Never expires.</p>
+              <a href="#waitlist" class="mt-7 inline-flex w-full items-center justify-center rounded-xl border border-border bg-surface-3 px-4 py-3 text-sm font-semibold text-text-primary transition-colors hover:border-border-light hover:bg-surface-4" data-i18n="pricing.free.cta">Get Started Free</a>
             </div>
-            <ul class="space-y-3 mb-8 flex-1">
-              <li class="flex items-start gap-2.5 text-sm text-text-secondary">
-                <svg class="w-4 h-4 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                <span data-i18n="pricing.free.b1">50 Credits per month</span>
-              </li>
-              <li class="flex items-start gap-2.5 text-sm text-text-secondary">
-                <svg class="w-4 h-4 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                <span data-i18n="pricing.free.b2">Unlimited image editing and exports</span>
-              </li>
-              <li class="flex items-start gap-2.5 text-sm text-text-secondary">
-                <svg class="w-4 h-4 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                <span data-i18n="pricing.free.b3">1 workspace</span>
-              </li>
-              <li class="flex items-start gap-2.5 text-sm text-text-secondary">
-                <svg class="w-4 h-4 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                <span data-i18n="pricing.free.b4">Community support</span>
-              </li>
+            <ul class="flex-1 space-y-3 px-6 py-6 sm:px-7">
+              <li class="flex items-start gap-2.5 text-sm text-text-secondary"><Check className="mt-0.5 size-4 shrink-0 text-primary" /><span data-i18n="pricing.free.b1">50 Credits per month</span></li>
+              <li class="flex items-start gap-2.5 text-sm text-text-secondary"><Check className="mt-0.5 size-4 shrink-0 text-primary" /><span data-i18n="pricing.free.b2">Unlimited image editing and exports</span></li>
+              <li class="flex items-start gap-2.5 text-sm text-text-secondary"><Check className="mt-0.5 size-4 shrink-0 text-primary" /><span data-i18n="pricing.free.b3">1 workspace</span></li>
+              <li class="flex items-start gap-2.5 text-sm text-text-secondary"><Check className="mt-0.5 size-4 shrink-0 text-primary" /><span data-i18n="pricing.free.b4">Community support</span></li>
             </ul>
-            <a href="#waitlist" class="inline-flex items-center justify-center w-full px-6 py-2.5 text-sm font-semibold rounded-xl bg-surface-3 text-text-primary border border-border hover:border-border-light hover:bg-surface-4 transition-all" data-i18n="pricing.free.cta">Get Started Free</a>
-          </div>
+          </article>
 
-          <!-- Pro -->
-          <div class="pricing-card pricing-card-highlight">
-            <div class="absolute -top-3 left-6 px-3 py-0.5 bg-primary text-white text-xs font-semibold rounded-full" data-i18n="pricing.popular">Most Popular</div>
-            <div class="mb-6">
-              <h3 class="text-lg font-semibold text-primary-light mb-1" data-i18n="pricing.pro.title">Pro</h3>
-              <div class="flex items-baseline gap-1">
-                <span class="text-3xl font-bold text-text-primary">€59</span>
-                <span class="text-sm text-text-tertiary">/month</span>
+          <article class="flex h-full flex-col border-t border-border lg:border-t-0">
+            <div class="h-[21.5rem] flex-none border-b border-border px-6 pt-8 pb-6 sm:px-7">
+              <h3 class="text-3xl font-semibold text-text-primary" data-i18n="pricing.starter.title">Starter</h3>
+              <p class="mt-3 text-sm leading-relaxed text-text-secondary" data-i18n="pricing.starter.desc">400 Credits/month - Premium models - Email support - Multiple workspaces</p>
+              <div class="mt-7 text-center">
+                <div class="flex items-start justify-center gap-0.5">
+                  <span class="mt-2 text-lg font-semibold text-text-primary">€</span>
+                  <span class="text-6xl font-semibold tracking-tight text-text-primary">8</span>
+                </div>
+                <p class="mt-2 text-sm text-text-tertiary">/month</p>
               </div>
-              <p class="text-sm text-text-tertiary mt-2" data-i18n="pricing.pro.subtitle">For active creative teams.</p>
+              <a href="#waitlist" class="mt-7 inline-flex w-full items-center justify-center rounded-xl border border-border bg-surface-3 px-4 py-3 text-sm font-semibold text-text-primary transition-colors hover:border-border-light hover:bg-surface-4" data-i18n="pricing.starter.cta">Get Starter →</a>
             </div>
-            <ul class="space-y-3 mb-8 flex-1">
-              <li class="flex items-start gap-2.5 text-sm text-text-secondary">
-                <svg class="w-4 h-4 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                <span data-i18n="pricing.pro.b1">3,300 Credits/month</span>
-              </li>
-              <li class="flex items-start gap-2.5 text-sm text-text-secondary">
-                <svg class="w-4 h-4 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                <span data-i18n="pricing.pro.b2">All AI models</span>
-              </li>
-              <li class="flex items-start gap-2.5 text-sm text-text-secondary">
-                <svg class="w-4 h-4 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                <span data-i18n="pricing.pro.b3">Agent workflows</span>
-              </li>
-              <li class="flex items-start gap-2.5 text-sm text-text-secondary">
-                <svg class="w-4 h-4 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                <span data-i18n="pricing.pro.b4">Priority support</span>
-              </li>
-              <li class="flex items-start gap-2.5 text-sm text-text-secondary">
-                <svg class="w-4 h-4 text-primary shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                <span data-i18n="pricing.pro.b5">Advanced canvas features</span>
-              </li>
+            <ul class="flex-1 space-y-3 px-6 py-6 sm:px-7">
+              <li class="flex items-start gap-2.5 text-sm text-text-secondary"><Check className="mt-0.5 size-4 shrink-0 text-primary" /><span data-i18n="pricing.starter.desc">400 Credits/month - Premium models - Email support - Multiple workspaces</span></li>
             </ul>
-            <a href="#waitlist" class="inline-flex items-center justify-center w-full px-6 py-2.5 text-sm font-semibold rounded-xl bg-primary text-white hover:bg-primary-light transition-all shadow-md shadow-primary/15" data-i18n="pricing.pro.cta">Get Pro</a>
-          </div>
-        </div>
+          </article>
 
-        <!-- Additional tiers as compact row -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-2xl mt-5">
-          <div class="rounded-xl border border-border bg-surface-2 p-5">
-            <div class="flex items-baseline gap-1 mb-3">
-              <h3 class="text-base font-semibold text-text-primary" data-i18n="pricing.starter.title">Starter</h3>
-              <span class="text-lg font-bold text-text-primary ml-2">€8</span>
-              <span class="text-sm text-text-tertiary">/month</span>
+          <article class="relative flex h-full flex-col border-2 border-primary bg-surface-1 shadow-[0_18px_34px_-20px_rgba(15,118,110,0.38)] lg:-m-px lg:z-10">
+            <div class="absolute top-4 right-4 rounded-full bg-primary px-2.5 py-1 text-[0.69rem] font-semibold tracking-wide text-white" data-i18n="pricing.popular">Most Popular</div>
+            <div class="h-[21.5rem] flex-none border-b border-primary/30 px-6 pt-8 pb-6 sm:px-7">
+              <h3 class="text-3xl font-semibold text-primary" data-i18n="pricing.pro.title">Pro</h3>
+              <p class="mt-3 text-sm leading-relaxed text-text-secondary" data-i18n="pricing.pro.subtitle">For active creative teams.</p>
+              <div class="mt-7 text-center">
+                <div class="flex items-start justify-center gap-0.5">
+                  <span class="mt-2 text-lg font-semibold text-text-primary">€</span>
+                  <span class="text-6xl font-semibold tracking-tight text-text-primary">59</span>
+                </div>
+                <p class="mt-2 text-sm text-text-tertiary">/month</p>
+              </div>
+              <a href="#waitlist" class="mt-7 inline-flex w-full items-center justify-center rounded-xl bg-primary px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-primary-light" data-i18n="pricing.pro.cta">Get Pro</a>
             </div>
-            <p class="text-sm text-text-secondary mb-4" data-i18n="pricing.starter.desc">400 Credits/month - Premium models - Email support - Multiple workspaces</p>
-            <a href="#waitlist" class="text-sm font-semibold text-primary hover:text-primary-light transition-colors" data-i18n="pricing.starter.cta">Get Starter →</a>
-          </div>
-          <div class="rounded-xl border border-border bg-surface-2 p-5">
-            <div class="flex items-baseline gap-1 mb-3">
-              <h3 class="text-base font-semibold text-text-primary" data-i18n="pricing.max.title">Max</h3>
-              <span class="text-lg font-bold text-text-primary ml-2">€119</span>
-              <span class="text-sm text-text-tertiary">/month</span>
+            <ul class="flex-1 space-y-3 px-6 py-6 sm:px-7">
+              <li class="flex items-start gap-2.5 text-sm text-text-secondary"><Check className="mt-0.5 size-4 shrink-0 text-primary" /><span data-i18n="pricing.pro.b1">3,300 Credits/month</span></li>
+              <li class="flex items-start gap-2.5 text-sm text-text-secondary"><Check className="mt-0.5 size-4 shrink-0 text-primary" /><span data-i18n="pricing.pro.b2">All AI models</span></li>
+              <li class="flex items-start gap-2.5 text-sm text-text-secondary"><Check className="mt-0.5 size-4 shrink-0 text-primary" /><span data-i18n="pricing.pro.b3">Agent workflows</span></li>
+              <li class="flex items-start gap-2.5 text-sm text-text-secondary"><Check className="mt-0.5 size-4 shrink-0 text-primary" /><span data-i18n="pricing.pro.b4">Priority support</span></li>
+              <li class="flex items-start gap-2.5 text-sm text-text-secondary"><Check className="mt-0.5 size-4 shrink-0 text-primary" /><span data-i18n="pricing.pro.b5">Advanced canvas features</span></li>
+            </ul>
+          </article>
+
+          <article class="flex h-full flex-col border-t border-border lg:border-t-0">
+            <div class="h-[21.5rem] flex-none border-b border-border px-6 pt-8 pb-6 sm:px-7">
+              <h3 class="text-3xl font-semibold text-text-primary" data-i18n="pricing.max.title">Max</h3>
+              <p class="mt-3 text-sm leading-relaxed text-text-secondary" data-i18n="pricing.max.desc">6,700 Credits/month - Everything in Pro - Dedicated support - API access</p>
+              <div class="mt-7 text-center">
+                <div class="flex items-start justify-center gap-0.5">
+                  <span class="mt-2 text-lg font-semibold text-text-primary">€</span>
+                  <span class="text-6xl font-semibold tracking-tight text-text-primary">119</span>
+                </div>
+                <p class="mt-2 text-sm text-text-tertiary">/month</p>
+              </div>
+              <a href="#waitlist" class="mt-7 inline-flex w-full items-center justify-center rounded-xl border border-border bg-surface-3 px-4 py-3 text-sm font-semibold text-text-primary transition-colors hover:border-border-light hover:bg-surface-4" data-i18n="pricing.max.cta">Get Max →</a>
             </div>
-            <p class="text-sm text-text-secondary mb-4" data-i18n="pricing.max.desc">6,700 Credits/month - Everything in Pro - Dedicated support - API access</p>
-            <a href="#waitlist" class="text-sm font-semibold text-primary hover:text-primary-light transition-colors" data-i18n="pricing.max.cta">Get Max →</a>
-          </div>
+            <ul class="flex-1 space-y-3 px-6 py-6 sm:px-7">
+              <li class="flex items-start gap-2.5 text-sm text-text-secondary"><Check className="mt-0.5 size-4 shrink-0 text-primary" /><span data-i18n="pricing.max.desc">6,700 Credits/month - Everything in Pro - Dedicated support - API access</span></li>
+            </ul>
+          </article>
         </div>
       </div>
     </section>
