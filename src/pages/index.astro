@@ -46,7 +46,7 @@ import { Hero152 } from '../components/Hero';
   <body class="bg-surface-2 text-text-primary font-sans overflow-x-hidden">
 
     <!-- ===== NAVIGATION ===== -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-surface-2/80 backdrop-blur-xl border-b border-border/60">
+    <nav class="site-nav fixed top-0 left-0 right-0 z-50 bg-surface-2/80 backdrop-blur-xl border-b border-border/60">
       <div class="max-w-6xl mx-auto px-5 sm:px-6">
         <div class="flex items-center justify-between h-16">
           <!-- Logo -->
@@ -636,8 +636,9 @@ import { Hero152 } from '../components/Hero';
           var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
           var moonIcons = document.querySelectorAll('.theme-icon-moon');
           var sunIcons = document.querySelectorAll('.theme-icon-sun');
-          for (var i = 0; i < moonIcons.length; i++) { moonIcons[i].style.display = isDark ? 'none' : ''; }
-          for (var i = 0; i < sunIcons.length; i++) { sunIcons[i].style.display = isDark ? '' : 'none'; }
+          // Explicit display overrides Tailwind .hidden on sun icons (empty string would not).
+          for (var i = 0; i < moonIcons.length; i++) { moonIcons[i].style.display = isDark ? 'none' : 'inline-block'; }
+          for (var i = 0; i < sunIcons.length; i++) { sunIcons[i].style.display = isDark ? 'inline-block' : 'none'; }
         }
 
         function toggleTheme() {

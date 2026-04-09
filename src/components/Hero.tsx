@@ -21,7 +21,7 @@ export function Hero152({ className }: Hero152Props) {
 
       <div className="relative mx-auto max-w-[99rem] px-0 sm:px-8">
         <div className="container px-4">
-          <div className="mx-auto flex max-w-[25rem] flex-col items-center gap-6 sm:max-w-[31.25rem] lg:max-w-[40rem]">
+          <div className="mx-auto flex max-w-[26rem] flex-col items-center gap-6 sm:max-w-[38rem] lg:max-w-[56rem]">
             <div className="flex items-center justify-center gap-2 text-text-secondary">
               <Star className="size-4 fill-current stroke-current" />
               <p className="text-sm text-nowrap" data-i18n="hero.kicker">
@@ -30,7 +30,7 @@ export function Hero152({ className }: Hero152Props) {
             </div>
 
             <div className="mb-2">
-              <h1 className="text-center text-[2.8125rem] leading-none font-extrabold tracking-tight text-text-primary sm:text-[3.9375rem] lg:text-[5.3125rem]">
+              <h1 className="text-balance text-center text-[2.75rem] leading-[0.98] font-extrabold tracking-tight text-text-primary sm:text-[3.5rem] lg:text-[4.55rem]">
                 <span data-i18n="hero.headline">
                   The visual workspace where your brand assets become campaigns.
                 </span>
