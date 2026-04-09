@@ -36,7 +36,7 @@ export function Hero152({ className }: Hero152Props) {
               <h1 className="text-balance text-center text-[2.75rem] leading-[0.98] font-extrabold tracking-tight text-text-primary sm:text-[3.5rem] lg:text-[4.55rem]">
                 <span data-i18n="hero.headline">
                   The visual workspace where your brand assets become campaigns.
-                </span><span className="text-primary">*</span>
+                </span><span className="text-[#37930c]">*</span>
               </h1>
 
             </div>
