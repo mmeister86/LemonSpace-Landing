@@ -13,7 +13,7 @@
   "hero": {
     "kicker": "Early access",
     "headline": "The visual workspace where your brand assets become campaigns",
-    "subheadline": "*Upload your brand assets, edit and organize them on a visual canvas, run agent workflows, and export campaign-ready results in one place. Optional AI generation when needed.",
+    "subheadline": "Upload your brand assets, edit and organize them on a visual canvas, run agent workflows, and export campaign-ready results in one place. Optional AI generation when needed.",
     "ctaSecondary": "See How it Works",
     "privacyNote": "No spam. We'll email you when the beta opens."
   },
@@ -38,7 +38,7 @@
   "fix": {
     "label": "The fix",
     "headline": "One canvas. From upload to export.",
-    "subheadline": "LemonSpace puts your visual workflow on one board - upload, organize, edit non-destructively, run agent workflows, compare outcomes, and export. Optional AI generation when you need it."
+    "subheadline": "LemonSpace puts your visual workflow on one board — upload, organize, edit non-destructively, run agent workflows, compare outcomes, and export. Optional AI generation when you need it."
   },
   "features": {
     "label": "What LemonSpace actually does",
@@ -157,20 +157,22 @@
     "emailLabel": "Work email",
     "emailPlaceholder": "you@studio.com",
     "submit": "Join waitlist",
+    "submitting": "Joining...",
     "success": "You are on the list. Thank you.",
-    "already": "You already joined from this device.",
+    "already": "You are already on the waitlist.",
     "errorInvalid": "Please enter a valid email address.",
+    "errorGeneric": "Something went wrong. Please try again.",
     "ctaHeadline": "Get early access",
-    "ctaSub": "We're building LemonSpace for creative teams who want one place to manage their visual workflow - from brand assets to finished campaigns. Join the waitlist and we'll let you know when the beta opens."
+    "ctaSub": "We're building LemonSpace for creative teams who want one place to manage their visual workflow — from brand assets to finished campaigns. Join the waitlist and we'll let you know when the beta opens."
   },
   "footer": {
     "tagline": "Visual workspace for small creative teams. In active development.",
-    "note": "Self-hosted and source-available are on the roadmap - this is not a finished product pitch.",
+    "note": "Self-hosted and source-available are on the roadmap — this is not a finished product pitch.",
     "github": "GitHub",
     "docs": "Documentation",
     "privacy": "Privacy",
     "terms": "Terms",
-    "copyright": "(c) 2026 LemonSpace. All rights reserved.",
+    "copyright": "© 2026 LemonSpace. All rights reserved.",
     "license": "BSL 1.1 when code ships publicly"
   }
 }

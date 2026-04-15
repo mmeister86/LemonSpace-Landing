@@ -1,107 +1,184 @@
-import { MoveUpRight } from "lucide-react"
-
-import { Button } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
-
 interface Hero152Props {
   className?: string
 }
 
+/**
+ * Hero with an abstract canvas-workflow illustration.
+ * Three interconnected "nodes" float on the right side, giving a spatial
+ * preview of how LemonSpace works — without leaking unreleased UI.
+ *
+ * Light/dark aware via CSS custom properties.
+ */
 export function Hero152({ className }: Hero152Props) {
   return (
-    <section className={cn("relative bg-surface-2 pt-28 pb-0 sm:pt-36 lg:pt-44", className)}>
+    <section
+      className={`relative overflow-hidden bg-surface-2 pt-28 pb-20 sm:pt-36 sm:pb-28 lg:pt-44 lg:pb-36${className ? ` ${className}` : ""}`}
+    >
+      {/* ── Ambient background ── */}
       <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-[26rem]"
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0"
         style={{
-          background:
-            "radial-gradient(ellipse 70% 60% at 50% 0%, color-mix(in srgb, var(--color-primary) 30%, transparent), transparent 72%)",
+          background: [
+            "radial-gradient(ellipse 50% 60% at 75% 20%, color-mix(in srgb, var(--color-primary) 6%, transparent), transparent 70%)",
+            "radial-gradient(ellipse 40% 50% at 20% 80%, color-mix(in srgb, var(--color-accent) 4%, transparent), transparent 70%)",
+          ].join(", "),
         }}
       />
 
-      <div className="relative mx-auto max-w-[99rem] px-0 sm:px-8">
-        <div className="container px-4">
-          <div className="mx-auto flex max-w-[26rem] flex-col items-center gap-6 sm:max-w-[38rem] lg:max-w-[56rem]">
-            <div className="inline-flex items-center justify-center gap-2 rounded-full border border-border/70 bg-surface-1 px-3 py-1.5 text-text-secondary">
-              <span className="relative flex size-2.5 items-center justify-center">
-                <span className="absolute inline-flex size-full animate-ping rounded-full bg-primary/60 [animation-duration:2s]" />
-                <span className="relative inline-flex size-2 rounded-full bg-primary" />
-              </span>
-              <p className="text-sm text-nowrap" data-i18n="hero.kicker">
-                Early access
-              </p>
-            </div>
+      <div className="relative mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+        <div className="lg:grid lg:grid-cols-[1fr_minmax(0,420px)] lg:items-center lg:gap-16 xl:gap-24">
 
-            <div className="mb-2">
-              <h1 className="text-balance text-center text-[2.75rem] leading-[0.98] font-extrabold tracking-tight text-text-primary sm:text-[3.5rem] lg:text-[4.55rem]">
-                <span data-i18n="hero.headline">
-                  The visual workspace where your brand assets become campaigns.
-                </span><span className="text-[#37930c]">*</span>
-              </h1>
-
-            </div>
-
+          {/* ── Left: Copy ── */}
+          <div className="max-w-2xl">
             <p
-              className="text-center text-base leading-snug text-balance text-text-secondary sm:text-2xl"
-              data-i18n="hero.subheadline"
+              className="mb-4 text-[0.8125rem] font-semibold tracking-[0.06em] uppercase text-primary sm:mb-5"
+              data-i18n="hero.kicker"
             >
-              Upload your brand assets, edit and organize them on a visual canvas, run agent workflows,
-              and export campaign-ready results in one place. Optional AI generation when needed.
+              Early access
             </p>
 
-            <div className="flex w-full flex-wrap items-center gap-4 md:w-fit">
-              <Button
-                variant="outline"
-                asChild
-                className="group flex h-fit min-w-[11.25rem] flex-1 items-center justify-center gap-1 rounded-[5rem] border border-border bg-surface-2 px-4 py-3 text-base font-semibold text-text-primary md:min-w-fit md:flex-none"
-              >
-                <a href="#how-it-works">
-                  <p className="text-nowrap transition-all duration-300 ease-in-out group-hover:text-primary" data-i18n="hero.ctaSecondary">
-                    See How it Works
-                  </p>
-                  <MoveUpRight className="size-5 shrink-0 stroke-current transition-all duration-300 ease-in-out group-hover:stroke-primary" />
-                </a>
-              </Button>
-              <Button
-                asChild
-                variant="default"
-                className="group flex h-fit min-w-[11.25rem] flex-1 items-center justify-center gap-1 rounded-[5rem] border border-primary bg-primary hover:bg-primary-light px-4 py-3 text-base font-semibold text-nowrap text-white md:min-w-fit md:flex-none"
-              >
-                <a href="#waitlist" data-i18n="nav.getStarted">
-                  Join Waitlist
-                </a>
-              </Button>
-            </div>
-          </div>
-        </div>
+            <h1
+              className="text-[2.5rem] leading-[0.96] font-extrabold tracking-[-0.025em] text-text-primary sm:text-[3.25rem] lg:text-[4rem]"
+              style={{ textWrap: "balance" } as React.CSSProperties}
+              data-i18n="hero.headline"
+            >
+              The visual workspace where your brand assets become campaigns
+            </h1>
 
-        <div className="relative mt-16 aspect-[1.2/1] overflow-hidden sm:-right-[10%] sm:right-auto sm:mt-28 sm:aspect-[2.788990826/1]">
-          <div className="absolute top-[11%] left-[8%] z-10 aspect-[0.7/1] w-[80%] sm:left-[4%] sm:w-[45%]">
-            <div className="size-full [transform:rotateY(-30deg)_rotateX(-18deg)_rotate(-4deg)]">
-              <img
-                src="/img/78449.jpg"
-                alt=""
-                className="block size-full object-cover object-center"
-              />
+            <p
+              className="mt-5 max-w-lg text-[1.0625rem] leading-[1.6] text-text-secondary sm:mt-6 sm:text-lg"
+              data-i18n="hero.subheadline"
+            >
+              Upload your brand assets, edit and organize them on a visual
+              canvas, run agent workflows, and export campaign-ready results
+              in one place. Optional AI generation when needed.
+            </p>
+
+            <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3 sm:mt-10">
+              <a
+                href="#waitlist"
+                className="inline-flex items-center rounded-lg bg-primary px-5 py-2.5 text-[0.9375rem] font-semibold text-white shadow-sm transition-all hover:bg-primary-light hover:shadow-md active:scale-[0.98]"
+                data-i18n="nav.getStarted"
+              >
+                Join Waitlist
+              </a>
+              <a
+                href="#how-it-works"
+                className="group inline-flex items-center gap-1 text-[0.9375rem] font-medium text-text-secondary transition-colors hover:text-primary"
+              >
+                <span data-i18n="hero.ctaSecondary">See How it Works</span>
+                <svg className="h-4 w-4 transition-transform group-hover:translate-x-0.5" fill="none" viewBox="0 0 16 16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M3.5 8h9M8.5 4l4 4-4 4" />
+                </svg>
+              </a>
             </div>
           </div>
-          <div className="absolute top-0 left-[70%] z-20 aspect-[0.7/1] w-[73%] -translate-x-1/2 sm:left-1/2 sm:w-[38%]">
-            <div className="size-full [transform:rotateY(-30deg)_rotateX(-18deg)_rotate(-4deg)] shadow-[-25px_0px_20px_0px_rgba(0,0,0,.04)]">
-              <img
-                src="/img/1285.jpg"
-                alt=""
-                className="block size-full object-cover object-center"
+
+          {/* ── Right: Abstract canvas illustration ── */}
+          <div className="relative mt-14 h-[340px] sm:h-[380px] lg:mt-0 lg:h-[440px]" aria-hidden="true">
+
+            {/* Connection lines (SVG) */}
+            <svg className="absolute inset-0 h-full w-full" viewBox="0 0 420 440" fill="none">
+              {/* Node 1 → Node 2 */}
+              <path
+                d="M 140 130 C 200 130, 200 230, 260 230"
+                className="stroke-border"
+                strokeWidth="1.5"
+                strokeDasharray="4 4"
               />
-            </div>
-          </div>
-          <div className="absolute top-[3%] -right-[45%] z-30 aspect-[0.7/1] w-[85%] sm:-right-[2%] sm:w-[50%]">
-            <div className="size-full [transform:rotateY(-30deg)_rotateX(-18deg)_rotate(-4deg)] shadow-[-25px_0px_20px_0px_rgba(0,0,0,.04)]">
-              <img
-                src="/img/1673.jpg"
-                alt=""
-                className="block size-full object-cover object-center"
+              {/* Node 2 → Node 3 */}
+              <path
+                d="M 260 260 C 200 260, 200 350, 140 350"
+                className="stroke-border"
+                strokeWidth="1.5"
+                strokeDasharray="4 4"
               />
+              {/* Animated dots on paths */}
+              <circle r="3" className="fill-primary/60">
+                <animateMotion dur="3s" repeatCount="indefinite" path="M 140 130 C 200 130, 200 230, 260 230" />
+              </circle>
+              <circle r="3" className="fill-primary/60">
+                <animateMotion dur="3.5s" repeatCount="indefinite" path="M 260 260 C 200 260, 200 350, 140 350" />
+              </circle>
+            </svg>
+
+            {/* ── Node 1: Source asset ── */}
+            <div
+              className="absolute left-[4%] top-[12%] w-[54%] sm:w-[52%] rounded-xl border border-border bg-surface-0 shadow-sm"
+              style={{ backdropFilter: "blur(2px)" }}
+            >
+              <div className="flex items-center gap-2 border-b border-border/60 px-3.5 py-2.5">
+                <span className="h-2 w-2 rounded-full bg-primary/70" />
+                <span className="text-[0.6875rem] font-semibold text-text-secondary tracking-wide" data-i18n="visual.node1Meta">hero-product.jpg</span>
+              </div>
+              {/* Placeholder "image" — warm gradient block */}
+              <div className="m-2.5 aspect-[4/3] rounded-lg" style={{
+                background: "linear-gradient(135deg, color-mix(in srgb, var(--color-primary) 12%, var(--color-surface-1)), color-mix(in srgb, var(--color-accent) 10%, var(--color-surface-1)))",
+              }}>
+                <div className="flex h-full items-end p-3">
+                  <div className="flex gap-1">
+                    <span className="h-1 w-8 rounded-full bg-text-primary/10" />
+                    <span className="h-1 w-5 rounded-full bg-text-primary/10" />
+                  </div>
+                </div>
+              </div>
             </div>
+
+            {/* ── Node 2: Workflow / processing ── */}
+            <div
+              className="absolute right-[2%] top-[40%] w-[48%] sm:w-[46%] rounded-xl border border-border bg-surface-0 shadow-sm"
+              style={{ backdropFilter: "blur(2px)" }}
+            >
+              <div className="flex items-center gap-2 border-b border-border/60 px-3.5 py-2.5">
+                <span className="h-2 w-2 rounded-full bg-accent/70" />
+                <span className="text-[0.6875rem] font-semibold text-text-secondary tracking-wide" data-i18n="visual.node2Meta">workflow.map</span>
+              </div>
+              <div className="px-3.5 py-3 space-y-2">
+                {/* Mini pipeline steps */}
+                {["Adjust curves", "Color grade", "Crop 16:9"].map((step, i) => (
+                  <div key={i} className="flex items-center gap-2">
+                    <span className={`h-1.5 w-1.5 rounded-full ${i < 2 ? "bg-primary" : "bg-border"}`} />
+                    <span className="text-[0.6875rem] text-text-tertiary">{step}</span>
+                    {i < 2 && (
+                      <svg className="ml-auto h-3 w-3 text-primary/50" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                        <path d="M3 8.5l3 3 7-7" />
+                      </svg>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* ── Node 3: Export / output ── */}
+            <div
+              className="absolute left-[8%] bottom-[4%] w-[50%] sm:w-[48%] rounded-xl border border-border bg-surface-0 shadow-sm"
+              style={{ backdropFilter: "blur(2px)" }}
+            >
+              <div className="flex items-center gap-2 border-b border-border/60 px-3.5 py-2.5">
+                <span className="h-2 w-2 rounded-full bg-primary/50" />
+                <span className="text-[0.6875rem] font-semibold text-text-secondary tracking-wide" data-i18n="visual.node3Meta">review + select</span>
+              </div>
+              <div className="px-3.5 py-3">
+                {/* Variant comparison strip */}
+                <div className="flex gap-1.5">
+                  {[0.18, 0.10, 0.14].map((opacity, i) => (
+                    <div
+                      key={i}
+                      className="flex-1 aspect-square rounded-md border border-border/40"
+                      style={{
+                        background: `linear-gradient(${120 + i * 25}deg, color-mix(in srgb, var(--color-primary) ${Math.round(opacity * 100)}%, var(--color-surface-1)), var(--color-surface-1))`,
+                      }}
+                    />
+                  ))}
+                </div>
+                <div className="mt-2.5 flex items-center justify-between">
+                  <span className="text-[0.625rem] text-text-tertiary" data-i18n="visual.statusConnected">3 nodes connected</span>
+                  <span className="text-[0.625rem] font-medium text-primary" data-i18n="visual.statusReady">Ready to export</span>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>

@@ -1,8 +1,8 @@
 {
   "meta": {
-    "title": "LemonSpace - Visueller Workspace fuer kreative Teams",
+    "title": "LemonSpace - Visueller Workspace für kreative Teams",
     "description": "Ein visueller Canvas, auf dem eure Brand-Assets zu Kampagnen werden. Upload, Bearbeitung, Organisation, Vergleich und Export an einem Ort. Self-hosted oder managed. Source-available.",
-    "ogTitle": "LemonSpace - Visueller Workspace fuer kreative Teams"
+    "ogTitle": "LemonSpace - Visueller Workspace für kreative Teams"
   },
   "nav": {
     "features": "Features",
@@ -13,7 +13,7 @@
   "hero": {
     "kicker": "Early Access",
     "headline": "Der visuelle Workspace, in dem eure Brand-Assets zu Kampagnen werden",
-    "subheadline": "*Ladet eure Brand-Assets hoch, bearbeitet und organisiert sie auf einem visuellen Canvas, nutzt Agent-Workflows und exportiert kampagnenfaehige Ergebnisse an einem Ort. Optionale KI-Generierung bei Bedarf.",
+    "subheadline": "Ladet eure Brand-Assets hoch, bearbeitet und organisiert sie auf einem visuellen Canvas, nutzt Agent-Workflows und exportiert kampagnenfähige Ergebnisse an einem Ort. Optionale KI-Generierung bei Bedarf.",
     "ctaSecondary": "So funktioniert's",
     "privacyNote": "Kein Spam. Wir schreiben dir, sobald die Beta startet."
   },
@@ -21,24 +21,24 @@
     "filename": "kampagne.lemon",
     "node1Meta": "hero-produkt.jpg",
     "node2Meta": "workflow.map",
-    "node3Meta": "pruefen + waehlen",
+    "node3Meta": "prüfen + wählen",
     "statusConnected": "3 Nodes verbunden",
-    "statusReady": "Bereit fuer den Export"
+    "statusReady": "Bereit für den Export"
   },
   "issue": {
     "label": "Das Problem",
     "headline": "Dein Bild-Workflow lebt in acht Browser-Tabs.",
     "b1Title": "Tab-Roulette",
-    "b1": "Irgendwas braucht deine Aufmerksamkeit. Tab drei? Tab fuenf? Du klickst dich durch acht Tabs und versuchst den zu finden, der piept. Wenn du ihn gefunden hast, ist ein anderes Tool schon abgestuerzt.",
+    "b1": "Irgendwas braucht deine Aufmerksamkeit. Tab drei? Tab fünf? Du klickst dich durch acht Tabs und versuchst den zu finden, der piept. Wenn du ihn gefunden hast, ist ein anderes Tool schon abgestürzt.",
     "b2Title": "Kein Vergleich",
-    "b2": "Zwoelf Varianten erstellt, aber sie sind ueber Ordner, Chats und Downloads verteilt. Vergleichen heisst: sechs Fenster nebeneinander und hoffen, dass du nicht den Ueberblick verlierst.",
+    "b2": "Zwölf Varianten erstellt, aber sie sind über Ordner, Chats und Downloads verteilt. Vergleichen heißt: sechs Fenster nebeneinander und hoffen, dass du nicht den Überblick verlierst.",
     "b3Title": "Deine Marke, ihr Server",
-    "b3": "Jedes Asset, jede Bearbeitung, jede Variante liegt auf fremder Infrastruktur. Wenn Vertraulichkeit wichtig ist, ist das fuer Legal oft schwer zu vertreten."
+    "b3": "Jedes Asset, jede Bearbeitung, jede Variante liegt auf fremder Infrastruktur. Wenn Vertraulichkeit wichtig ist, ist das für Legal oft schwer zu vertreten."
   },
   "fix": {
     "label": "Die Antwort",
     "headline": "Ein Canvas. Vom Upload bis zum Export.",
-    "subheadline": "LemonSpace bringt euren visuellen Workflow auf ein Board - hochladen, organisieren, nicht-destruktiv bearbeiten, Agent-Workflows ausfuehren, Ergebnisse vergleichen und exportieren. Optionale KI-Generierung nur wenn ihr sie braucht."
+    "subheadline": "LemonSpace bringt euren visuellen Workflow auf ein Board — hochladen, organisieren, nicht-destruktiv bearbeiten, Agent-Workflows ausführen, Ergebnisse vergleichen und exportieren. Optionale KI-Generierung nur wenn ihr sie braucht."
   },
   "features": {
     "label": "Was LemonSpace eigentlich macht",
@@ -63,7 +63,7 @@
     "compare": {
       "tag": "03 - Nicht-destruktive Bearbeitung",
       "title": "Nicht-destruktive Bearbeitung",
-      "desc": "Kurven, Farbe, Licht und Details direkt auf dem Canvas anpassen. Bearbeitungen jederzeit neu anordnen, Varianten aus einer Quelle ableiten und Originale unveraendert lassen.",
+      "desc": "Kurven, Farbe, Licht und Details direkt auf dem Canvas anpassen. Bearbeitungen jederzeit neu anordnen, Varianten aus einer Quelle ableiten und Originale unverändert lassen.",
       "rating1": "Kurven",
       "rating2": "Farbe",
       "rating3": "Licht",
@@ -72,7 +72,7 @@
     "export": {
       "tag": "04 - Agent-Workflows",
       "title": "Agent-Workflows",
-      "desc": "Verbinde einen Agent-Node fuer mehrstufige Kreativjobs. Ziel definieren, Plan pruefen, Parameter anpassen und ausliefern - mit voller Kontrolle im Team.",
+      "desc": "Verbinde einen Agent-Node für mehrstufige Kreativjobs. Ziel definieren, Plan prüfen, Parameter anpassen und ausliefern — mit voller Kontrolle im Team.",
       "format1": "Plan",
       "format2": "Review",
       "format3": "Anpassen",
@@ -81,7 +81,7 @@
     "library": {
       "tag": "05 - Vergleichen und Exportieren",
       "title": "Vergleichen und Exportieren",
-      "desc": "Varianten nebeneinander pruefen, Gewinner auswaehlen und in Web-, Social- und Print-Formaten exportieren. Presets einmal speichern und fuer Kampagnen wiederverwenden.",
+      "desc": "Varianten nebeneinander prüfen, Gewinner auswählen und in Web-, Social- und Print-Formaten exportieren. Presets einmal speichern und für Kampagnen wiederverwenden.",
       "asset1": "Web-Preset",
       "asset2": "Social-Preset",
       "asset3": "Print-Preset",
@@ -90,7 +90,7 @@
     "selfhosted": {
       "tag": "06 - Self-Hosted",
       "title": "Self-Hosted",
-      "desc": "LemonSpace auf eigener Infrastruktur betreiben. Eure Assets und Workflows bleiben unter eurer Kontrolle - mit Docker, Kubernetes oder Bare Metal. Source-available unter BSL 1.1.",
+      "desc": "LemonSpace auf eigener Infrastruktur betreiben. Eure Assets und Workflows bleiben unter eurer Kontrolle — mit Docker, Kubernetes oder Bare Metal. Source-available unter BSL 1.1.",
       "item1": "Docker",
       "item2": "Kubernetes",
       "item3": "On-Premise",
@@ -106,15 +106,15 @@
     },
     "step2": {
       "title": "Workflow bauen",
-      "desc": "Verbinde Nodes fuer Organisation, Bearbeitung, Transformation und Vergleich. KI-Generierung nur dann, wenn wirklich etwas Neues fehlt."
+      "desc": "Verbinde Nodes für Organisation, Bearbeitung, Transformation und Vergleich. KI-Generierung nur dann, wenn wirklich etwas Neues fehlt."
     },
     "step3": {
       "title": "Verfeinern",
-      "desc": "Passe Kurven, Farbe und Licht nicht-destruktiv an. Fuehre Agent-Workflows aus, pruefe Ergebnisse und behalte jederzeit die Kontrolle."
+      "desc": "Passe Kurven, Farbe und Licht nicht-destruktiv an. Führe Agent-Workflows aus, prüfe Ergebnisse und behalte jederzeit die Kontrolle."
     },
     "step4": {
       "title": "Export",
-      "desc": "Gewinner waehlen, in eure Kampagnenformate exportieren und veroeffentlichen."
+      "desc": "Gewinner wählen, in eure Kampagnenformate exportieren und veröffentlichen."
     }
   },
   "pricing": {
@@ -125,7 +125,7 @@
     "popular": "Beliebteste Wahl",
     "free": {
       "title": "Free",
-      "subtitle": "Voll ausgestattet. Kein Trial. Laeuft nie ab.",
+      "subtitle": "Voll ausgestattet. Kein Trial. Läuft nie ab.",
       "cta": "Kostenlos starten",
       "b1": "50 Credits pro Monat",
       "b2": "Unbegrenzte Bildbearbeitung und Exporte",
@@ -139,7 +139,7 @@
     },
     "pro": {
       "title": "Pro",
-      "subtitle": "Fuer aktive Kreativteams.",
+      "subtitle": "Für aktive Kreativteams.",
       "cta": "Pro holen",
       "b1": "3.300 Credits/Monat",
       "b2": "Alle KI-Modelle",
@@ -154,23 +154,25 @@
     }
   },
   "waitlist": {
-    "emailLabel": "Geschaeftliche E-Mail",
+    "emailLabel": "Geschäftliche E-Mail",
     "emailPlaceholder": "du@agentur.de",
     "submit": "Auf die Liste",
+    "submitting": "Wird eingetragen...",
     "success": "Du stehst auf der Liste. Danke.",
-    "already": "Von diesem Geraet bist du schon eingetragen.",
-    "errorInvalid": "Bitte gib eine gueltige E-Mail-Adresse ein.",
+    "already": "Du stehst bereits auf der Warteliste.",
+    "errorInvalid": "Bitte gib eine gültige E-Mail-Adresse ein.",
+    "errorGeneric": "Etwas ist schiefgelaufen. Bitte versuche es erneut.",
     "ctaHeadline": "Early Access sichern",
-    "ctaSub": "Wir bauen LemonSpace fuer Kreativteams, die einen Ort fuer ihren visuellen Workflow wollen - von Brand-Assets bis zur fertigen Kampagne. Setz dich auf die Warteliste, wir geben Bescheid sobald die Beta startet."
+    "ctaSub": "Wir bauen LemonSpace für Kreativteams, die einen Ort für ihren visuellen Workflow wollen — von Brand-Assets bis zur fertigen Kampagne. Setz dich auf die Warteliste, wir geben Bescheid sobald die Beta startet."
   },
   "footer": {
-    "tagline": "Visueller Workspace fuer kleine Kreativteams. In aktiver Entwicklung.",
-    "note": "Self-hosted und source-available sind geplant - das ist kein fertiger Produktpitch.",
+    "tagline": "Visueller Workspace für kleine Kreativteams. In aktiver Entwicklung.",
+    "note": "Self-hosted und source-available sind geplant — das ist kein fertiger Produktpitch.",
     "github": "GitHub",
     "docs": "Dokumentation",
     "privacy": "Datenschutz",
     "terms": "Impressum",
-    "copyright": "(c) 2026 LemonSpace. Alle Rechte vorbehalten.",
-    "license": "BSL 1.1, sobald Code oeffentlich ist"
+    "copyright": "© 2026 LemonSpace. Alle Rechte vorbehalten.",
+    "license": "BSL 1.1, sobald Code öffentlich ist"
   }
 }

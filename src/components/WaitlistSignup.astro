@@ -1,0 +1,88 @@
+---
+interface Props {
+  instance: string;
+  variant?: 'primary' | 'secondary';
+  isPrimary?: boolean;
+  initialMessage?: string;
+  initialMessageClass?: string;
+}
+
+const {
+  instance,
+  variant = 'secondary',
+  isPrimary = false,
+  initialMessage = '',
+  initialMessageClass = 'mt-3 text-sm hidden',
+} = Astro.props as Props;
+
+const isPrimaryVariant = variant === 'primary';
+const emailId = `waitlist-email-${instance}`;
+const companyId = `waitlist-company-${instance}`;
+---
+
+<div
+  class:list={[
+    isPrimaryVariant ? 'max-w-2xl' : 'max-w-lg',
+  ]}
+  data-waitlist-instance={instance}
+>
+  {isPrimaryVariant && (
+    <div class="section-label mb-4">
+      <span class="section-label-accent" data-i18n="waitlist.ctaHeadline">Get early access</span>
+    </div>
+  )}
+
+  <h2
+    class:list={[
+      'font-bold tracking-tight text-text-primary',
+      isPrimaryVariant ? 'text-3xl sm:text-4xl mb-3' : 'text-2xl mb-2',
+    ]}
+    data-i18n="waitlist.ctaHeadline"
+  >
+    Get early access
+  </h2>
+
+  <p
+    class:list={[
+      'text-text-secondary leading-relaxed',
+      isPrimaryVariant ? 'text-lg mb-8 max-w-xl' : 'text-base mb-6',
+    ]}
+    data-i18n="waitlist.ctaSub"
+  >
+    We're building LemonSpace for creative teams who want one place to manage their visual workflow — from brand assets to finished campaigns. Join the waitlist and we'll let you know when the beta opens.
+  </p>
+
+  <form
+    data-waitlist-form
+    data-waitlist-primary={isPrimary ? 'true' : 'false'}
+    method="POST"
+    action="/api/waitlist"
+    class="waitlist-form"
+  >
+    <label for={emailId} class="sr-only">Email</label>
+    <input
+      id={emailId}
+      name="email"
+      type="email"
+      required
+      autocomplete="email"
+      placeholder="you@studio.com"
+      data-i18n-placeholder="waitlist.emailPlaceholder"
+      class="waitlist-input"
+    />
+    <input data-waitlist-lang type="hidden" name="lang" value="en" />
+    <div class="hidden" aria-hidden="true">
+      <label for={companyId}>Company</label>
+      <input id={companyId} type="text" name="company" tabindex="-1" autocomplete="off" />
+    </div>
+    <button data-waitlist-submit type="submit" class="waitlist-submit" data-i18n="waitlist.submit">
+      Join waitlist
+    </button>
+  </form>
+
+  <div data-waitlist-message class={initialMessageClass} aria-live="polite">{initialMessage}</div>
+
+  <p class="mt-3 text-xs text-text-tertiary" data-i18n="hero.privacyNote">
+    No spam. We'll email you when the beta opens.
+  </p>
+</div>

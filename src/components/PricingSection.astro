@@ -1,0 +1,112 @@
+---
+import { Check } from 'lucide-react';
+
+interface Props {
+  id?: string;
+}
+
+const { id = 'pricing' } = Astro.props as Props;
+---
+
+<section id={id} class="py-16 sm:py-24 lg:py-32">
+  <div class="max-w-6xl mx-auto px-5 sm:px-6">
+    <div class="mx-auto mb-12 max-w-3xl text-center sm:mb-16">
+      <div class="section-label justify-center mb-4">
+        <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+        <span class="section-label-accent" data-i18n="pricing.label">Pricing</span>
+      </div>
+
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-3" data-i18n="pricing.headline">
+        Simple, credit-based pricing
+      </h2>
+      <p class="text-base sm:text-lg text-text-secondary" data-i18n="pricing.subheadline">
+        Credits power premium operations. Start free, scale when needed.
+      </p>
+      <p class="mt-3 text-sm text-text-tertiary" data-i18n="pricing.info">
+        Credits cover AI generation, agent runs, and premium model access. Editing, organizing, comparing, and exporting are always included.
+      </p>
+    </div>
+
+    <div class="overflow-hidden rounded-2xl border border-border bg-surface-2 lg:grid lg:grid-cols-4 lg:divide-x lg:divide-border">
+      <article class="flex h-full flex-col">
+        <div class="h-[21.5rem] flex-none border-b border-border px-6 pt-8 pb-6 sm:px-7">
+          <h3 class="text-3xl font-semibold text-text-primary" data-i18n="pricing.free.title">Free</h3>
+          <p class="mt-3 text-sm leading-relaxed text-text-secondary" data-i18n="pricing.free.subtitle">Full-featured. No trial. Never expires.</p>
+          <div class="mt-7 text-center">
+            <div class="flex items-start justify-center gap-0.5">
+              <span class="mt-2 text-lg font-semibold text-text-primary">€</span>
+              <span class="text-6xl font-semibold tracking-tight text-text-primary">0</span>
+            </div>
+            <p class="mt-2 text-sm text-text-tertiary">/month</p>
+          </div>
+          <a href="#waitlist" class="mt-7 inline-flex w-full items-center justify-center rounded-xl border border-border bg-surface-3 px-4 py-3 text-sm font-semibold text-text-primary transition-colors hover:border-border-light hover:bg-surface-4" data-i18n="pricing.free.cta">Get Started Free</a>
+        </div>
+        <ul class="flex-1 space-y-3 px-6 py-6 sm:px-7">
+          <li class="flex items-start gap-2.5 text-sm text-text-secondary"><Check className="mt-0.5 size-4 shrink-0 text-primary" /><span data-i18n="pricing.free.b1">50 Credits per month</span></li>
+          <li class="flex items-start gap-2.5 text-sm text-text-secondary"><Check className="mt-0.5 size-4 shrink-0 text-primary" /><span data-i18n="pricing.free.b2">Unlimited image editing and exports</span></li>
+          <li class="flex items-start gap-2.5 text-sm text-text-secondary"><Check className="mt-0.5 size-4 shrink-0 text-primary" /><span data-i18n="pricing.free.b3">1 workspace</span></li>
+          <li class="flex items-start gap-2.5 text-sm text-text-secondary"><Check className="mt-0.5 size-4 shrink-0 text-primary" /><span data-i18n="pricing.free.b4">Community support</span></li>
+        </ul>
+      </article>
+
+      <article class="flex h-full flex-col border-t border-border lg:border-t-0">
+        <div class="h-[21.5rem] flex-none border-b border-border px-6 pt-8 pb-6 sm:px-7">
+          <h3 class="text-3xl font-semibold text-text-primary" data-i18n="pricing.starter.title">Starter</h3>
+          <p class="mt-3 text-sm leading-relaxed text-text-secondary" data-i18n="pricing.starter.desc">400 Credits/month - Premium models - Email support - Multiple workspaces</p>
+          <div class="mt-7 text-center">
+            <div class="flex items-start justify-center gap-0.5">
+              <span class="mt-2 text-lg font-semibold text-text-primary">€</span>
+              <span class="text-6xl font-semibold tracking-tight text-text-primary">8</span>
+            </div>
+            <p class="mt-2 text-sm text-text-tertiary">/month</p>
+          </div>
+          <a href="#waitlist" class="mt-7 inline-flex w-full items-center justify-center rounded-xl border border-border bg-surface-3 px-4 py-3 text-sm font-semibold text-text-primary transition-colors hover:border-border-light hover:bg-surface-4" data-i18n="pricing.starter.cta">Get Starter -></a>
+        </div>
+        <ul class="flex-1 space-y-3 px-6 py-6 sm:px-7">
+          <li class="flex items-start gap-2.5 text-sm text-text-secondary"><Check className="mt-0.5 size-4 shrink-0 text-primary" /><span data-i18n="pricing.starter.desc">400 Credits/month - Premium models - Email support - Multiple workspaces</span></li>
+        </ul>
+      </article>
+
+      <article class="relative flex h-full flex-col border-2 border-primary bg-surface-1 shadow-[0_18px_34px_-20px_rgba(15,118,110,0.38)] lg:-m-px lg:z-10">
+        <div class="absolute top-4 right-4 rounded-full bg-primary px-2.5 py-1 text-[0.69rem] font-semibold tracking-wide text-white" data-i18n="pricing.popular">Most Popular</div>
+        <div class="h-[21.5rem] flex-none border-b border-primary/30 px-6 pt-8 pb-6 sm:px-7">
+          <h3 class="text-3xl font-semibold text-primary" data-i18n="pricing.pro.title">Pro</h3>
+          <p class="mt-3 text-sm leading-relaxed text-text-secondary" data-i18n="pricing.pro.subtitle">For active creative teams.</p>
+          <div class="mt-7 text-center">
+            <div class="flex items-start justify-center gap-0.5">
+              <span class="mt-2 text-lg font-semibold text-text-primary">€</span>
+              <span class="text-6xl font-semibold tracking-tight text-text-primary">59</span>
+            </div>
+            <p class="mt-2 text-sm text-text-tertiary">/month</p>
+          </div>
+          <a href="#waitlist" class="mt-7 inline-flex w-full items-center justify-center rounded-xl bg-primary px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-primary-light" data-i18n="pricing.pro.cta">Get Pro</a>
+        </div>
+        <ul class="flex-1 space-y-3 px-6 py-6 sm:px-7">
+          <li class="flex items-start gap-2.5 text-sm text-text-secondary"><Check className="mt-0.5 size-4 shrink-0 text-primary" /><span data-i18n="pricing.pro.b1">3,300 Credits/month</span></li>
+          <li class="flex items-start gap-2.5 text-sm text-text-secondary"><Check className="mt-0.5 size-4 shrink-0 text-primary" /><span data-i18n="pricing.pro.b2">All AI models</span></li>
+          <li class="flex items-start gap-2.5 text-sm text-text-secondary"><Check className="mt-0.5 size-4 shrink-0 text-primary" /><span data-i18n="pricing.pro.b3">Agent workflows</span></li>
+          <li class="flex items-start gap-2.5 text-sm text-text-secondary"><Check className="mt-0.5 size-4 shrink-0 text-primary" /><span data-i18n="pricing.pro.b4">Priority support</span></li>
+          <li class="flex items-start gap-2.5 text-sm text-text-secondary"><Check className="mt-0.5 size-4 shrink-0 text-primary" /><span data-i18n="pricing.pro.b5">Advanced canvas features</span></li>
+        </ul>
+      </article>
+
+      <article class="flex h-full flex-col border-t border-border lg:border-t-0">
+        <div class="h-[21.5rem] flex-none border-b border-border px-6 pt-8 pb-6 sm:px-7">
+          <h3 class="text-3xl font-semibold text-text-primary" data-i18n="pricing.max.title">Max</h3>
+          <p class="mt-3 text-sm leading-relaxed text-text-secondary" data-i18n="pricing.max.desc">6,700 Credits/month - Everything in Pro - Dedicated support - API access</p>
+          <div class="mt-7 text-center">
+            <div class="flex items-start justify-center gap-0.5">
+              <span class="mt-2 text-lg font-semibold text-text-primary">€</span>
+              <span class="text-6xl font-semibold tracking-tight text-text-primary">119</span>
+            </div>
+            <p class="mt-2 text-sm text-text-tertiary">/month</p>
+          </div>
+          <a href="#waitlist" class="mt-7 inline-flex w-full items-center justify-center rounded-xl border border-border bg-surface-3 px-4 py-3 text-sm font-semibold text-text-primary transition-colors hover:border-border-light hover:bg-surface-4" data-i18n="pricing.max.cta">Get Max -></a>
+        </div>
+        <ul class="flex-1 space-y-3 px-6 py-6 sm:px-7">
+          <li class="flex items-start gap-2.5 text-sm text-text-secondary"><Check className="mt-0.5 size-4 shrink-0 text-primary" /><span data-i18n="pricing.max.desc">6,700 Credits/month - Everything in Pro - Dedicated support - API access</span></li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>

@@ -3,19 +3,108 @@ import '../styles/global.css';
 import en from '../i18n/en.json';
 import de from '../i18n/de.json';
 import { Hero152 } from '../components/Hero';
-import {
-  Bot,
-  Check,
-  Download,
-  FolderOpen,
-  LayoutGrid,
-  SlidersHorizontal,
-  Upload,
-  WandSparkles,
-  Workflow,
-  ArrowDownToLine,
-  Server,
-} from 'lucide-react';
+import PricingSection from '../components/PricingSection.astro';
+import WaitlistSignup from '../components/WaitlistSignup.astro';
+
+const waitlistState = Astro.url.searchParams.get('waitlist');
+const waitlistMessages = {
+  success: en.waitlist.success,
+  already: en.waitlist.already,
+  invalid: en.waitlist.errorInvalid,
+  error: en.waitlist.errorGeneric,
+} as const;
+
+const initialWaitlistMessage =
+  waitlistState && waitlistState in waitlistMessages
+    ? waitlistMessages[waitlistState as keyof typeof waitlistMessages]
+    : '';
+
+const initialWaitlistMessageClass =
+  waitlistState === 'success'
+    ? 'mt-3 text-sm text-primary font-medium'
+    : waitlistState === 'already'
+      ? 'mt-3 text-sm text-text-tertiary'
+      : waitlistState === 'invalid' || waitlistState === 'error'
+        ? 'mt-3 text-sm text-red-500'
+        : 'mt-3 text-sm hidden';
+
+const showPricing = false;
+
+const features = [
+  {
+    number: '01',
+    titleKey: 'features.canvas.title',
+    titleDefault: 'Visual Canvas',
+    descKey: 'features.canvas.desc',
+    descDefault: 'Your workflow lives on a node-based canvas. Drop in assets, connect edits and transformations, branch ideas, and see the full flow at a glance.',
+  },
+  {
+    number: '02',
+    titleKey: 'features.prompt.title',
+    titleDefault: 'Asset Library',
+    descKey: 'features.prompt.desc',
+    descDefault: 'Upload and organize brand assets, reference images, and approved templates in one shared library. Tag, version, and reuse assets across every canvas.',
+  },
+  {
+    number: '03',
+    titleKey: 'features.compare.title',
+    titleDefault: 'Non-destructive Editing',
+    descKey: 'features.compare.desc',
+    descDefault: 'Adjust curves, color, light, and detail directly on the canvas. Reorder edits anytime, branch variants from one source, and keep your original assets untouched.',
+  },
+  {
+    number: '04',
+    titleKey: 'features.export.title',
+    titleDefault: 'Agent Workflows',
+    descKey: 'features.export.desc',
+    descDefault: 'Connect an Agent node for multi-step creative jobs. Define the goal, review the plan, adjust parameters, and ship with your team still in control.',
+  },
+  {
+    number: '05',
+    titleKey: 'features.library.title',
+    titleDefault: 'Compare and Export',
+    descKey: 'features.library.desc',
+    descDefault: 'Review variants side by side, pick winners, and export to web, social, and print formats. Save presets once and reuse them across campaigns.',
+  },
+  {
+    number: '06',
+    titleKey: 'features.selfhosted.title',
+    titleDefault: 'Self-Hosted',
+    descKey: 'features.selfhosted.desc',
+    descDefault: 'Run LemonSpace on your own infrastructure. Your assets and workflows stay under your control with Docker, Kubernetes, or bare metal. Source-available under BSL 1.1.',
+  },
+];
+
+const steps = [
+  {
+    number: '1',
+    titleKey: 'how.step1.title',
+    titleDefault: 'Upload',
+    descKey: 'how.step1.desc',
+    descDefault: 'Drop your brand assets and reference images onto the canvas. Tag them and keep your library organized.',
+  },
+  {
+    number: '2',
+    titleKey: 'how.step2.title',
+    titleDefault: 'Build workflow',
+    descKey: 'how.step2.desc',
+    descDefault: 'Connect nodes for organizing, editing, transforming, and comparing. Add AI generation only when you need something new.',
+  },
+  {
+    number: '3',
+    titleKey: 'how.step3.title',
+    titleDefault: 'Refine',
+    descKey: 'how.step3.desc',
+    descDefault: 'Adjust curves, color, and light non-destructively. Run agent workflows, review outcomes, and keep control at every step.',
+  },
+  {
+    number: '4',
+    titleKey: 'how.step4.title',
+    titleDefault: 'Export',
+    descKey: 'how.step4.desc',
+    descDefault: 'Pick winners, export to your campaign formats, and ship.',
+  },
+];
 ---
 
 <html lang="en">
@@ -26,9 +115,6 @@ import {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta id="meta-description" name="description" content={en.meta.description} />
     <meta name="generator" content={Astro.generator} />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <title>{en.meta.title}</title>
 
     <!-- Theme init (blocking — prevents flash of wrong theme) -->
@@ -42,25 +128,19 @@ import {
     </script>
 
     <script
-    src="https://rybbit.matthias.lol/api/script.js"
-    data-site-id="4eccaa2ec1ec"
-    defer
-></script>
-
-    <style>
-      .logo-light { display: inline-block; }
-      .logo-dark { display: none; }
-      [data-theme="dark"] .logo-light { display: none; }
-      [data-theme="dark"] .logo-dark { display: inline-block; }
-    </style>
-
+      src="https://rybbit.matthias.lol/api/script.js"
+      data-site-id="4eccaa2ec1ec"
+      defer
+    ></script>
   </head>
 
   <body class="bg-surface-2 text-text-primary font-sans overflow-x-hidden">
 
+    <a href="#main" class="skip-link">Skip to content</a>
+
     <!-- ===== NAVIGATION ===== -->
     <nav class="site-nav fixed top-0 left-0 right-0 z-50 bg-surface-2/80 backdrop-blur-xl border-b border-border/60">
-      <div class="max-w-6xl mx-auto px-5 sm:px-6">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
         <div class="flex items-center justify-between h-16">
           <!-- Logo -->
           <a href="#" class="flex items-center gap-2 shrink-0">
@@ -72,7 +152,9 @@ import {
           <div class="hidden md:flex items-center gap-7">
             <a href="#features" data-i18n="nav.features" class="text-sm text-text-secondary hover:text-text-primary transition-colors">Features</a>
             <a href="#how-it-works" data-i18n="nav.howItWorks" class="text-sm text-text-secondary hover:text-text-primary transition-colors">How it Works</a>
-            <a href="#pricing" data-i18n="nav.pricing" class="text-sm text-text-secondary hover:text-text-primary transition-colors">Pricing</a>
+            {showPricing && (
+              <a href="#pricing" data-i18n="nav.pricing" class="text-sm text-text-secondary hover:text-text-primary transition-colors">Pricing</a>
+            )}
           </div>
 
           <!-- Desktop Controls -->
@@ -107,7 +189,9 @@ import {
           <div class="hidden peer-checked:flex absolute top-16 left-0 right-0 bg-surface-2/95 backdrop-blur-xl border-b border-border md:hidden flex-col p-6 gap-4">
             <a href="#features" data-i18n="nav.features" class="text-sm text-text-secondary hover:text-text-primary transition-colors py-2">Features</a>
             <a href="#how-it-works" data-i18n="nav.howItWorks" class="text-sm text-text-secondary hover:text-text-primary transition-colors py-2">How it Works</a>
-            <a href="#pricing" data-i18n="nav.pricing" class="text-sm text-text-secondary hover:text-text-primary transition-colors py-2">Pricing</a>
+            {showPricing && (
+              <a href="#pricing" data-i18n="nav.pricing" class="text-sm text-text-secondary hover:text-text-primary transition-colors py-2">Pricing</a>
+            )}
             <div class="flex items-center gap-2 py-2 text-sm">
               <button data-lang="de" class="lang-btn px-2 py-1 rounded transition-colors text-text-tertiary hover:text-text-primary">DE</button>
               <span class="text-text-tertiary/40">|</span>
@@ -119,389 +203,160 @@ import {
       </div>
     </nav>
 
-    <!-- ===== HERO ===== -->
-    <Hero152 />
+    <main id="main">
 
-    <!-- ===== THE ISSUE (soloterm-style) ===== -->
-    <section class="py-16 sm:py-24 lg:py-32">
-      <div class="max-w-6xl mx-auto px-5 sm:px-6">
-        <!-- Label -->
-        <div class="section-label mb-4">
-          <svg class="w-4 h-4 text-text-tertiary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" /></svg>
-          <span data-i18n="issue.label">The issue</span>
+      <!-- ===== HERO ===== -->
+      <Hero152 />
+
+      <hr class="section-divider" />
+
+      <!-- ===== WAITLIST HERO CTA ===== -->
+      <section id="waitlist" class="py-16 sm:py-24 lg:py-28">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+          <WaitlistSignup
+            instance="hero"
+            variant="primary"
+            isPrimary={true}
+            initialMessage={initialWaitlistMessage}
+            initialMessageClass={initialWaitlistMessageClass}
+          />
         </div>
+      </section>
 
-        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight max-w-2xl mb-12 sm:mb-16" data-i18n="issue.headline">
-          Your image workflow lives in eight browser tabs.
-        </h2>
+      <hr class="section-divider" />
 
-        <!-- Issue Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
-          <div class="issue-card">
-            <h3 class="text-base font-semibold text-text-primary mb-2" data-i18n="issue.b1Title">Tab roulette</h3>
-            <p class="text-sm text-text-secondary leading-relaxed" data-i18n="issue.b1">
-              Something needs your attention. Is it tab three? Tab five? You're clicking through all eight trying to find the one that's screaming. By the time you find it, another tool has already timed out.
-            </p>
-          </div>
-          <div class="issue-card">
-            <h3 class="text-base font-semibold text-text-primary mb-2" data-i18n="issue.b2Title">No comparison</h3>
-            <p class="text-sm text-text-secondary leading-relaxed" data-i18n="issue.b2">
-              You generated twelve variants but they're scattered across folders, chats, and downloads. Comparing them means opening six windows side by side and hoping you don't lose track.
-            </p>
-          </div>
-          <div class="issue-card">
-            <h3 class="text-base font-semibold text-text-primary mb-2" data-i18n="issue.b3Title">Your brand, their server</h3>
-            <p class="text-sm text-text-secondary leading-relaxed" data-i18n="issue.b3">
-              Every prompt and asset lives on someone else's infrastructure. When confidentiality matters, parking brand assets in yet another SaaS is a tough sell.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <hr class="section-divider" />
-
-    <!-- ===== THE FIX ===== -->
-    <section class="py-16 sm:py-24 lg:py-32">
-      <div class="max-w-6xl mx-auto px-5 sm:px-6">
-        <!-- Label -->
-        <div class="section-label mb-4">
-          <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-          <span class="section-label-accent" data-i18n="fix.label">The fix</span>
-        </div>
-
-        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight max-w-2xl mb-4" data-i18n="fix.headline">
-          One canvas. From upload to export.
-        </h2>
-        <p class="text-base sm:text-lg text-text-secondary max-w-2xl leading-relaxed" data-i18n="fix.subheadline">
-          LemonSpace puts your visual workflow on one board - upload, organize, edit non-destructively, run agent workflows, compare outcomes, and export. Optional AI generation when you need it.
-        </p>
-      </div>
-    </section>
-
-    <hr class="section-divider" />
-
-    <!-- ===== FEATURES (asymmetric mosaic) ===== -->
-    <section id="features" class="py-16 sm:py-24 lg:py-32">
-      <div class="max-w-6xl mx-auto px-5 sm:px-6">
-        <div class="section-label mb-4">
-          <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-          <span class="section-label-accent" data-i18n="features.label">What LemonSpace actually does</span>
-        </div>
-
-        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight max-w-2xl mb-12 sm:mb-16">
-          <span data-i18n="fix.headline">One canvas. From upload to export.</span>
-        </h2>
-
-        <div class="feature-mosaic" role="list" aria-label="LemonSpace features">
-          <article role="listitem" aria-labelledby="feature-canvas-title" class="feature-mosaic-card feature-mosaic-card--tone-1 feature-mosaic-card--wide animate-on-scroll">
-            <div aria-hidden="true" class="feature-mosaic-card__bg"></div>
-            <div class="feature-mosaic-card__content">
-              <div class="feature-mosaic-card__top">
-                <span class="feature-mosaic-card__tag" data-i18n="features.canvas.tag">01 - Visual Canvas</span>
-                <span class="feature-mosaic-card__icon" aria-hidden="true">
-                  <LayoutGrid strokeWidth={1.7} />
-                </span>
-              </div>
-              <div>
-                <h3 id="feature-canvas-title" class="feature-mosaic-card__title" data-i18n="features.canvas.title">Visual Canvas</h3>
-                <p class="feature-mosaic-card__desc" data-i18n="features.canvas.desc">Your image workflow lives on a node-based canvas. Brief images, connect prompts, see generations, compare results, and export all on one board.</p>
-              </div>
-            </div>
-          </article>
-
-          <article role="listitem" aria-labelledby="feature-library-title" class="feature-mosaic-card feature-mosaic-card--tone-2 animate-on-scroll">
-            <div aria-hidden="true" class="feature-mosaic-card__bg"></div>
-            <div class="feature-mosaic-card__content">
-              <div class="feature-mosaic-card__top">
-                <span class="feature-mosaic-card__tag" data-i18n="features.prompt.tag">02 - Asset Library</span>
-                <span class="feature-mosaic-card__icon" aria-hidden="true">
-                  <FolderOpen strokeWidth={1.7} />
-                </span>
-              </div>
-              <div>
-                <h3 id="feature-library-title" class="feature-mosaic-card__title" data-i18n="features.prompt.title">Asset Library</h3>
-                <p class="feature-mosaic-card__desc" data-i18n="features.prompt.desc">Upload and organize brand assets, reference images, and approved templates in one shared library. Tag, version, and reuse assets across every canvas.</p>
-              </div>
-            </div>
-          </article>
-
-          <article role="listitem" aria-labelledby="feature-editing-title" class="feature-mosaic-card feature-mosaic-card--tone-3 feature-mosaic-card--tall animate-on-scroll">
-            <div aria-hidden="true" class="feature-mosaic-card__bg"></div>
-            <div class="feature-mosaic-card__content">
-              <div class="feature-mosaic-card__top">
-                <span class="feature-mosaic-card__tag" data-i18n="features.compare.tag">03 - Non-destructive Editing</span>
-                <span class="feature-mosaic-card__icon" aria-hidden="true">
-                  <WandSparkles strokeWidth={1.7} />
-                </span>
-              </div>
-              <div>
-                <h3 id="feature-editing-title" class="feature-mosaic-card__title" data-i18n="features.compare.title">Non-destructive Editing</h3>
-                <p class="feature-mosaic-card__desc" data-i18n="features.compare.desc">Adjust curves, color, light, and detail directly on the canvas. Reorder edits anytime, branch variants from one source, and keep your original assets untouched.</p>
-              </div>
-            </div>
-          </article>
-
-          <article role="listitem" aria-labelledby="feature-agent-title" class="feature-mosaic-card feature-mosaic-card--tone-4 feature-mosaic-card--wide animate-on-scroll">
-            <div aria-hidden="true" class="feature-mosaic-card__bg"></div>
-            <div class="feature-mosaic-card__content">
-              <div class="feature-mosaic-card__top">
-                <span class="feature-mosaic-card__tag" data-i18n="features.export.tag">04 - Agent Workflows</span>
-                <span class="feature-mosaic-card__icon" aria-hidden="true">
-                  <Bot strokeWidth={1.7} />
-                </span>
-              </div>
-              <div>
-                <h3 id="feature-agent-title" class="feature-mosaic-card__title" data-i18n="features.export.title">Agent Workflows</h3>
-                <p class="feature-mosaic-card__desc" data-i18n="features.export.desc">Connect an Agent node for multi-step creative jobs. Define the goal, review the plan, adjust parameters, and ship with your team still in control.</p>
-              </div>
-            </div>
-          </article>
-
-          <article role="listitem" aria-labelledby="feature-export-title" class="feature-mosaic-card feature-mosaic-card--tone-5 feature-mosaic-card--wide animate-on-scroll">
-            <div aria-hidden="true" class="feature-mosaic-card__bg"></div>
-            <div class="feature-mosaic-card__content">
-              <div class="feature-mosaic-card__top">
-                <span class="feature-mosaic-card__tag" data-i18n="features.library.tag">05 - Compare and Export</span>
-                <span class="feature-mosaic-card__icon" aria-hidden="true">
-                  <ArrowDownToLine strokeWidth={1.7} />
-                </span>
-              </div>
-              <div>
-                <h3 id="feature-export-title" class="feature-mosaic-card__title" data-i18n="features.library.title">Compare and Export</h3>
-                <p class="feature-mosaic-card__desc" data-i18n="features.library.desc">Review variants side by side, pick winners, and export to web, social, and print formats. Save presets once and reuse them across campaigns.</p>
-              </div>
-            </div>
-          </article>
-
-          <article role="listitem" aria-labelledby="feature-selfhosted-title" class="feature-mosaic-card feature-mosaic-card--tone-6 animate-on-scroll">
-            <div aria-hidden="true" class="feature-mosaic-card__bg"></div>
-            <div class="feature-mosaic-card__content">
-              <div class="feature-mosaic-card__top">
-                <span class="feature-mosaic-card__tag" data-i18n="features.selfhosted.tag">06 - Self-Hosted</span>
-                <span class="feature-mosaic-card__icon" aria-hidden="true">
-                  <Server strokeWidth={1.7} />
-                </span>
-              </div>
-              <div>
-                <h3 id="feature-selfhosted-title" class="feature-mosaic-card__title" data-i18n="features.selfhosted.title">Self-Hosted</h3>
-                <p class="feature-mosaic-card__desc" data-i18n="features.selfhosted.desc">Run LemonSpace on your own infrastructure. Your brand assets never leave your server. Full control over data, deployment, and compliance.</p>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <hr class="section-divider" />
-
-    <!-- ===== HOW IT WORKS ===== -->
-    <section id="how-it-works" class="py-16 sm:py-24 lg:py-32">
-      <div class="max-w-6xl mx-auto px-5 sm:px-6">
-        <div class="how-layout">
-          <div class="how-sticky-copy">
-            <div class="section-label mb-4">
-              <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-              <span class="section-label-accent" data-i18n="how.label">How it Works</span>
+      <!-- ===== THE ISSUE ===== -->
+      <section class="py-16 sm:py-24 lg:py-32">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+          <div class="max-w-3xl">
+            <div class="section-label">
+              <span data-i18n="issue.label">The issue</span>
             </div>
 
-            <h2 class="how-sticky-headline" data-i18n="how.headline">
-              From idea to campaign in minutes
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight mb-12 sm:mb-16 text-text-primary" data-i18n="issue.headline">
+              Your image workflow lives in eight browser tabs.
             </h2>
           </div>
 
-          <ol class="how-timeline" aria-label="How LemonSpace works">
-            <li class="how-step animate-on-scroll">
-              <div class="how-step-icon" aria-hidden="true">
-                <Upload strokeWidth={1.7} />
-              </div>
-              <div>
-                <h3 class="how-step-title" data-i18n="how.step1.title">Upload</h3>
-                <p class="how-step-desc" data-i18n="how.step1.desc">Drop your brand assets and reference images onto the canvas.</p>
-              </div>
-            </li>
-
-            <li class="how-step animate-on-scroll">
-              <div class="how-step-icon" aria-hidden="true">
-                <Workflow strokeWidth={1.7} />
-              </div>
-              <div>
-                <h3 class="how-step-title" data-i18n="how.step2.title">Build workflow</h3>
-                <p class="how-step-desc" data-i18n="how.step2.desc">Connect nodes for organizing, editing, transforming, and comparing. Add AI generation only when you need something new.</p>
-              </div>
-            </li>
-
-            <li class="how-step animate-on-scroll">
-              <div class="how-step-icon" aria-hidden="true">
-                <SlidersHorizontal strokeWidth={1.7} />
-              </div>
-              <div>
-                <h3 class="how-step-title" data-i18n="how.step3.title">Refine</h3>
-                <p class="how-step-desc" data-i18n="how.step3.desc">Adjust curves, color, and light non-destructively. Run agent workflows, review outcomes, and keep control at every step.</p>
-              </div>
-            </li>
-
-            <li class="how-step animate-on-scroll">
-              <div class="how-step-icon" aria-hidden="true">
-                <Download strokeWidth={1.7} />
-              </div>
-              <div>
-                <h3 class="how-step-title" data-i18n="how.step4.title">Export</h3>
-                <p class="how-step-desc" data-i18n="how.step4.desc">Pick winners, export to your campaign formats, and ship.</p>
-              </div>
-            </li>
-          </ol>
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
+            <div class="animate-on-scroll">
+              <h3 class="text-base font-semibold text-text-primary mb-2" data-i18n="issue.b1Title">Tab roulette</h3>
+              <p class="text-sm text-text-secondary leading-relaxed" data-i18n="issue.b1">
+                Something needs your attention. Is it tab three? Tab five? You're clicking through all eight trying to find the one that's screaming. By the time you find it, another tool has already timed out.
+              </p>
+            </div>
+            <div class="animate-on-scroll">
+              <h3 class="text-base font-semibold text-text-primary mb-2" data-i18n="issue.b2Title">No comparison</h3>
+              <p class="text-sm text-text-secondary leading-relaxed" data-i18n="issue.b2">
+                You generated twelve variants but they're scattered across folders, chats, and downloads. Comparing them means opening six windows side by side and hoping you don't lose track.
+              </p>
+            </div>
+            <div class="animate-on-scroll">
+              <h3 class="text-base font-semibold text-text-primary mb-2" data-i18n="issue.b3Title">Your brand, their server</h3>
+              <p class="text-sm text-text-secondary leading-relaxed" data-i18n="issue.b3">
+                Every asset, every edit, every variant lives on someone else's infrastructure. When confidentiality matters, parking your brand in yet another SaaS is a tough sell to legal.
+              </p>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <hr class="section-divider" />
+      <hr class="section-divider" />
 
-    <!-- ===== PRICING ===== -->
-    <section id="pricing" class="py-16 sm:py-24 lg:py-32">
-      <div class="max-w-6xl mx-auto px-5 sm:px-6">
-        <div class="mx-auto mb-12 max-w-3xl text-center sm:mb-16">
-          <div class="section-label justify-center mb-4">
-            <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-            <span class="section-label-accent" data-i18n="pricing.label">Pricing</span>
+      <!-- ===== THE FIX ===== -->
+      <section class="py-16 sm:py-24 lg:py-32">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+          <div class="max-w-3xl">
+            <div class="section-label">
+              <span class="section-label-accent" data-i18n="fix.label">The fix</span>
+            </div>
+
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight mb-5 text-text-primary" data-i18n="fix.headline">
+              One canvas. From upload to export.
+            </h2>
+            <p class="text-base sm:text-lg text-text-secondary max-w-2xl leading-relaxed" data-i18n="fix.subheadline">
+              LemonSpace puts your visual workflow on one board — upload, organize, edit non-destructively, run agent workflows, compare outcomes, and export. Optional AI generation when you need it.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <hr class="section-divider" />
+
+      <!-- ===== FEATURES — Text-led, no cards ===== -->
+      <section id="features" class="py-16 sm:py-24 lg:py-32">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+          <div class="max-w-3xl mb-12 sm:mb-16">
+            <div class="section-label">
+              <span class="section-label-accent" data-i18n="features.label">What LemonSpace actually does</span>
+            </div>
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-text-primary">
+              <span data-i18n="fix.headline">One canvas. From upload to export.</span>
+            </h2>
           </div>
 
-          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-3" data-i18n="pricing.headline">
-            Simple, credit-based pricing
-          </h2>
-          <p class="text-base sm:text-lg text-text-secondary" data-i18n="pricing.subheadline">
-            Credits power premium operations. Start free, scale when needed.
-          </p>
-          <p class="mt-3 text-sm text-text-tertiary" data-i18n="pricing.info">
-            Credits cover AI generation, agent runs, and premium model access. Editing, organizing, comparing, and exporting are always included.
-          </p>
-        </div>
-
-        <div class="overflow-hidden rounded-2xl border border-border bg-surface-2 lg:grid lg:grid-cols-4 lg:divide-x lg:divide-border">
-          <article class="flex h-full flex-col">
-            <div class="h-[21.5rem] flex-none border-b border-border px-6 pt-8 pb-6 sm:px-7">
-              <h3 class="text-3xl font-semibold text-text-primary" data-i18n="pricing.free.title">Free</h3>
-              <p class="mt-3 text-sm leading-relaxed text-text-secondary" data-i18n="pricing.free.subtitle">Full-featured. No trial. Never expires.</p>
-              <div class="mt-7 text-center">
-                <div class="flex items-start justify-center gap-0.5">
-                  <span class="mt-2 text-lg font-semibold text-text-primary">€</span>
-                  <span class="text-6xl font-semibold tracking-tight text-text-primary">0</span>
-                </div>
-                <p class="mt-2 text-sm text-text-tertiary">/month</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-2">
+            {features.map((f) => (
+              <div class="feature-item animate-on-scroll">
+                <span class="block text-xs font-bold tracking-widest uppercase text-text-tertiary mb-2">{f.number}</span>
+                <h3 class="text-lg font-semibold text-text-primary mb-1.5" data-i18n={f.titleKey}>{f.titleDefault}</h3>
+                <p class="text-sm text-text-secondary leading-relaxed max-w-md" data-i18n={f.descKey}>{f.descDefault}</p>
               </div>
-              <a href="#waitlist" class="mt-7 inline-flex w-full items-center justify-center rounded-xl border border-border bg-surface-3 px-4 py-3 text-sm font-semibold text-text-primary transition-colors hover:border-border-light hover:bg-surface-4" data-i18n="pricing.free.cta">Get Started Free</a>
-            </div>
-            <ul class="flex-1 space-y-3 px-6 py-6 sm:px-7">
-              <li class="flex items-start gap-2.5 text-sm text-text-secondary"><Check className="mt-0.5 size-4 shrink-0 text-primary" /><span data-i18n="pricing.free.b1">50 Credits per month</span></li>
-              <li class="flex items-start gap-2.5 text-sm text-text-secondary"><Check className="mt-0.5 size-4 shrink-0 text-primary" /><span data-i18n="pricing.free.b2">Unlimited image editing and exports</span></li>
-              <li class="flex items-start gap-2.5 text-sm text-text-secondary"><Check className="mt-0.5 size-4 shrink-0 text-primary" /><span data-i18n="pricing.free.b3">1 workspace</span></li>
-              <li class="flex items-start gap-2.5 text-sm text-text-secondary"><Check className="mt-0.5 size-4 shrink-0 text-primary" /><span data-i18n="pricing.free.b4">Community support</span></li>
-            </ul>
-          </article>
-
-          <article class="flex h-full flex-col border-t border-border lg:border-t-0">
-            <div class="h-[21.5rem] flex-none border-b border-border px-6 pt-8 pb-6 sm:px-7">
-              <h3 class="text-3xl font-semibold text-text-primary" data-i18n="pricing.starter.title">Starter</h3>
-              <p class="mt-3 text-sm leading-relaxed text-text-secondary" data-i18n="pricing.starter.desc">400 Credits/month - Premium models - Email support - Multiple workspaces</p>
-              <div class="mt-7 text-center">
-                <div class="flex items-start justify-center gap-0.5">
-                  <span class="mt-2 text-lg font-semibold text-text-primary">€</span>
-                  <span class="text-6xl font-semibold tracking-tight text-text-primary">8</span>
-                </div>
-                <p class="mt-2 text-sm text-text-tertiary">/month</p>
-              </div>
-              <a href="#waitlist" class="mt-7 inline-flex w-full items-center justify-center rounded-xl border border-border bg-surface-3 px-4 py-3 text-sm font-semibold text-text-primary transition-colors hover:border-border-light hover:bg-surface-4" data-i18n="pricing.starter.cta">Get Starter →</a>
-            </div>
-            <ul class="flex-1 space-y-3 px-6 py-6 sm:px-7">
-              <li class="flex items-start gap-2.5 text-sm text-text-secondary"><Check className="mt-0.5 size-4 shrink-0 text-primary" /><span data-i18n="pricing.starter.desc">400 Credits/month - Premium models - Email support - Multiple workspaces</span></li>
-            </ul>
-          </article>
-
-          <article class="relative flex h-full flex-col border-2 border-primary bg-surface-1 shadow-[0_18px_34px_-20px_rgba(15,118,110,0.38)] lg:-m-px lg:z-10">
-            <div class="absolute top-4 right-4 rounded-full bg-primary px-2.5 py-1 text-[0.69rem] font-semibold tracking-wide text-white" data-i18n="pricing.popular">Most Popular</div>
-            <div class="h-[21.5rem] flex-none border-b border-primary/30 px-6 pt-8 pb-6 sm:px-7">
-              <h3 class="text-3xl font-semibold text-primary" data-i18n="pricing.pro.title">Pro</h3>
-              <p class="mt-3 text-sm leading-relaxed text-text-secondary" data-i18n="pricing.pro.subtitle">For active creative teams.</p>
-              <div class="mt-7 text-center">
-                <div class="flex items-start justify-center gap-0.5">
-                  <span class="mt-2 text-lg font-semibold text-text-primary">€</span>
-                  <span class="text-6xl font-semibold tracking-tight text-text-primary">59</span>
-                </div>
-                <p class="mt-2 text-sm text-text-tertiary">/month</p>
-              </div>
-              <a href="#waitlist" class="mt-7 inline-flex w-full items-center justify-center rounded-xl bg-primary px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-primary-light" data-i18n="pricing.pro.cta">Get Pro</a>
-            </div>
-            <ul class="flex-1 space-y-3 px-6 py-6 sm:px-7">
-              <li class="flex items-start gap-2.5 text-sm text-text-secondary"><Check className="mt-0.5 size-4 shrink-0 text-primary" /><span data-i18n="pricing.pro.b1">3,300 Credits/month</span></li>
-              <li class="flex items-start gap-2.5 text-sm text-text-secondary"><Check className="mt-0.5 size-4 shrink-0 text-primary" /><span data-i18n="pricing.pro.b2">All AI models</span></li>
-              <li class="flex items-start gap-2.5 text-sm text-text-secondary"><Check className="mt-0.5 size-4 shrink-0 text-primary" /><span data-i18n="pricing.pro.b3">Agent workflows</span></li>
-              <li class="flex items-start gap-2.5 text-sm text-text-secondary"><Check className="mt-0.5 size-4 shrink-0 text-primary" /><span data-i18n="pricing.pro.b4">Priority support</span></li>
-              <li class="flex items-start gap-2.5 text-sm text-text-secondary"><Check className="mt-0.5 size-4 shrink-0 text-primary" /><span data-i18n="pricing.pro.b5">Advanced canvas features</span></li>
-            </ul>
-          </article>
-
-          <article class="flex h-full flex-col border-t border-border lg:border-t-0">
-            <div class="h-[21.5rem] flex-none border-b border-border px-6 pt-8 pb-6 sm:px-7">
-              <h3 class="text-3xl font-semibold text-text-primary" data-i18n="pricing.max.title">Max</h3>
-              <p class="mt-3 text-sm leading-relaxed text-text-secondary" data-i18n="pricing.max.desc">6,700 Credits/month - Everything in Pro - Dedicated support - API access</p>
-              <div class="mt-7 text-center">
-                <div class="flex items-start justify-center gap-0.5">
-                  <span class="mt-2 text-lg font-semibold text-text-primary">€</span>
-                  <span class="text-6xl font-semibold tracking-tight text-text-primary">119</span>
-                </div>
-                <p class="mt-2 text-sm text-text-tertiary">/month</p>
-              </div>
-              <a href="#waitlist" class="mt-7 inline-flex w-full items-center justify-center rounded-xl border border-border bg-surface-3 px-4 py-3 text-sm font-semibold text-text-primary transition-colors hover:border-border-light hover:bg-surface-4" data-i18n="pricing.max.cta">Get Max →</a>
-            </div>
-            <ul class="flex-1 space-y-3 px-6 py-6 sm:px-7">
-              <li class="flex items-start gap-2.5 text-sm text-text-secondary"><Check className="mt-0.5 size-4 shrink-0 text-primary" /><span data-i18n="pricing.max.desc">6,700 Credits/month - Everything in Pro - Dedicated support - API access</span></li>
-            </ul>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <hr class="section-divider" />
-
-    <!-- ===== WAITLIST / CTA ===== -->
-    <section id="waitlist" class="py-16 sm:py-24 lg:py-32">
-      <div class="max-w-6xl mx-auto px-5 sm:px-6">
-        <div class="max-w-xl">
-          <!-- Label -->
-          <div class="section-label mb-4">
-            <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-            <span class="section-label-accent" data-i18n="waitlist.ctaHeadline">Get early access</span>
+            ))}
           </div>
-
-          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-3" data-i18n="waitlist.ctaHeadline">Get early access</h2>
-          <p class="text-base text-text-secondary leading-relaxed mb-8" data-i18n="waitlist.ctaSub">
-             We're building LemonSpace for creative teams who want one place to manage their visual workflow - from brand assets to finished campaigns. Join the waitlist and we'll let you know when the beta opens.
-          </p>
-
-          <!-- Email form -->
-          <form id="waitlist-form" class="flex flex-col sm:flex-row gap-3 max-w-md">
-            <label for="waitlist-email" class="sr-only">Email</label>
-            <input
-              id="waitlist-email"
-              type="email"
-              required
-              placeholder="you@studio.com"
-              data-i18n-placeholder="waitlist.emailPlaceholder"
-              class="flex-1 px-4 py-3 rounded-xl border border-border bg-surface-2 text-text-primary placeholder:text-text-tertiary text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors"
-            />
-            <button type="submit" class="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold rounded-xl bg-primary text-white hover:bg-primary-light transition-all shadow-md shadow-primary/15 shrink-0" data-i18n="waitlist.submit">
-              Join waitlist
-            </button>
-          </form>
-          <div id="waitlist-message" class="mt-3 text-sm hidden"></div>
-          <p class="text-xs text-text-tertiary mt-4" data-i18n="hero.privacyNote">No spam. We'll email you when the beta opens.</p>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <hr class="section-divider" />
+
+      <!-- ===== HOW IT WORKS — Numbered timeline ===== -->
+      <section id="how-it-works" class="py-16 sm:py-24 lg:py-32">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+          <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] gap-12 lg:gap-20">
+            <!-- Sticky left column -->
+            <div class="lg:sticky lg:top-24 lg:self-start">
+              <div class="section-label">
+                <span class="section-label-accent" data-i18n="how.label">How it Works</span>
+              </div>
+              <h2 class="text-2xl sm:text-3xl lg:text-[2.75rem] lg:leading-[1.08] font-bold tracking-tight text-text-primary" data-i18n="how.headline">
+                From idea to campaign in minutes
+              </h2>
+            </div>
+
+            <!-- Steps -->
+            <ol class="list-none m-0 p-0" aria-label="How LemonSpace works">
+              {steps.map((step) => (
+                <li class="how-step animate-on-scroll">
+                  <span class="how-step-number">{step.number}</span>
+                  <div>
+                    <h3 class="text-lg sm:text-xl font-semibold text-text-primary mb-1" data-i18n={step.titleKey}>{step.titleDefault}</h3>
+                    <p class="text-sm text-text-secondary leading-relaxed max-w-md" data-i18n={step.descKey}>{step.descDefault}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <hr class="section-divider" />
+
+      <!-- ===== PRICING ===== -->
+      {showPricing && <PricingSection id="pricing" />}
+      {showPricing && <hr class="section-divider" />}
+
+      <!-- ===== SECONDARY WAITLIST ===== -->
+      <section id="waitlist-secondary" class="py-16 sm:py-24 lg:py-32">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+          <WaitlistSignup instance="secondary" variant="secondary" />
+        </div>
+      </section>
+
+    </main>
 
     <!-- ===== FOOTER ===== -->
     <footer class="border-t border-border py-10 sm:py-14">
-      <div class="max-w-6xl mx-auto px-5 sm:px-6">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
         <div class="flex flex-col sm:flex-row items-start justify-between gap-8">
           <div>
             <a href="#" class="inline-block mb-3">
@@ -548,37 +403,162 @@ import {
     <script define:vars={{ en, de }}>
       (function() {
         var translations = { en: en, de: de };
+
         function currentLang() {
           var stored = localStorage.getItem('lang');
           if (stored === 'de' || stored === 'en') return stored;
           var htmlLang = document.documentElement.lang;
           return htmlLang === 'de' ? 'de' : 'en';
         }
-        var form = document.getElementById('waitlist-form');
-        var msg = document.getElementById('waitlist-message');
-        if (!form) return;
 
-        form.addEventListener('submit', function(e) {
-          e.preventDefault();
-          var email = form.querySelector('input[type="email"]').value.trim();
-          var lang = currentLang();
-          var copy = translations[lang] && translations[lang].waitlist ? translations[lang].waitlist : translations.en.waitlist;
-          if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-            msg.textContent = copy.errorInvalid;
-            msg.className = 'mt-3 text-sm text-red-500';
+        function waitlistCopy(lang) {
+          if (translations[lang] && translations[lang].waitlist) {
+            return translations[lang].waitlist;
+          }
+          return translations.en.waitlist;
+        }
+
+        function setMessage(el, text, tone) {
+          if (!el) return;
+
+          if (!text) {
+            el.textContent = '';
+            el.className = 'mt-3 text-sm hidden';
             return;
           }
-          // Check localStorage for duplicate
-          if (localStorage.getItem('lemonspace-waitlist') === email) {
-            msg.textContent = copy.already;
-            msg.className = 'mt-3 text-sm text-text-tertiary';
+
+          if (tone === 'success') {
+            el.className = 'mt-3 text-sm text-primary font-medium';
+          } else if (tone === 'muted') {
+            el.className = 'mt-3 text-sm text-text-tertiary';
+          } else {
+            el.className = 'mt-3 text-sm text-red-500';
+          }
+
+          el.textContent = text;
+        }
+
+        function consumeStatusFromQuery(msgEl) {
+          var params = new URLSearchParams(window.location.search);
+          var status = params.get('waitlist');
+
+          if (!status) {
             return;
           }
-          // Simulate success
-          localStorage.setItem('lemonspace-waitlist', email);
-          msg.textContent = copy.success;
-          msg.className = 'mt-3 text-sm text-primary font-medium';
-          form.querySelector('input[type="email"]').value = '';
+
+          var copy = waitlistCopy(currentLang());
+
+          if (status === 'success') {
+            setMessage(msgEl, copy.success, 'success');
+          } else if (status === 'already') {
+            setMessage(msgEl, copy.already, 'muted');
+          } else if (status === 'invalid') {
+            setMessage(msgEl, copy.errorInvalid, 'error');
+          } else {
+            setMessage(msgEl, copy.errorGeneric, 'error');
+          }
+
+          params.delete('waitlist');
+          var query = params.toString();
+          var nextUrl = window.location.pathname + (query ? '?' + query : '') + window.location.hash;
+          window.history.replaceState({}, '', nextUrl);
+        }
+
+        var forms = Array.prototype.slice.call(document.querySelectorAll('[data-waitlist-form]'));
+
+        if (!forms.length) return;
+
+        var primaryForm = forms.find(function(item) {
+          return item.getAttribute('data-waitlist-primary') === 'true';
+        }) || forms[0];
+
+        var primaryContainer = primaryForm.closest('[data-waitlist-instance]');
+        var primaryMessage = primaryContainer ? primaryContainer.querySelector('[data-waitlist-message]') : null;
+
+        consumeStatusFromQuery(primaryMessage);
+
+        forms.forEach(function(form) {
+          var container = form.closest('[data-waitlist-instance]');
+          if (!container) return;
+
+          var msg = container.querySelector('[data-waitlist-message]');
+          var submitButton = form.querySelector('[data-waitlist-submit]');
+          var langInput = form.querySelector('[data-waitlist-lang]');
+
+          if (!msg || !submitButton) return;
+
+          form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            var emailInput = form.querySelector('input[type="email"][name="email"]');
+            if (!emailInput) return;
+
+            var email = emailInput.value.trim();
+            emailInput.value = email;
+
+            var lang = currentLang();
+            var copy = waitlistCopy(lang);
+
+            if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+              setMessage(msg, copy.errorInvalid, 'error');
+              return;
+            }
+
+            if (langInput) {
+              langInput.value = lang;
+            }
+
+            var originalButtonLabel = submitButton.textContent;
+            submitButton.disabled = true;
+            submitButton.textContent = copy.submitting;
+            setMessage(msg, '', 'error');
+
+            try {
+              var formData = new FormData(form);
+              formData.set('email', email);
+              formData.set('lang', lang);
+
+              var response = await fetch('/api/waitlist', {
+                method: 'POST',
+                headers: {
+                  Accept: 'application/json',
+                },
+                body: formData,
+              });
+
+              var payload = null;
+              try {
+                payload = await response.json();
+              } catch (err) {
+                payload = null;
+              }
+
+              if (response.ok && payload && payload.state === 'already') {
+                setMessage(msg, copy.already, 'muted');
+                return;
+              }
+
+              if (response.ok) {
+                setMessage(msg, copy.success, 'success');
+                form.reset();
+                if (langInput) {
+                  langInput.value = lang;
+                }
+                return;
+              }
+
+              if (payload && payload.state === 'invalid') {
+                setMessage(msg, copy.errorInvalid, 'error');
+              } else {
+                setMessage(msg, copy.errorGeneric, 'error');
+              }
+            } catch (err) {
+              setMessage(msg, copy.errorGeneric, 'error');
+            } finally {
+              submitButton.disabled = false;
+              submitButton.textContent = originalButtonLabel;
+            }
+          });
         });
       })();
     </script>
@@ -660,7 +640,6 @@ import {
           var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
           var moonIcons = document.querySelectorAll('.theme-icon-moon');
           var sunIcons = document.querySelectorAll('.theme-icon-sun');
-          // Explicit display overrides Tailwind .hidden on sun icons (empty string would not).
           for (var i = 0; i < moonIcons.length; i++) { moonIcons[i].style.display = isDark ? 'none' : 'inline-block'; }
           for (var i = 0; i < sunIcons.length; i++) { sunIcons[i].style.display = isDark ? 'inline-block' : 'none'; }
         }
