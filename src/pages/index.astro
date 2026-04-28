@@ -1,17 +1,23 @@
 ---
 import '../styles/global.css';
-import en from '../i18n/en.json';
 import de from '../i18n/de.json';
-import { Hero152 } from '../components/Hero';
-import PricingSection from '../components/PricingSection.astro';
-import WaitlistSignup from '../components/WaitlistSignup.astro';
+import LandingNav from '../components/landing/LandingNav.astro';
+import LandingHero from '../components/landing/LandingHero.astro';
+import LandingProblem from '../components/landing/LandingProblem.astro';
+import LandingManifesto from '../components/landing/LandingManifesto.astro';
+import LandingHow from '../components/landing/LandingHow.astro';
+import LandingFeatures from '../components/landing/LandingFeatures.astro';
+import LandingHosting from '../components/landing/LandingHosting.astro';
+import LandingPricing from '../components/landing/LandingPricing.astro';
+import LandingWaitlist from '../components/landing/LandingWaitlist.astro';
+import LandingFooter from '../components/landing/LandingFooter.astro';
 
 const waitlistState = Astro.url.searchParams.get('waitlist');
 const waitlistMessages = {
-  success: en.waitlist.success,
-  already: en.waitlist.already,
-  invalid: en.waitlist.errorInvalid,
-  error: en.waitlist.errorGeneric,
+  success: de.waitlist.success,
+  already: de.waitlist.already,
+  invalid: de.waitlist.errorInvalid,
+  error: de.waitlist.errorGeneric,
 } as const;
 
 const initialWaitlistMessage =
@@ -21,420 +27,64 @@ const initialWaitlistMessage =
 
 const initialWaitlistMessageClass =
   waitlistState === 'success'
-    ? 'mt-3 text-sm text-primary font-medium'
+    ? 'form-msg success'
     : waitlistState === 'already'
-      ? 'mt-3 text-sm text-text-tertiary'
+      ? 'form-msg'
       : waitlistState === 'invalid' || waitlistState === 'error'
-        ? 'mt-3 text-sm text-red-500'
-        : 'mt-3 text-sm hidden';
-
-const showPricing = false;
-
-const features = [
-  {
-    number: '01',
-    titleKey: 'features.canvas.title',
-    titleDefault: 'Visual Canvas',
-    descKey: 'features.canvas.desc',
-    descDefault: 'Your workflow lives on a node-based canvas. Drop in assets, connect edits and transformations, branch ideas, and see the full flow at a glance.',
-  },
-  {
-    number: '02',
-    titleKey: 'features.prompt.title',
-    titleDefault: 'Asset Library',
-    descKey: 'features.prompt.desc',
-    descDefault: 'Upload and organize brand assets, reference images, and approved templates in one shared library. Tag, version, and reuse assets across every canvas.',
-  },
-  {
-    number: '03',
-    titleKey: 'features.compare.title',
-    titleDefault: 'Non-destructive Editing',
-    descKey: 'features.compare.desc',
-    descDefault: 'Adjust curves, color, light, and detail directly on the canvas. Reorder edits anytime, branch variants from one source, and keep your original assets untouched.',
-  },
-  {
-    number: '04',
-    titleKey: 'features.export.title',
-    titleDefault: 'Agent Workflows',
-    descKey: 'features.export.desc',
-    descDefault: 'Connect an Agent node for multi-step creative jobs. Define the goal, review the plan, adjust parameters, and ship with your team still in control.',
-  },
-  {
-    number: '05',
-    titleKey: 'features.library.title',
-    titleDefault: 'Compare and Export',
-    descKey: 'features.library.desc',
-    descDefault: 'Review variants side by side, pick winners, and export to web, social, and print formats. Save presets once and reuse them across campaigns.',
-  },
-  {
-    number: '06',
-    titleKey: 'features.selfhosted.title',
-    titleDefault: 'Self-Hosted',
-    descKey: 'features.selfhosted.desc',
-    descDefault: 'Run LemonSpace on your own infrastructure. Your assets and workflows stay under your control with Docker, Kubernetes, or bare metal. Source-available under BSL 1.1.',
-  },
-];
-
-const steps = [
-  {
-    number: '1',
-    titleKey: 'how.step1.title',
-    titleDefault: 'Upload',
-    descKey: 'how.step1.desc',
-    descDefault: 'Drop your brand assets and reference images onto the canvas. Tag them and keep your library organized.',
-  },
-  {
-    number: '2',
-    titleKey: 'how.step2.title',
-    titleDefault: 'Build workflow',
-    descKey: 'how.step2.desc',
-    descDefault: 'Connect nodes for organizing, editing, transforming, and comparing. Add AI generation only when you need something new.',
-  },
-  {
-    number: '3',
-    titleKey: 'how.step3.title',
-    titleDefault: 'Refine',
-    descKey: 'how.step3.desc',
-    descDefault: 'Adjust curves, color, and light non-destructively. Run agent workflows, review outcomes, and keep control at every step.',
-  },
-  {
-    number: '4',
-    titleKey: 'how.step4.title',
-    titleDefault: 'Export',
-    descKey: 'how.step4.desc',
-    descDefault: 'Pick winners, export to your campaign formats, and ship.',
-  },
-];
+        ? 'form-msg error'
+        : 'form-msg hidden';
 ---
 
-<html lang="en">
+<!doctype html>
+<html lang="de">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta id="meta-description" name="description" content={en.meta.description} />
+    <meta id="meta-description" name="description" content={de.meta.description} />
     <meta name="generator" content={Astro.generator} />
-    <title>{en.meta.title}</title>
-
-    <!-- Theme init (blocking — prevents flash of wrong theme) -->
-    <script is:inline>
-      (function() {
-        var stored = localStorage.getItem('theme');
-        if (stored === 'dark' || (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-          document.documentElement.setAttribute('data-theme', 'dark');
-        }
-      })();
-    </script>
-
+    <title>LemonSpace — Visueller Workspace für kreative Teams</title>
     <script
       src="https://rybbit.matthias.lol/api/script.js"
       data-site-id="4eccaa2ec1ec"
       defer
     ></script>
   </head>
-
-  <body class="bg-surface-2 text-text-primary font-sans overflow-x-hidden">
-
-    <a href="#main" class="skip-link">Skip to content</a>
-
-    <!-- ===== NAVIGATION ===== -->
-    <nav class="site-nav fixed top-0 left-0 right-0 z-50 bg-surface-2/80 backdrop-blur-xl border-b border-border/60">
-      <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
-        <div class="flex items-center justify-between h-16">
-          <!-- Logo -->
-          <a href="#" class="flex items-center gap-2 shrink-0">
-            <img src="/logos/lemonspace-logo-v2-primary-rgb.svg" alt="LemonSpace" class="h-7 w-auto logo-light" />
-            <img src="/logos/lemonspace-logo-v2-white-rgb.svg" alt="LemonSpace" class="h-7 w-auto logo-dark" />
-          </a>
-
-          <!-- Desktop Nav -->
-          <div class="hidden md:flex items-center gap-7">
-            <a href="#features" data-i18n="nav.features" class="text-sm text-text-secondary hover:text-text-primary transition-colors">Features</a>
-            <a href="#how-it-works" data-i18n="nav.howItWorks" class="text-sm text-text-secondary hover:text-text-primary transition-colors">How it Works</a>
-            {showPricing && (
-              <a href="#pricing" data-i18n="nav.pricing" class="text-sm text-text-secondary hover:text-text-primary transition-colors">Pricing</a>
-            )}
-          </div>
-
-          <!-- Desktop Controls -->
-          <div class="hidden md:flex items-center gap-3">
-            <button id="theme-toggle" type="button" aria-label="Toggle theme" class="p-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface-3 transition-colors">
-              <svg class="w-[18px] h-[18px] theme-icon-moon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
-              <svg class="w-[18px] h-[18px] theme-icon-sun hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
-            </button>
-            <div class="flex items-center gap-1 text-sm">
-              <button data-lang="de" class="lang-btn px-1.5 py-0.5 rounded transition-colors text-text-tertiary hover:text-text-primary">DE</button>
-              <span class="text-text-tertiary/40">|</span>
-              <button data-lang="en" class="lang-btn px-1.5 py-0.5 rounded transition-colors font-semibold text-text-primary">EN</button>
-            </div>
-            <a href="#waitlist" data-i18n="nav.getStarted" class="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold rounded-lg bg-primary text-white hover:bg-primary-light transition-colors">Join Waitlist</a>
-          </div>
-
-          <!-- Mobile -->
-          <div class="md:hidden flex items-center gap-2">
-            <button id="theme-toggle-mobile" type="button" aria-label="Toggle theme" class="p-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface-3 transition-colors">
-              <svg class="w-[18px] h-[18px] theme-icon-moon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
-              <svg class="w-[18px] h-[18px] theme-icon-sun hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
-            </button>
-            <label for="mobile-menu-toggle" class="flex flex-col justify-center items-center w-10 h-10 cursor-pointer gap-1.5">
-              <span class="block w-5 h-0.5 bg-text-secondary transition-all"></span>
-              <span class="block w-5 h-0.5 bg-text-secondary transition-all"></span>
-              <span class="block w-5 h-0.5 bg-text-secondary transition-all"></span>
-            </label>
-          </div>
-
-          <input type="checkbox" id="mobile-menu-toggle" class="hidden peer" />
-
-          <div class="hidden peer-checked:flex absolute top-16 left-0 right-0 bg-surface-2/95 backdrop-blur-xl border-b border-border md:hidden flex-col p-6 gap-4">
-            <a href="#features" data-i18n="nav.features" class="text-sm text-text-secondary hover:text-text-primary transition-colors py-2">Features</a>
-            <a href="#how-it-works" data-i18n="nav.howItWorks" class="text-sm text-text-secondary hover:text-text-primary transition-colors py-2">How it Works</a>
-            {showPricing && (
-              <a href="#pricing" data-i18n="nav.pricing" class="text-sm text-text-secondary hover:text-text-primary transition-colors py-2">Pricing</a>
-            )}
-            <div class="flex items-center gap-2 py-2 text-sm">
-              <button data-lang="de" class="lang-btn px-2 py-1 rounded transition-colors text-text-tertiary hover:text-text-primary">DE</button>
-              <span class="text-text-tertiary/40">|</span>
-              <button data-lang="en" class="lang-btn px-2 py-1 rounded transition-colors font-semibold text-text-primary">EN</button>
-            </div>
-            <a href="#waitlist" data-i18n="nav.getStarted" class="inline-flex items-center justify-center px-4 py-2.5 text-sm font-semibold rounded-lg bg-primary text-white hover:bg-primary-light transition-colors mt-2">Join Waitlist</a>
-          </div>
-        </div>
-      </div>
-    </nav>
-
+  <body>
+    <a href="#main" class="skip-link">Zum Inhalt springen</a>
+    <LandingNav />
     <main id="main">
-
-      <!-- ===== HERO ===== -->
-      <Hero152 />
-
-      <hr class="section-divider" />
-
-      <!-- ===== WAITLIST HERO CTA ===== -->
-      <section id="waitlist" class="py-16 sm:py-24 lg:py-28">
-        <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
-          <WaitlistSignup
-            instance="hero"
-            variant="primary"
-            isPrimary={true}
-            initialMessage={initialWaitlistMessage}
-            initialMessageClass={initialWaitlistMessageClass}
-          />
-        </div>
-      </section>
-
-      <hr class="section-divider" />
-
-      <!-- ===== THE ISSUE ===== -->
-      <section class="py-16 sm:py-24 lg:py-32">
-        <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
-          <div class="max-w-3xl">
-            <div class="section-label">
-              <span data-i18n="issue.label">The issue</span>
-            </div>
-
-            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight mb-12 sm:mb-16 text-text-primary" data-i18n="issue.headline">
-              Your image workflow lives in eight browser tabs.
-            </h2>
-          </div>
-
-          <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
-            <div class="animate-on-scroll">
-              <h3 class="text-base font-semibold text-text-primary mb-2" data-i18n="issue.b1Title">Tab roulette</h3>
-              <p class="text-sm text-text-secondary leading-relaxed" data-i18n="issue.b1">
-                Something needs your attention. Is it tab three? Tab five? You're clicking through all eight trying to find the one that's screaming. By the time you find it, another tool has already timed out.
-              </p>
-            </div>
-            <div class="animate-on-scroll">
-              <h3 class="text-base font-semibold text-text-primary mb-2" data-i18n="issue.b2Title">No comparison</h3>
-              <p class="text-sm text-text-secondary leading-relaxed" data-i18n="issue.b2">
-                You generated twelve variants but they're scattered across folders, chats, and downloads. Comparing them means opening six windows side by side and hoping you don't lose track.
-              </p>
-            </div>
-            <div class="animate-on-scroll">
-              <h3 class="text-base font-semibold text-text-primary mb-2" data-i18n="issue.b3Title">Your brand, their server</h3>
-              <p class="text-sm text-text-secondary leading-relaxed" data-i18n="issue.b3">
-                Every asset, every edit, every variant lives on someone else's infrastructure. When confidentiality matters, parking your brand in yet another SaaS is a tough sell to legal.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <hr class="section-divider" />
-
-      <!-- ===== THE FIX ===== -->
-      <section class="py-16 sm:py-24 lg:py-32">
-        <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
-          <div class="max-w-3xl">
-            <div class="section-label">
-              <span class="section-label-accent" data-i18n="fix.label">The fix</span>
-            </div>
-
-            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight mb-5 text-text-primary" data-i18n="fix.headline">
-              One canvas. From upload to export.
-            </h2>
-            <p class="text-base sm:text-lg text-text-secondary max-w-2xl leading-relaxed" data-i18n="fix.subheadline">
-              LemonSpace puts your visual workflow on one board — upload, organize, edit non-destructively, run agent workflows, compare outcomes, and export. Optional AI generation when you need it.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <hr class="section-divider" />
-
-      <!-- ===== FEATURES — Text-led, no cards ===== -->
-      <section id="features" class="py-16 sm:py-24 lg:py-32">
-        <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
-          <div class="max-w-3xl mb-12 sm:mb-16">
-            <div class="section-label">
-              <span class="section-label-accent" data-i18n="features.label">What LemonSpace actually does</span>
-            </div>
-            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-text-primary">
-              <span data-i18n="fix.headline">One canvas. From upload to export.</span>
-            </h2>
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-2">
-            {features.map((f) => (
-              <div class="feature-item animate-on-scroll">
-                <span class="block text-xs font-bold tracking-widest uppercase text-text-tertiary mb-2">{f.number}</span>
-                <h3 class="text-lg font-semibold text-text-primary mb-1.5" data-i18n={f.titleKey}>{f.titleDefault}</h3>
-                <p class="text-sm text-text-secondary leading-relaxed max-w-md" data-i18n={f.descKey}>{f.descDefault}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <hr class="section-divider" />
-
-      <!-- ===== HOW IT WORKS — Numbered timeline ===== -->
-      <section id="how-it-works" class="py-16 sm:py-24 lg:py-32">
-        <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
-          <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] gap-12 lg:gap-20">
-            <!-- Sticky left column -->
-            <div class="lg:sticky lg:top-24 lg:self-start">
-              <div class="section-label">
-                <span class="section-label-accent" data-i18n="how.label">How it Works</span>
-              </div>
-              <h2 class="text-2xl sm:text-3xl lg:text-[2.75rem] lg:leading-[1.08] font-bold tracking-tight text-text-primary" data-i18n="how.headline">
-                From idea to campaign in minutes
-              </h2>
-            </div>
-
-            <!-- Steps -->
-            <ol class="list-none m-0 p-0" aria-label="How LemonSpace works">
-              {steps.map((step) => (
-                <li class="how-step animate-on-scroll">
-                  <span class="how-step-number">{step.number}</span>
-                  <div>
-                    <h3 class="text-lg sm:text-xl font-semibold text-text-primary mb-1" data-i18n={step.titleKey}>{step.titleDefault}</h3>
-                    <p class="text-sm text-text-secondary leading-relaxed max-w-md" data-i18n={step.descKey}>{step.descDefault}</p>
-                  </div>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </div>
-      </section>
-
-      <hr class="section-divider" />
-
-      <!-- ===== PRICING ===== -->
-      {showPricing && <PricingSection id="pricing" />}
-      {showPricing && <hr class="section-divider" />}
-
-      <!-- ===== SECONDARY WAITLIST ===== -->
-      <section id="waitlist-secondary" class="py-16 sm:py-24 lg:py-32">
-        <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
-          <WaitlistSignup instance="secondary" variant="secondary" />
-        </div>
-      </section>
-
+      <LandingHero />
+      <LandingProblem />
+      <LandingManifesto />
+      <LandingHow />
+      <LandingFeatures />
+      <LandingHosting />
+      <LandingPricing />
+      <LandingWaitlist
+        initialMessage={initialWaitlistMessage}
+        initialMessageClass={initialWaitlistMessageClass}
+      />
     </main>
+    <LandingFooter />
 
-    <!-- ===== FOOTER ===== -->
-    <footer class="border-t border-border py-10 sm:py-14">
-      <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
-        <div class="flex flex-col sm:flex-row items-start justify-between gap-8">
-          <div>
-            <a href="#" class="inline-block mb-3">
-              <img src="/logos/lemonspace-logo-v2-primary-rgb.svg" alt="LemonSpace" class="h-6 w-auto logo-light" />
-              <img src="/logos/lemonspace-logo-v2-white-rgb.svg" alt="LemonSpace" class="h-6 w-auto logo-dark" />
-            </a>
-            <p class="text-sm text-text-tertiary max-w-xs" data-i18n="footer.tagline">
-              Visual workspace for small creative teams. In active development.
-            </p>
-          </div>
-          <div class="flex flex-wrap items-center gap-x-6 gap-y-3">
-            <a href="#" class="text-sm text-text-tertiary hover:text-text-secondary transition-colors" data-i18n="footer.github">GitHub</a>
-            <a href="#" class="text-sm text-text-tertiary hover:text-text-secondary transition-colors" data-i18n="footer.docs">Documentation</a>
-            <a href="#" class="text-sm text-text-tertiary hover:text-text-secondary transition-colors" data-i18n="footer.privacy">Privacy</a>
-            <a href="#" class="text-sm text-text-tertiary hover:text-text-secondary transition-colors" data-i18n="footer.terms">Terms</a>
-          </div>
-        </div>
-        <div class="mt-8 pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p class="text-xs text-text-tertiary" data-i18n="footer.copyright">&copy; 2026 LemonSpace. All rights reserved.</p>
-          <p class="text-xs text-text-tertiary" data-i18n="footer.license">Licensed under BSL 1.1</p>
-        </div>
-      </div>
-    </footer>
-
-    <!-- ===== SCROLL ANIMATION OBSERVER ===== -->
-    <script>
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('is-visible');
-              observer.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
-      );
-      document.querySelectorAll('.animate-on-scroll').forEach((el) => {
-        observer.observe(el);
-      });
-    </script>
-
-    <!-- ===== WAITLIST FORM ===== -->
-    <script define:vars={{ en, de }}>
+    <script define:vars={{ waitlist: de.waitlist }}>
       (function() {
-        var translations = { en: en, de: de };
-
-        function currentLang() {
-          var stored = localStorage.getItem('lang');
-          if (stored === 'de' || stored === 'en') return stored;
-          var htmlLang = document.documentElement.lang;
-          return htmlLang === 'de' ? 'de' : 'en';
-        }
-
-        function waitlistCopy(lang) {
-          if (translations[lang] && translations[lang].waitlist) {
-            return translations[lang].waitlist;
-          }
-          return translations.en.waitlist;
-        }
-
         function setMessage(el, text, tone) {
           if (!el) return;
 
           if (!text) {
             el.textContent = '';
-            el.className = 'mt-3 text-sm hidden';
+            el.className = 'form-msg hidden';
             return;
           }
 
-          if (tone === 'success') {
-            el.className = 'mt-3 text-sm text-primary font-medium';
-          } else if (tone === 'muted') {
-            el.className = 'mt-3 text-sm text-text-tertiary';
-          } else {
-            el.className = 'mt-3 text-sm text-red-500';
-          }
-
+          el.className = tone === 'success'
+            ? 'form-msg success'
+            : tone === 'error'
+              ? 'form-msg error'
+              : 'form-msg';
           el.textContent = text;
         }
 
@@ -442,20 +92,16 @@ const steps = [
           var params = new URLSearchParams(window.location.search);
           var status = params.get('waitlist');
 
-          if (!status) {
-            return;
-          }
-
-          var copy = waitlistCopy(currentLang());
+          if (!status) return;
 
           if (status === 'success') {
-            setMessage(msgEl, copy.success, 'success');
+            setMessage(msgEl, waitlist.success, 'success');
           } else if (status === 'already') {
-            setMessage(msgEl, copy.already, 'muted');
+            setMessage(msgEl, waitlist.already, 'muted');
           } else if (status === 'invalid') {
-            setMessage(msgEl, copy.errorInvalid, 'error');
+            setMessage(msgEl, waitlist.errorInvalid, 'error');
           } else {
-            setMessage(msgEl, copy.errorGeneric, 'error');
+            setMessage(msgEl, waitlist.errorGeneric, 'error');
           }
 
           params.delete('waitlist');
@@ -465,30 +111,24 @@ const steps = [
         }
 
         var forms = Array.prototype.slice.call(document.querySelectorAll('[data-waitlist-form]'));
-
         if (!forms.length) return;
 
         var primaryForm = forms.find(function(item) {
           return item.getAttribute('data-waitlist-primary') === 'true';
         }) || forms[0];
-
-        var primaryContainer = primaryForm.closest('[data-waitlist-instance]');
-        var primaryMessage = primaryContainer ? primaryContainer.querySelector('[data-waitlist-message]') : null;
-
+        var primaryMessage = primaryForm.querySelector('[data-waitlist-message]');
         consumeStatusFromQuery(primaryMessage);
 
         forms.forEach(function(form) {
-          var container = form.closest('[data-waitlist-instance]');
-          if (!container) return;
-
-          var msg = container.querySelector('[data-waitlist-message]');
+          var msg = form.querySelector('[data-waitlist-message]');
           var submitButton = form.querySelector('[data-waitlist-submit]');
+          var submitLabel = form.querySelector('[data-waitlist-submit-label]');
           var langInput = form.querySelector('[data-waitlist-lang]');
 
-          if (!msg || !submitButton) return;
+          if (!msg || !submitButton || !submitLabel) return;
 
-          form.addEventListener('submit', async function(e) {
-            e.preventDefault();
+          form.addEventListener('submit', async function(event) {
+            event.preventDefault();
 
             var emailInput = form.querySelector('input[type="email"][name="email"]');
             if (!emailInput) return;
@@ -496,27 +136,24 @@ const steps = [
             var email = emailInput.value.trim();
             emailInput.value = email;
 
-            var lang = currentLang();
-            var copy = waitlistCopy(lang);
-
             if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-              setMessage(msg, copy.errorInvalid, 'error');
+              setMessage(msg, waitlist.errorInvalid, 'error');
               return;
             }
 
             if (langInput) {
-              langInput.value = lang;
+              langInput.value = 'de';
             }
 
-            var originalButtonLabel = submitButton.textContent;
+            var originalButtonLabel = submitLabel.textContent;
             submitButton.disabled = true;
-            submitButton.textContent = copy.submitting;
+            submitLabel.textContent = waitlist.submitting;
             setMessage(msg, '', 'error');
 
             try {
               var formData = new FormData(form);
               formData.set('email', email);
-              formData.set('lang', lang);
+              formData.set('lang', 'de');
 
               var response = await fetch('/api/waitlist', {
                 method: 'POST',
@@ -534,151 +171,33 @@ const steps = [
               }
 
               if (response.ok && payload && payload.state === 'already') {
-                setMessage(msg, copy.already, 'muted');
+                setMessage(msg, waitlist.already, 'muted');
                 return;
               }
 
               if (response.ok) {
-                setMessage(msg, copy.success, 'success');
+                setMessage(msg, waitlist.success, 'success');
                 form.reset();
                 if (langInput) {
-                  langInput.value = lang;
+                  langInput.value = 'de';
                 }
                 return;
               }
 
               if (payload && payload.state === 'invalid') {
-                setMessage(msg, copy.errorInvalid, 'error');
+                setMessage(msg, waitlist.errorInvalid, 'error');
               } else {
-                setMessage(msg, copy.errorGeneric, 'error');
+                setMessage(msg, waitlist.errorGeneric, 'error');
               }
             } catch (err) {
-              setMessage(msg, copy.errorGeneric, 'error');
+              setMessage(msg, waitlist.errorGeneric, 'error');
             } finally {
               submitButton.disabled = false;
-              submitButton.textContent = originalButtonLabel;
+              submitLabel.textContent = originalButtonLabel;
             }
           });
         });
       })();
     </script>
-
-    <!-- ===== i18n + THEME + LANGUAGE SWITCHER ===== -->
-    <script define:vars={{ en, de }}>
-      (function() {
-        var translations = { en: en, de: de };
-        var currentLang = 'en';
-
-        function t(key, lang) {
-          var keys = key.split('.');
-          var val = translations[lang];
-          for (var i = 0; i < keys.length; i++) {
-            if (val == null) return key;
-            val = val[keys[i]];
-          }
-          return val != null ? val : key;
-        }
-
-        function applyTranslations(lang) {
-          currentLang = lang;
-          document.documentElement.lang = lang;
-          document.title = t('meta.title', lang);
-          var descEl = document.getElementById('meta-description');
-          if (descEl) {
-            descEl.setAttribute('content', t('meta.description', lang));
-          }
-
-          var els = document.querySelectorAll('[data-i18n]');
-          for (var i = 0; i < els.length; i++) {
-            var key = els[i].getAttribute('data-i18n');
-            var val = t(key, lang);
-            if (val !== key) els[i].textContent = val;
-          }
-
-          // Placeholders
-          var phEls = document.querySelectorAll('[data-i18n-placeholder]');
-          for (var i = 0; i < phEls.length; i++) {
-            var key = phEls[i].getAttribute('data-i18n-placeholder');
-            var val = t(key, lang);
-            if (val !== key) phEls[i].placeholder = val;
-          }
-
-          var langBtns = document.querySelectorAll('.lang-btn');
-          for (var i = 0; i < langBtns.length; i++) {
-            var btnLang = langBtns[i].getAttribute('data-lang');
-            if (btnLang === lang) {
-              langBtns[i].classList.add('font-semibold', 'text-text-primary');
-              langBtns[i].classList.remove('text-text-tertiary');
-            } else {
-              langBtns[i].classList.remove('font-semibold');
-              langBtns[i].classList.add('text-text-tertiary');
-              langBtns[i].classList.remove('text-text-primary');
-            }
-          }
-        }
-
-        function detectLanguage() {
-          var stored = localStorage.getItem('lang');
-          if (stored === 'de' || stored === 'en') return stored;
-          var navLang = navigator.language || navigator.userLanguage || '';
-          if (navLang.toLowerCase().startsWith('de')) return 'de';
-          fetch('https://ipapi.co/json/', { signal: AbortSignal.timeout(3000) })
-            .then(function(r) { return r.json(); })
-            .then(function(data) {
-              if (data && (data.country_code === 'DE' || data.country_code === 'AT' || data.country_code === 'CH')) {
-                if (!localStorage.getItem('lang')) {
-                  localStorage.setItem('lang', 'de');
-                  applyTranslations('de');
-                }
-              }
-            })
-            .catch(function() {});
-          return 'en';
-        }
-
-        function updateThemeIcons() {
-          var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-          var moonIcons = document.querySelectorAll('.theme-icon-moon');
-          var sunIcons = document.querySelectorAll('.theme-icon-sun');
-          for (var i = 0; i < moonIcons.length; i++) { moonIcons[i].style.display = isDark ? 'none' : 'inline-block'; }
-          for (var i = 0; i < sunIcons.length; i++) { sunIcons[i].style.display = isDark ? 'inline-block' : 'none'; }
-        }
-
-        function toggleTheme() {
-          var html = document.documentElement;
-          html.classList.add('theme-transitioning');
-          var isDark = html.getAttribute('data-theme') === 'dark';
-          if (isDark) {
-            html.removeAttribute('data-theme');
-            localStorage.setItem('theme', 'light');
-          } else {
-            html.setAttribute('data-theme', 'dark');
-            localStorage.setItem('theme', 'dark');
-          }
-          updateThemeIcons();
-          setTimeout(function() { html.classList.remove('theme-transitioning'); }, 350);
-        }
-
-        document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
-        document.getElementById('theme-toggle-mobile').addEventListener('click', toggleTheme);
-
-        function switchLang(lang) {
-          localStorage.setItem('lang', lang);
-          applyTranslations(lang);
-        }
-
-        var langBtns = document.querySelectorAll('.lang-btn');
-        for (var i = 0; i < langBtns.length; i++) {
-          langBtns[i].addEventListener('click', function() {
-            switchLang(this.getAttribute('data-lang'));
-          });
-        }
-
-        updateThemeIcons();
-        var detectedLang = detectLanguage();
-        applyTranslations(detectedLang);
-      })();
-    </script>
-
   </body>
 </html>

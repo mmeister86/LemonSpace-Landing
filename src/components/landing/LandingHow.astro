@@ -1,0 +1,95 @@
+<!-- ═════════ ANATOMY (How it works, dark) ═════════ -->
+<section class="anatomy" id="how">
+  <div class="wrap">
+    <div class="anatomy-grid">
+      <div class="anatomy-canvas" aria-hidden="true">
+        <div class="grid-bg"></div>
+        <svg class="a-wire" viewBox="0 0 600 580" preserveAspectRatio="none">
+          <defs>
+            <path id="aw1" d="M 175 110 C 230 110, 240 200, 280 200"></path>
+            <path id="aw2" d="M 175 410 C 230 410, 240 250, 280 250"></path>
+            <path id="aw3" d="M 410 230 C 450 230, 460 380, 510 380"></path>
+            <path id="aw4" d="M 410 200 C 450 200, 460 100, 510 100"></path>
+          </defs>
+          <use href="#aw1" stroke="rgba(255,255,255,.18)" stroke-width="1.5" fill="none" stroke-dasharray="3 4"></use>
+          <use href="#aw2" stroke="rgba(255,255,255,.18)" stroke-width="1.5" fill="none" stroke-dasharray="3 4"></use>
+          <use href="#aw3" stroke="rgba(255,255,255,.18)" stroke-width="1.5" fill="none" stroke-dasharray="3 4"></use>
+          <use href="#aw4" stroke="rgba(255,255,255,.18)" stroke-width="1.5" fill="none" stroke-dasharray="3 4"></use>
+          <circle r="3" fill="var(--primary-3)"><animateMotion dur="3.6s" repeatCount="indefinite"><mpath href="#aw1"></mpath></animateMotion></circle>
+          <circle r="3" fill="var(--primary-3)"><animateMotion dur="3.8s" repeatCount="indefinite" begin="0.7s"><mpath href="#aw2"></mpath></animateMotion></circle>
+          <circle r="3" fill="var(--accent-warm)"><animateMotion dur="3s" repeatCount="indefinite" begin="0.3s"><mpath href="#aw3"></mpath></animateMotion></circle>
+        </svg>
+
+        <div class="a-node a-1">
+          <div class="head"><i class="dot green"></i> bild · v2 <span class="pill">jpg</span></div>
+          <div class="body"><div class="ph"></div></div>
+        </div>
+        <div class="a-node a-2">
+          <div class="head"><i class="dot amber"></i> prompt <span class="pill">md</span></div>
+          <div class="body">
+            <div class="text">"…in <span style="color: var(--accent-warm);">Pastellgelb</span>, 4 Varianten, weiches Licht."</div>
+            <span class="chip">Gemini 2.5</span>
+          </div>
+        </div>
+        <div class="a-node a-3">
+          <div class="head"><i class="dot green"></i> ki-bild <span class="pill">batch</span></div>
+          <div class="body">
+            <div class="grid2">
+              <div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div>
+            </div>
+            <div class="a-status"><i class="pulse"></i> 2/4 done · 8 Cr</div>
+          </div>
+        </div>
+        <div class="a-node a-skel">
+          <div class="head"><i class="dot" style="background: rgba(255,255,255,.3);"></i> skeleton <span class="pill">queued</span></div>
+          <div class="body"></div>
+        </div>
+        <div class="a-node a-4">
+          <div class="head"><i class="dot green"></i> compare <span class="pill">A/B</span></div>
+          <div class="body">
+            <div class="ph" style="aspect-ratio: 16/8;"></div>
+            <div class="a-status"><i class="pulse"></i> ready</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <span class="eyebrow">So funktioniert's</span>
+        <h2 class="section-h" style="margin-top: 18px;">Von der Idee zur Kampagne in Minuten.</h2>
+        <p class="lede" style="margin-top: 22px;">
+          Vier Schritte, ein Canvas. Jeder Status sichtbar — direkt am Node. Keine globalen Spinner, keine blockierenden Modals.
+        </p>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">01</div>
+            <div>
+              <h3>Upload</h3>
+              <p>Lege deine Brand-Assets und Referenzbilder auf den Canvas. Tagge sie und halte deine Library sauber organisiert.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">02</div>
+            <div>
+              <h3>Workflow bauen</h3>
+              <p>Verbinde Nodes für Organisation, Bearbeitung, Transformation und Vergleich. KI-Generierung nur dann, wenn wirklich etwas Neues fehlt.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">03</div>
+            <div>
+              <h3>Verfeinern</h3>
+              <p>Passe Kurven, Farbe und Licht nicht-destruktiv an. Führe Agent-Workflows aus, prüfe Ergebnisse und behalte jederzeit die Kontrolle.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">04</div>
+            <div>
+              <h3>Export</h3>
+              <p>Gewinner wählen, in eure Kampagnenformate exportieren, ausliefern. Web-, Social- und Print-Presets — einmal definiert, für immer wiederverwendbar.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
