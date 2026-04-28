@@ -1,0 +1,31 @@
+---
+import WaitlistSignup from '../WaitlistSignup.astro';
+
+interface Props {
+  initialMessage?: string;
+  initialMessageClass?: string;
+}
+
+const { initialMessage = '', initialMessageClass = 'form-msg hidden' } = Astro.props as Props;
+---
+
+<!-- ═════════ WAITLIST ═════════ -->
+<section class="section-pad alt-bg" id="waitlist">
+  <div class="wrap">
+    <div class="waitlist">
+      <div>
+        <span class="eyebrow">Early Access</span>
+        <h2 class="section-h" style="margin-top: 18px;">Setz dich auf die Liste.</h2>
+        <p class="lede" style="margin-top: 22px;">
+          Wir bauen LemonSpace für Kreativteams, die einen Ort für ihren visuellen Workflow wollen — von Brand-Assets bis zur fertigen Kampagne. Wir geben Bescheid, sobald die Beta startet.
+        </p>
+      </div>
+      <WaitlistSignup
+        instance="primary"
+        isPrimary={true}
+        initialMessage={initialMessage}
+        initialMessageClass={initialMessageClass}
+      />
+    </div>
+  </div>
+</section>
