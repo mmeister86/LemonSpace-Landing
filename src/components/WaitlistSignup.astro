@@ -1,13 +1,17 @@
 ---
 interface Props {
+  copy: any;
   instance: string;
+  lang: 'de' | 'en';
   isPrimary?: boolean;
   initialMessage?: string;
   initialMessageClass?: string;
 }
 
 const {
+  copy,
   instance,
+  lang,
   isPrimary = false,
   initialMessage = '',
   initialMessageClass = 'form-msg hidden',
@@ -26,7 +30,7 @@ const companyId = `waitlist-company-${instance}`;
   novalidate
   data-waitlist-instance={instance}
 >
-  <label for={emailId}>Geschäftliche E-Mail</label>
+  <label for={emailId}>{copy.emailLabel}</label>
   <div class="row">
     <input
       id={emailId}
@@ -34,18 +38,18 @@ const companyId = `waitlist-company-${instance}`;
       type="email"
       required
       autocomplete="email"
-      placeholder="du@agentur.de"
+      placeholder={copy.emailPlaceholder}
     />
-    <input data-waitlist-lang type="hidden" name="lang" value="de" />
+    <input data-waitlist-lang type="hidden" name="lang" value={lang} />
     <div class="hidden" aria-hidden="true">
       <label for={companyId}>Company</label>
       <input id={companyId} type="text" name="company" tabindex="-1" autocomplete="off" />
     </div>
     <button data-waitlist-submit type="submit">
-      <span data-waitlist-submit-label>Auf die Liste</span>
+      <span data-waitlist-submit-label>{copy.submit}</span>
       <svg style="margin-left: 4px;" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 7h8M7.5 3.5L11 7l-3.5 3.5"></path></svg>
     </button>
   </div>
-  <p class="note">Kein Spam. Wir schreiben dir, sobald die Beta startet.</p>
+  <p class="note">{copy.privacyNote}</p>
   <div data-waitlist-message class={initialMessageClass} aria-live="polite">{initialMessage}</div>
 </form>

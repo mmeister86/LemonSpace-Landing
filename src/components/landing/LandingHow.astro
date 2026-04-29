@@ -1,3 +1,11 @@
+---
+interface Props {
+  copy: any;
+}
+
+const { copy } = Astro.props as Props;
+---
+
 <!-- ═════════ ANATOMY (How it works, dark) ═════════ -->
 <section class="anatomy" id="how">
   <div class="wrap">
@@ -21,23 +29,23 @@
         </svg>
 
         <div class="a-node a-1">
-          <div class="head"><i class="dot green"></i> bild · v2 <span class="pill">jpg</span></div>
+          <div class="head"><i class="dot green"></i> {copy.canvas.imageHead} <span class="pill">jpg</span></div>
           <div class="body"><div class="ph"></div></div>
         </div>
         <div class="a-node a-2">
           <div class="head"><i class="dot amber"></i> prompt <span class="pill">md</span></div>
           <div class="body">
-            <div class="text">"…in <span style="color: var(--accent-warm);">Pastellgelb</span>, 4 Varianten, weiches Licht."</div>
+            <div class="text" set:html={copy.canvas.promptText}></div>
             <span class="chip">Gemini 2.5</span>
           </div>
         </div>
         <div class="a-node a-3">
-          <div class="head"><i class="dot green"></i> ki-bild <span class="pill">batch</span></div>
+          <div class="head"><i class="dot green"></i> {copy.canvas.aiHead} <span class="pill">batch</span></div>
           <div class="body">
             <div class="grid2">
               <div class="tile"></div><div class="tile"></div><div class="tile"></div><div class="tile"></div>
             </div>
-            <div class="a-status"><i class="pulse"></i> 2/4 done · 8 Cr</div>
+            <div class="a-status"><i class="pulse"></i> {copy.canvas.aiStatus}</div>
           </div>
         </div>
         <div class="a-node a-skel">
@@ -54,40 +62,21 @@
       </div>
 
       <div>
-        <span class="eyebrow">So funktioniert's</span>
-        <h2 class="section-h" style="margin-top: 18px;">Von der Idee zur Kampagne in Minuten.</h2>
+        <span class="eyebrow">{copy.label}</span>
+        <h2 class="section-h" style="margin-top: 18px;">{copy.headline}</h2>
         <p class="lede" style="margin-top: 22px;">
-          Vier Schritte, ein Canvas. Jeder Status sichtbar — direkt am Node. Keine globalen Spinner, keine blockierenden Modals.
+          {copy.subheadline}
         </p>
         <div class="steps">
-          <div class="step">
-            <div class="step-num">01</div>
-            <div>
-              <h3>Upload</h3>
-              <p>Lege deine Brand-Assets und Referenzbilder auf den Canvas. Tagge sie und halte deine Library sauber organisiert.</p>
+          {copy.steps.map((step, index) => (
+            <div class="step">
+              <div class="step-num">{String(index + 1).padStart(2, '0')}</div>
+              <div>
+                <h3>{step.title}</h3>
+                <p>{step.desc}</p>
+              </div>
             </div>
-          </div>
-          <div class="step">
-            <div class="step-num">02</div>
-            <div>
-              <h3>Workflow bauen</h3>
-              <p>Verbinde Nodes für Organisation, Bearbeitung, Transformation und Vergleich. KI-Generierung nur dann, wenn wirklich etwas Neues fehlt.</p>
-            </div>
-          </div>
-          <div class="step">
-            <div class="step-num">03</div>
-            <div>
-              <h3>Verfeinern</h3>
-              <p>Passe Kurven, Farbe und Licht nicht-destruktiv an. Führe Agent-Workflows aus, prüfe Ergebnisse und behalte jederzeit die Kontrolle.</p>
-            </div>
-          </div>
-          <div class="step">
-            <div class="step-num">04</div>
-            <div>
-              <h3>Export</h3>
-              <p>Gewinner wählen, in eure Kampagnenformate exportieren, ausliefern. Web-, Social- und Print-Presets — einmal definiert, für immer wiederverwendbar.</p>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>

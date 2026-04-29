@@ -1,0 +1,210 @@
+---
+import '../styles/global.css';
+import LandingNav from '../components/landing/LandingNav.astro';
+import LandingHero from '../components/landing/LandingHero.astro';
+import LandingProblem from '../components/landing/LandingProblem.astro';
+import LandingManifesto from '../components/landing/LandingManifesto.astro';
+import LandingHow from '../components/landing/LandingHow.astro';
+import LandingFeatures from '../components/landing/LandingFeatures.astro';
+import LandingHosting from '../components/landing/LandingHosting.astro';
+import LandingPricing from '../components/landing/LandingPricing.astro';
+import LandingWaitlist from '../components/landing/LandingWaitlist.astro';
+import LandingFooter from '../components/landing/LandingFooter.astro';
+
+interface Props {
+  copy: any;
+  lang: 'de' | 'en';
+}
+
+const { copy, lang } = Astro.props as Props;
+const waitlistState = Astro.url.searchParams.get('waitlist');
+const waitlistMessages = {
+  success: copy.waitlist.success,
+  already: copy.waitlist.already,
+  invalid: copy.waitlist.errorInvalid,
+  error: copy.waitlist.errorGeneric,
+} as const;
+
+const initialWaitlistMessage =
+  waitlistState && waitlistState in waitlistMessages
+    ? waitlistMessages[waitlistState as keyof typeof waitlistMessages]
+    : '';
+
+const initialWaitlistMessageClass =
+  waitlistState === 'success'
+    ? 'form-msg success'
+    : waitlistState === 'already'
+      ? 'form-msg'
+      : waitlistState === 'invalid' || waitlistState === 'error'
+        ? 'form-msg error'
+        : 'form-msg hidden';
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta id="meta-description" name="description" content={copy.meta.description} />
+    <meta name="generator" content={Astro.generator} />
+    <title>{copy.meta.title}</title>
+    <script
+      src="https://rybbit.matthias.lol/api/script.js"
+      data-site-id="4eccaa2ec1ec"
+      defer
+    ></script>
+  </head>
+  <body>
+    <a href="#main" class="skip-link">{copy.skipLink}</a>
+    <LandingNav copy={copy.nav} lang={lang} />
+    <main id="main">
+      <LandingHero copy={copy.hero} />
+      <LandingProblem copy={copy.problem} />
+      <LandingManifesto copy={copy.manifesto} />
+      <LandingHow copy={copy.how} />
+      <LandingFeatures copy={copy.features} />
+      <LandingHosting copy={copy.hosting} />
+      <LandingPricing copy={copy.pricing} />
+      <LandingWaitlist
+        copy={copy.waitlist}
+        lang={lang}
+        initialMessage={initialWaitlistMessage}
+        initialMessageClass={initialWaitlistMessageClass}
+      />
+    </main>
+    <LandingFooter copy={copy.footer} />
+
+    <script define:vars={{ waitlist: copy.waitlist, lang }}>
+      (function() {
+        function setMessage(el, text, tone) {
+          if (!el) return;
+
+          if (!text) {
+            el.textContent = '';
+            el.className = 'form-msg hidden';
+            return;
+          }
+
+          el.className = tone === 'success'
+            ? 'form-msg success'
+            : tone === 'error'
+              ? 'form-msg error'
+              : 'form-msg';
+          el.textContent = text;
+        }
+
+        function consumeStatusFromQuery(msgEl) {
+          var params = new URLSearchParams(window.location.search);
+          var status = params.get('waitlist');
+
+          if (!status) return;
+
+          if (status === 'success') {
+            setMessage(msgEl, waitlist.success, 'success');
+          } else if (status === 'already') {
+            setMessage(msgEl, waitlist.already, 'muted');
+          } else if (status === 'invalid') {
+            setMessage(msgEl, waitlist.errorInvalid, 'error');
+          } else {
+            setMessage(msgEl, waitlist.errorGeneric, 'error');
+          }
+
+          params.delete('waitlist');
+          var query = params.toString();
+          var nextUrl = window.location.pathname + (query ? '?' + query : '') + window.location.hash;
+          window.history.replaceState({}, '', nextUrl);
+        }
+
+        var forms = Array.prototype.slice.call(document.querySelectorAll('[data-waitlist-form]'));
+        if (!forms.length) return;
+
+        var primaryForm = forms.find(function(item) {
+          return item.getAttribute('data-waitlist-primary') === 'true';
+        }) || forms[0];
+        var primaryMessage = primaryForm.querySelector('[data-waitlist-message]');
+        consumeStatusFromQuery(primaryMessage);
+
+        forms.forEach(function(form) {
+          var msg = form.querySelector('[data-waitlist-message]');
+          var submitButton = form.querySelector('[data-waitlist-submit]');
+          var submitLabel = form.querySelector('[data-waitlist-submit-label]');
+          var langInput = form.querySelector('[data-waitlist-lang]');
+
+          if (!msg || !submitButton || !submitLabel) return;
+
+          form.addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            var emailInput = form.querySelector('input[type="email"][name="email"]');
+            if (!emailInput) return;
+
+            var email = emailInput.value.trim();
+            emailInput.value = email;
+
+            if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+              setMessage(msg, waitlist.errorInvalid, 'error');
+              return;
+            }
+
+            if (langInput) {
+              langInput.value = lang;
+            }
+
+            var originalButtonLabel = submitLabel.textContent;
+            submitButton.disabled = true;
+            submitLabel.textContent = waitlist.submitting;
+            setMessage(msg, '', 'error');
+
+            try {
+              var formData = new FormData(form);
+              formData.set('email', email);
+              formData.set('lang', lang);
+
+              var response = await fetch('/api/waitlist', {
+                method: 'POST',
+                headers: {
+                  Accept: 'application/json',
+                },
+                body: formData,
+              });
+
+              var payload = null;
+              try {
+                payload = await response.json();
+              } catch (err) {
+                payload = null;
+              }
+
+              if (response.ok && payload && payload.state === 'already') {
+                setMessage(msg, waitlist.already, 'muted');
+                return;
+              }
+
+              if (response.ok) {
+                setMessage(msg, waitlist.success, 'success');
+                form.reset();
+                if (langInput) {
+                  langInput.value = lang;
+                }
+                return;
+              }
+
+              if (payload && payload.state === 'invalid') {
+                setMessage(msg, waitlist.errorInvalid, 'error');
+              } else {
+                setMessage(msg, waitlist.errorGeneric, 'error');
+              }
+            } catch (err) {
+              setMessage(msg, waitlist.errorGeneric, 'error');
+            } finally {
+              submitButton.disabled = false;
+              submitLabel.textContent = originalButtonLabel;
+            }
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>

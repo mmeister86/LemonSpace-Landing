@@ -1,12 +1,20 @@
+---
+interface Props {
+  copy: any;
+}
+
+const { copy } = Astro.props as Props;
+---
+
 <!-- ═════════ MANIFESTO / FIX ═════════ -->
 <section class="manifesto">
   <div class="wrap">
-    <span class="eyebrow">Die Antwort</span>
+    <span class="eyebrow">{copy.label}</span>
     <h2 style="margin-top: 22px;">
-      Ein Canvas. Vom <em>Upload</em> bis zum <em>Export.</em>
+      {copy.headline.before} <em>{copy.headline.firstEm}</em> {copy.headline.middle} <em>{copy.headline.secondEm}</em>
     </h2>
     <p class="lede" style="text-align: center;">
-      LemonSpace bringt euren visuellen Workflow auf ein Board — hochladen, organisieren, nicht-destruktiv bearbeiten, Agent-Workflows ausführen, Ergebnisse vergleichen und exportieren. Optionale KI-Generierung nur wenn ihr sie braucht.
+      {copy.subheadline}
     </p>
   </div>
 </section>

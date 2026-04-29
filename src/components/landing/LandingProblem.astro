@@ -1,49 +1,46 @@
+---
+interface Props {
+  copy: any;
+}
+
+const { copy } = Astro.props as Props;
+---
+
 <!-- ═════════ PROBLEM ═════════ -->
 <section class="section-pad alt-bg">
   <div class="wrap">
-    <span class="eyebrow muted">Das Problem</span>
+    <span class="eyebrow muted">{copy.label}</span>
     <h2 class="section-h" style="margin-top: 18px;">
-      Dein Bild-Workflow lebt in <em style="color: #c0521b; font-style: normal;">acht Browser-Tabs.</em>
+      {copy.headline.before} <em style="color: #c0521b; font-style: normal;">{copy.headline.em}</em>
     </h2>
 
     <div class="problem-grid" style="margin-top: 56px;">
       <div class="tabs-mock">
         <div class="tabs-bar">
-          <div class="tab">Figma · Brand Kit <span class="x">×</span></div>
-          <div class="tab alarm">Midjourney</div>
-          <div class="tab">Drive · refs <span class="x">×</span></div>
-          <div class="tab">Photoshop</div>
-          <div class="tab active">ChatGPT — captions <span class="x">×</span></div>
-          <div class="tab alarm">Krea.ai</div>
-          <div class="tab">Notion · brief <span class="x">×</span></div>
-          <div class="tab">Slack — feedback</div>
+          {copy.tabs.map((tab) => (
+            <div class:list={['tab', tab.state]}>
+              {tab.label}
+              {tab.close && <span class="x">×</span>}
+            </div>
+          ))}
         </div>
         <div class="tabs-content">
-          <div class="row"><b>13:42</b> &nbsp; Variante 7 fertig — wo ist sie? <span style="color: #c0521b;">▸ Tab 2</span></div>
-          <div class="row"><b>13:43</b> &nbsp; Brief lag im anderen Tool …</div>
-          <div class="row"><b>13:44</b> &nbsp; Photoshop hängt. Datei nicht gespeichert.</div>
-          <div class="row"><b>13:45</b> &nbsp; "Wo war noch der Vergleich von gestern?"</div>
-          <div class="row" style="color: var(--ink-4);"><b>13:46</b> &nbsp; Drive · 12 PNGs in /downloads</div>
-          <div class="row" style="color: #c0521b;"><b>13:47</b> &nbsp; Midjourney session expired ●</div>
+          {copy.events.map((event) => (
+            <div class="row" style={event.style || undefined}>
+              <b>{event.time}</b> &nbsp; <span set:html={event.text}></span>
+            </div>
+          ))}
         </div>
       </div>
 
       <div class="pain-list">
-        <div class="pain-item">
-          <span class="pain-num">01</span>
-          <h3>Tab-Roulette.</h3>
-          <p>Irgendwas braucht deine Aufmerksamkeit. Tab drei? Tab fünf? Du klickst dich durch acht Tabs und versuchst den zu finden, der piept. Wenn du ihn gefunden hast, ist ein anderes Tool schon abgestürzt.</p>
-        </div>
-        <div class="pain-item">
-          <span class="pain-num">02</span>
-          <h3>Kein Vergleich.</h3>
-          <p>Zwölf Varianten erstellt, aber sie sind über Ordner, Chats und Downloads verteilt. Vergleichen heißt: sechs Fenster nebeneinander und hoffen, dass du nicht den Überblick verlierst.</p>
-        </div>
-        <div class="pain-item">
-          <span class="pain-num">03</span>
-          <h3>Deine Marke, ihr Server.</h3>
-          <p>Jedes Asset, jede Bearbeitung, jede Variante liegt auf fremder Infrastruktur. Wenn Vertraulichkeit wichtig ist, ist das für Legal oft schwer zu vertreten.</p>
-        </div>
+        {copy.items.map((item, index) => (
+          <div class="pain-item">
+            <span class="pain-num">{String(index + 1).padStart(2, '0')}</span>
+            <h3>{item.title}</h3>
+            <p>{item.desc}</p>
+          </div>
+        ))}
       </div>
     </div>
   </div>

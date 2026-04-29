@@ -1,20 +1,26 @@
+---
+interface Props {
+  copy: any;
+}
+
+const { copy } = Astro.props as Props;
+---
+
 <!-- ═════════ HERO ═════════ -->
 <section class="hero">
   <div class="wrap" style="margin-top: 40px;">
     <div class="hero-grid">
       <div>
-        <span class="eyebrow">Early Access · v0.1 Beta</span>
+        <span class="eyebrow">{copy.kicker}</span>
         <h1 class="display" style="margin-top: 22px;">
-          Der visuelle Workspace, in dem eure Brand-Assets zu <em>Kampagnen</em> werden.
+          {copy.headline.before} <em>{copy.headline.em}</em>{copy.headline.after}
         </h1>
         <p class="lede" style="margin-top: 28px;">
-          Ladet eure Assets hoch, organisiert sie auf einem nodebasierten
-          Canvas, vergleicht Varianten und exportiert kampagnenfertig — alles an
-          einem Ort. KI-Generierung optional, wenn ihr sie braucht.
+          {copy.subheadline}
         </p>
         <div class="hero-cta">
           <a href="#waitlist" class="btn btn-primary">
-            Auf die Warteliste
+            {copy.ctaPrimary}
             <svg
               class="btn-arrow"
               width="14"
@@ -28,7 +34,7 @@
             >
           </a>
           <a href="#how" class="btn btn-ghost">
-            So funktioniert's
+            {copy.ctaSecondary}
             <svg
               class="btn-arrow"
               width="14"
@@ -43,25 +49,15 @@
           </a>
         </div>
         <div class="hero-meta">
-          <span><i class="dot"></i> Self-hostable</span>
-          <span><i class="dot"></i> Source-available · BSL 1.1</span>
-          <span><i class="dot"></i> EU-Infrastruktur</span>
+          {copy.meta.map((item) => <span><i class="dot"></i> {item}</span>)}
         </div>
-        <div class="hero-proof" aria-label="Produktstatus">
-          <div>
-            <b>Canvas-first</b>
-            <span
-              >Assets, Prompts, Varianten und Exporte bleiben sichtbar
-              verbunden.</span
-            >
-          </div>
-          <div>
-            <b>Keine Lock-ins</b>
-            <span
-              >Self-hosted geplant, Source-available und auf EU-Setups
-              ausgelegt.</span
-            >
-          </div>
+        <div class="hero-proof" aria-label={copy.proofLabel}>
+          {copy.proof.map((item) => (
+            <div>
+              <b>{item.title}</b>
+              <span>{item.desc}</span>
+            </div>
+          ))}
         </div>
       </div>
 
@@ -70,8 +66,8 @@
         <div class="canvas-frame">
           <div class="canvas-chrome">
             <span class="lights"><span></span><span></span><span></span></span>
-            <span style="color: var(--ink-2);">kampagne-spring-26.lemon</span>
-            <span class="crumb">canvas · 4 nodes · live</span>
+            <span style="color: var(--ink-2);">{copy.canvas.filename}</span>
+            <span class="crumb">{copy.canvas.crumb}</span>
           </div>
           <div class="canvas-stage">
             <svg class="wires" viewBox="0 0 600 480" preserveAspectRatio="none">
@@ -131,11 +127,11 @@
               >
             </svg>
 
-            <!-- Node 1: Bild -->
+            <!-- Node 1: Image -->
             <div class="node n-img">
               <div class="node-head">
-                <i class="dot"></i><span class="pill">Bild</span><span
-                  style="margin-left:auto;">hero-product.jpg</span
+                <i class="dot"></i><span class="pill">{copy.canvas.imageLabel}</span><span
+                  style="margin-left:auto;">{copy.canvas.imageFile}</span
                 >
               </div>
               <div class="body">
@@ -152,23 +148,20 @@
                 ><span style="margin-left:auto;">brief.md</span>
               </div>
               <div class="body">
-                <div class="text">
-                  <b>Frühlingskampagne</b> — Produkt auf <b>Pastellgelb</b>,
-                  weiches Tageslicht, 4 Varianten in <b>Quadrat &amp; 4:5</b>.
-                </div>
+                <div class="text" set:html={copy.canvas.promptText}></div>
                 <div class="params">
-                  <span class="chip on">Gemini 2.5</span>
-                  <span class="chip">4 Varianten</span>
-                  <span class="chip">Mood: warm</span>
+                  {copy.canvas.promptChips.map((chip, index) => (
+                    <span class:list={['chip', { on: index === 0 }]}>{chip}</span>
+                  ))}
                 </div>
               </div>
             </div>
 
-            <!-- Node 3: KI-Bild -->
+            <!-- Node 3: AI image -->
             <div class="node n-ai">
               <div class="node-head">
-                <i class="dot"></i><span class="pill">KI-Bild</span><span
-                  style="margin-left:auto;">→ 4 outputs</span
+                <i class="dot"></i><span class="pill">{copy.canvas.aiLabel}</span><span
+                  style="margin-left:auto;">{copy.canvas.aiOutputs}</span
                 >
               </div>
               <div class="grid">
@@ -178,7 +171,7 @@
                 </div><div class="tile"></div>
               </div>
               <div class="meta">
-                <span>2/4 ausgewählt</span><span><b>8 Cr</b> verbraucht</span>
+                <span>{copy.canvas.aiSelected}</span><span set:html={copy.canvas.aiCredits}></span>
               </div>
             </div>
 
@@ -191,7 +184,7 @@
               </div>
               <div class="compare"><div class="handle"></div></div>
               <div class="meta">
-                <span>Variant 02 vs. Original</span>
+                <span>{copy.canvas.compareLabel}</span>
                 <span class="ok">
                   <svg
                     width="10"
@@ -202,26 +195,21 @@
                     stroke-width="2"
                     stroke-linecap="round"><path d="M2 5.5l2 2 4-4"></path></svg
                   >
-                  Export-ready
+                  {copy.canvas.exportReady}
                 </span>
               </div>
             </div>
           </div>
         </div>
-        <div class="credit-chip">2.847 / 3.300 <b>Credits</b></div>
+        <div class="credit-chip" set:html={copy.canvas.creditChip}></div>
       </div>
     </div>
 
     <!-- Logo strip -->
     <div class="logos">
       <div class="logos-inner">
-        <span>Stack-Entwurf</span>
-        <span class="logos-pill">Convex</span>
-        <span class="logos-pill">OpenRouter</span>
-        <span class="logos-pill">Polar.sh</span>
-        <span class="logos-pill">Better Auth</span>
-        <span class="logos-pill">Next.js 16</span>
-        <span class="logos-pill">Tailwind v4</span>
+        <span>{copy.stack.label}</span>
+        {copy.stack.items.map((item) => <span class="logos-pill">{item}</span>)}
       </div>
     </div>
   </div>
@@ -230,22 +218,10 @@
 <!-- ═════════ STRIP / SCROLLER ═════════ -->
 <div class="strip" aria-hidden="true">
   <div class="strip-track">
-    <span>Visual Canvas</span><span class="dot">●</span>
-    <span>Asset Library</span><span class="dot">●</span>
-    <span>Non-destructive Editing</span><span class="dot">●</span>
-    <span>Agent Workflows</span><span class="dot">●</span>
-    <span>Compare &amp; Export</span><span class="dot">●</span>
-    <span>Optional KI-Generierung</span><span class="dot">●</span>
-    <span>Self-Hosted</span><span class="dot">●</span>
-    <span>Source-Available</span><span class="dot">●</span>
-    <!-- duplicate -->
-    <span>Visual Canvas</span><span class="dot">●</span>
-    <span>Asset Library</span><span class="dot">●</span>
-    <span>Non-destructive Editing</span><span class="dot">●</span>
-    <span>Agent Workflows</span><span class="dot">●</span>
-    <span>Compare &amp; Export</span><span class="dot">●</span>
-    <span>Optional KI-Generierung</span><span class="dot">●</span>
-    <span>Self-Hosted</span><span class="dot">●</span>
-    <span>Source-Available</span><span class="dot">●</span>
+    {[...copy.strip, ...copy.strip].map((item) => (
+      <>
+        <span>{item}</span><span class="dot">●</span>
+      </>
+    ))}
   </div>
 </div>

@@ -1,42 +1,31 @@
+---
+interface Props {
+  copy: any;
+}
+
+const { copy } = Astro.props as Props;
+---
+
 <!-- ═════════ FOOTER ═════════ -->
 <footer>
   <div class="wrap">
     <div class="footer-grid">
       <div>
         <a href="#" class="brand"><img class="brand-logo" src="/logos/lemonspace-logo-v2-primary-rgb.svg" alt="" width="156" height="30" /><span>LemonSpace</span></a>
-        <p class="footer-tag">Visueller Workspace für kleine Kreativteams. In aktiver Entwicklung. Self-hosted und source-available, sobald der Code öffentlich ist.</p>
+        <p class="footer-tag">{copy.tagline}</p>
       </div>
-      <div>
-        <h4>Produkt</h4>
-        <ul>
-          <li><a href="#features">Features</a></li>
-          <li><a href="#how">So funktioniert's</a></li>
-          <li><a href="#pricing">Preise</a></li>
-          <li><a href="#hosting">Self-Hosted</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Ressourcen</h4>
-        <ul>
-          <li><a href="#">Dokumentation</a></li>
-          <li><a href="#">GitHub</a></li>
-          <li><a href="#">Changelog</a></li>
-          <li><a href="#">Roadmap</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Rechtliches</h4>
-        <ul>
-          <li><a href="#">Datenschutz</a></li>
-          <li><a href="#">Impressum</a></li>
-          <li><a href="#">BSL 1.1 Lizenz</a></li>
-          <li><a href="#">Kontakt</a></li>
-        </ul>
-      </div>
+      {copy.groups.map((group) => (
+        <div>
+          <h4>{group.title}</h4>
+          <ul>
+            {group.links.map((link) => <li><a href={link.href}>{link.label}</a></li>)}
+          </ul>
+        </div>
+      ))}
     </div>
     <div class="footer-bottom">
-      <span>© 2026 LemonSpace · Made in EU</span>
-      <span>BSL 1.1 → Apache 2.0 nach 3 Jahren</span>
+      <span>{copy.copyright}</span>
+      <span>{copy.license}</span>
     </div>
   </div>
 </footer>

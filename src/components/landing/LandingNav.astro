@@ -1,20 +1,45 @@
+---
+interface Props {
+  copy: any;
+  lang: 'de' | 'en';
+}
+
+const { copy, lang } = Astro.props as Props;
+const localeLinks = [
+  { lang: 'de', label: copy.language.de, href: '/de' },
+  { lang: 'en', label: copy.language.en, href: '/en' },
+];
+---
+
 <!-- ═════════ NAV ═════════ -->
 <nav class="nav">
   <div class="wrap nav-inner">
-    <a href="#" class="brand" aria-label="LemonSpace">
+    <a href={lang === 'en' ? '/en' : '/de'} class="brand" aria-label="LemonSpace">
       <img class="brand-logo" src="/logos/lemonspace-logo-v2-primary-rgb.svg" alt="" width="156" height="30" />
       <span>LemonSpace</span>
     </a>
     <div class="nav-links">
-      <a href="#how">So funktioniert's</a>
-      <a href="#features">Features</a>
-      <a href="#hosting">Self-Hosted</a>
-      <a href="#pricing">Preise</a>
+      <a href="#how">{copy.howItWorks}</a>
+      <a href="#features">{copy.features}</a>
+      <a href="#hosting">{copy.hosting}</a>
+      <a href="#pricing">{copy.pricing}</a>
     </div>
-    <a class="nav-cta" href="#waitlist">
-      Warteliste
-      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h6M7 3l3 3-3 3"></path></svg>
-    </a>
+    <div class="nav-actions">
+      <div class="language-switcher" aria-label={copy.language.switchLabel}>
+        {localeLinks.map((item) => (
+          <a
+            href={item.href}
+            aria-current={item.lang === lang ? 'true' : undefined}
+          >
+            {item.label}
+          </a>
+        ))}
+      </div>
+      <a class="nav-cta" href="#waitlist">
+        {copy.getStarted}
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h6M7 3l3 3-3 3"></path></svg>
+      </a>
+    </div>
   </div>
 </nav>
 
