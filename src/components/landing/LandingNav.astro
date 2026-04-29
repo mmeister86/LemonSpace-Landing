@@ -2,14 +2,14 @@
 <nav class="nav">
   <div class="wrap nav-inner">
     <a href="#" class="brand" aria-label="LemonSpace">
-      <span class="brand-mark">L</span>
+      <img class="brand-logo" src="/logos/lemonspace-logo-v2-primary-rgb.svg" alt="" width="156" height="30" />
       <span>LemonSpace</span>
     </a>
     <div class="nav-links">
-      <a href="#features">Features</a>
       <a href="#how">So funktioniert's</a>
-      <a href="#pricing">Preise</a>
+      <a href="#features">Features</a>
       <a href="#hosting">Self-Hosted</a>
+      <a href="#pricing">Preise</a>
     </div>
     <a class="nav-cta" href="#waitlist">
       Warteliste
@@ -17,3 +17,14 @@
     </a>
   </div>
 </nav>
+
+<script>
+  const nav = document.querySelector('.nav');
+
+  function updateNavTransparency() {
+    nav?.classList.toggle('is-scrolled', window.scrollY > 8);
+  }
+
+  updateNavTransparency();
+  window.addEventListener('scroll', updateNavTransparency, { passive: true });
+</script>
