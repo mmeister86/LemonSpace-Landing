@@ -32,6 +32,15 @@ test('landing page is composed from standalone-inspired modules', async () => {
   }
 });
 
+test('navigation links follow the rendered section order', async () => {
+  const nav = await read('src/components/landing/LandingNav.astro');
+  const order = ['#how', '#features', '#hosting', '#pricing', '#waitlist'];
+  const positions = order.map((href) => nav.indexOf(`href="${href}"`));
+
+  assert.ok(positions.every((position) => position !== -1));
+  assert.deepEqual([...positions].sort((a, b) => a - b), positions);
+});
+
 test('waitlist form keeps the working API contract', async () => {
   const form = await read('src/components/WaitlistSignup.astro');
 
