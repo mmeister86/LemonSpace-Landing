@@ -103,9 +103,10 @@ test('waitlist form keeps the working API contract', async () => {
 test('standalone visual language is present in shared styles', async () => {
   const css = await read('src/styles/global.css');
 
-  assert.match(css, /--primary:\s*#2c770a/);
-  assert.match(css, /--primary-2:\s*#37930c/);
-  assert.match(css, /--accent:\s*#e8d44d/);
+  assert.match(css, /--primary:\s*#266600/);
+  assert.match(css, /--primary-3:\s*#a3e635/);
+  assert.match(css, /--night:\s*#090b07/);
+  assert.match(css, /Green and Black Bold Creative Brief Presentation|linear-gradient\(90deg/s);
   assert.match(css, /\.canvas-frame/);
   assert.match(css, /\.node/);
   assert.match(css, /\.feature/);

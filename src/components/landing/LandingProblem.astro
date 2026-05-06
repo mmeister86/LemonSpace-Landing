@@ -11,7 +11,7 @@ const { copy } = Astro.props as Props;
   <div class="wrap">
     <span class="eyebrow muted">{copy.label}</span>
     <h2 class="section-h" style="margin-top: 18px;">
-      {copy.headline.before} <em style="color: #c0521b; font-style: normal;">{copy.headline.em}</em>
+      {copy.headline.before} <em style="color: var(--primary); font-style: normal;">{copy.headline.em}</em>
     </h2>
 
     <div class="problem-grid" style="margin-top: 56px;">
